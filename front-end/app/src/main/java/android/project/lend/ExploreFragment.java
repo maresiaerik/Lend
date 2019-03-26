@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -22,12 +23,13 @@ public class ExploreFragment extends Fragment {
     View view = null;
     ProductAdapter pa;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_explore, container, false);
 
+        view = inflater.inflate(R.layout.fragment_explore, container, false);
+        TextView pageTitle = view.findViewById(R.id.page_title);
+        pageTitle.setText("Explore");
         playground();
 
         EditText sbar = view.findViewById(R.id.explore_search);
@@ -52,7 +54,6 @@ public class ExploreFragment extends Fragment {
         };
 
         sbar.addTextChangedListener(filter);
-
         return  view;
 
     }

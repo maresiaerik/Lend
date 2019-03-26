@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
                             selected_fragment = new HomeFragment();
                             break;
                     }
-
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selected_fragment).commit();
                     return true;
                 }

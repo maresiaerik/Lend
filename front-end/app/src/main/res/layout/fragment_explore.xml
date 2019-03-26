@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
 
+<<<<<<< HEAD
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="horizontal"
@@ -75,3 +76,8 @@
             />
     </LinearLayout>
 </LinearLayout>
+=======
+    <include layout="@layout/page_title_layout"/>
+
+</RelativeLayout>
+>>>>>>> 0025fad7840f2c4f2a8c7cbe1eac67fe19e76447
