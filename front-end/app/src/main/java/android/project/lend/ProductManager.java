@@ -22,7 +22,7 @@ public class ProductManager
             Random r = new Random();
             productData.price = r.nextFloat() * (100 - 5) + 5;
             productData.rating = r.nextInt((5-1) + 1 ) + 1;
-            productData.image = "";
+            productData.image = "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F5%2F57%2FFraming_hammer.jpg%2F1200px-Framing_hammer.jpg&f=1";
 
             productList.add(productData);
         }

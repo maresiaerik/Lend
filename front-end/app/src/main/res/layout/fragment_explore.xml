@@ -1,10 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal"
+        android:layout_marginBottom="15dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="match_parent"
+            android:text="Explore"
+            android:id="@+id/explore_fragment_heading"
+            android:textSize="50dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center">
+       <EditText
+           android:layout_width="match_parent"
+           android:layout_marginTop="10dp"
+           android:layout_marginBottom="5dp"
+           android:layout_marginRight="5dp"
+           android:layout_marginLeft="5dp"
+           android:hint="Search for a tool!"
+           android:layout_height="wrap_content"
+           android:background="@drawable/searchbar"
+           android:id="@+id/explore_search"
+           />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+
+        >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Filter"
+            android:background="@drawable/button"
+
+            android:textColor="@color/colorAccent"
+
+
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:text="Sort by"
+            android:background="@drawable/button"
+            android:textColor="@color/colorAccent"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Explore"
-        android:textSize="50dp"/>
-</RelativeLayout>
+        android:id="@+id/explore_item_list_container"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="18dp"
+        >
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/item_view"
+            android:divider="#00000000"
+            />
+    </LinearLayout>
+</LinearLayout>

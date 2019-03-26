@@ -4,10 +4,13 @@ import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -33,11 +36,20 @@ public class ProductAdapter extends ArrayAdapter<ProductDataItem> {
 
         ProductDataItem currentProduct = productList.get(position);
 
-        TextView id = (TextView) listItem.findViewById(R.id.product_id);
-        id.setText(currentProduct.getId().toString());
+        TextView price = (TextView) listItem.findViewById(R.id.product_price);
+        price.setText("8,60€/day");
 
         TextView name = (TextView) listItem.findViewById(R.id.product_name);
         name.setText(currentProduct.getName());
+
+        ImageView img = listItem.findViewById(R.id.imageView);
+        new ImageDownloader(img).execute(currentProduct.getImage());
+
+
+        RatingBar rating = listItem.findViewById(R.id.product_rating);
+
+        rating.setRating(currentProduct.getRating());
+
 
         return listItem;
     }
