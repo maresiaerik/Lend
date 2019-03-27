@@ -6,15 +6,15 @@ public class ProductCore
 {
     private Integer id;
     private String name;
-    private float price;
+    private Float price;
     private Integer rating;
     private String image;
 
-    private boolean changed;
-    private boolean changed_name;
-    private boolean changed_price;
-    private boolean changed_rating;
-    private boolean changed_image;
+    private Boolean changed;
+    private Boolean changed_name;
+    private Boolean changed_price;
+    private Boolean changed_rating;
+    private Boolean changed_image;
 
     public Integer getId() {
         return this.id;
@@ -38,11 +38,11 @@ public class ProductCore
         this.name = name;
     }
 
-    public float getPrice() {
+    public Float getPrice() {
         return this.price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Float price) {
 
         if(price == this.price) return;
 
