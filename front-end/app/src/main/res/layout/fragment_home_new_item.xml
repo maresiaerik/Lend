@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+    <EditText
+        android:id="@+id/new_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Item name"
+        android:inputType="textCapSentences"
+        android:textSize="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/category_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/category_items_dropdown"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/new_item_title" />
+
+    <LinearLayout
+        android:id="@+id/item_picture_row_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingTop="20dp"
+        android:weightSum="2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/category_spinner">
+
+        <ImageView
+            android:id="@+id/new_image_1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:padding="20dp"
+            android:src="@drawable/add_icon"
+            android:weightSum="2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/new_image_2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            android:padding="20dp"
+            android:src="@drawable/add_icon"
+            android:weightSum="2"
+            app:layout_constraintLeft_toRightOf="@id/new_image_1"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_picture_row_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingTop="20dp"
+        android:weightSum="2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_picture_row_1">
+
+        <ImageView
+            android:id="@+id/new_image_3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:layout_weight="1"
+            android:padding="20dp"
+            android:src="@drawable/add_icon"
+            android:weightSum="2" />
+
+        <ImageView
+            android:id="@+id/new_image_4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:layout_weight="1"
+            android:padding="20dp"
+            android:src="@drawable/add_icon"
+            android:weightSum="2"
+            app:layout_constraintLeft_toRightOf="@id/new_image_3"
+            app:layout_constraintTop_toBottomOf="@+id/new_image_1" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/new_item_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Item's description"
+        android:inputType="textCapSentences"
+        android:padding="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_picture_row_2" />
+
+    <Button
+        android:id="@+id/price_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_accent"
+        android:text="Price"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/new_item_description" />
+
+    <Button
+        android:id="@+id/new_item_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_cancel"
+        android:text="Cancel"
+        android:textColor="@color/cancelColour"
+        android:layout_marginRight="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/new_item_submit"
+        app:layout_constraintTop_toBottomOf="@id/price_btn" />
+
+    <Button
+        android:id="@+id/new_item_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:background="@drawable/button_submit"
+        android:text="Submit"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintLeft_toRightOf="@id/new_item_cancel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/price_btn" />
+
+
+</android.support.constraint.ConstraintLayout>

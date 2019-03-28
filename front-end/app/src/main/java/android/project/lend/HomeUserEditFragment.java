@@ -18,7 +18,7 @@ public class HomeUserEditFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home_user_edit, container, false);
 
         //Setting First Name
-        TextView userFirstNameEdit = view.findViewById(R.id.userFirstNameEdit);
+        TextView userFirstNameEdit = view.findViewById(R.id.user_first_name_edit);
         userFirstNameEdit.setText("Tester");
 
         //Setting Second Name
@@ -26,19 +26,19 @@ public class HomeUserEditFragment extends Fragment {
         userSecondNameEdit.setText("Userman");
 
         //Setting Email
-        TextView userEmailEdit = view.findViewById(R.id.userEmailEdit);
+        TextView userEmailEdit = view.findViewById(R.id.user_email_edit);
         userEmailEdit.setText("testUser@email.com");
 
         //Setting Phone
-        TextView userPhoneEdit = view.findViewById(R.id.userPhoneEdit);
+        TextView userPhoneEdit = view.findViewById(R.id.user_phone_edit);
         userPhoneEdit.setText("+35898238457");
 
         //Setting Email
-        TextView userAddressEdit = view.findViewById(R.id.userAddressEdit);
+        TextView userAddressEdit = view.findViewById(R.id.user_address_edit);
         userAddressEdit.setText("1 Road Street, Oulu, 9000");
 
         //Setting Credit Card
-        TextView userCardEdit = view.findViewById(R.id.userCardEdit);
+        TextView userCardEdit = view.findViewById(R.id.user_card_edit);
         userCardEdit.setText("4444 4565 3333 5234");
 
         return view;
