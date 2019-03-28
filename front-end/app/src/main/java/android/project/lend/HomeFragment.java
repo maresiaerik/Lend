@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +28,9 @@ public class HomeFragment extends Fragment {
 
         //User Edit Button
         Button userEditBtn = view.findViewById(R.id.userEditBtn);
+
+        userEditBtn.setText(MainActivity.USER.getFirstName());
+
         userEditBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

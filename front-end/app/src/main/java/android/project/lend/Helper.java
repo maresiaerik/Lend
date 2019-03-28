@@ -1,62 +1,76 @@
 package android.project.lend;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Helper {
 
-    public ArrayList<ProductData> getProducts(){
+    public ArrayList<ProductData> getProductData(){
 
-        ArrayList<ProductData> productList = new ArrayList<>();
+        ArrayList<ProductData> product_list = new ArrayList<>();
 
         for(int i = 0; i < 10; i++)
         {
-            ProductData productData = new ProductData();
+            ProductData product_data = new ProductData();
 
-            productData.id = (i + 1);
-            productData.name = "Product " + (i + 1);
+            product_data.id = (i + 1);
+            product_data.name = "Product " + (i + 1);
 
             Random r = new Random();
-            productData.price = r.nextFloat() * (100 - 5) + 5;
-            productData.rating = r.nextInt((5-1) + 1 ) + 1;
-            productData.image = "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F5%2F57%2FFraming_hammer.jpg%2F1200px-Framing_hammer.jpg&f=1";
+            product_data.price = r.nextFloat() * (100 - 5) + 5;
+            product_data.rating = r.nextInt((5-1) + 1 ) + 1;
+            product_data.image = "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F5%2F57%2FFraming_hammer.jpg%2F1200px-Framing_hammer.jpg&f=1";
 
-            productList.add(productData);
+            product_list.add(product_data);
         }
 
-        return productList;
+        return product_list;
     }
 
-    public ArrayList<UserData> getUsers(Integer id){
+    public ArrayList<UserData> getUserData(Integer id){
 
-        ArrayList<UserData> userList = new ArrayList<>();
+        ArrayList<UserData> user_list = new ArrayList<>();
 
-        UserData userData = new UserData();
+        UserData user_data = new UserData();
 
-        userData.id = 1;
-        userData.first_name = "Florian";
-        userData.last_name = "Brandsma";
-        userData.image_url = "https://secure.i.telegraph.co.uk/multimedia/archive/03597/POTD_chick_3597497k.jpg";
-        userData.email_address = "t7brfl00@students.oamk.fi";
-        userData.home_address = "Kotkantie 1";
-        userData.phone_number = "+3581234567890";
-        userData.card_number = "1234 4567 8910";
-        userData.card_date = "01/20";
-        userData.card_security = "123";
+        user_data.id = 1;
+        user_data.first_name = "Florian";
+        user_data.last_name = "Brandsma";
+        user_data.image_url = "https://secure.i.telegraph.co.uk/multimedia/archive/03597/POTD_chick_3597497k.jpg";
+        user_data.email_address = "t7brfl00@students.oamk.fi";
+        user_data.home_address = "Kotkantie 1";
+        user_data.phone_number = "+3581234567890";
+        user_data.card_number = "1234 4567 8910";
+        user_data.card_date = "01/20";
+        user_data.card_security = "123";
 
-        userList.add(userData);
+        user_list.add(user_data);
 
-        return userList;
+        return user_list;
     }
 
-    public ImageData getImages(Integer id){
+    public ArrayList<ImageData> getImageData(Integer id){
 
-        ImageData imageData = new ImageData();
+        ArrayList<ImageData> image_list = new ArrayList<>();
 
-        imageData.id = 1;
-        imageData.url = "https://secure.i.telegraph.co.uk/multimedia/archive/03597/POTD_chick_3597497k.jpg";
+        final String[] IMAGES = new String[] {
+            "https://secure.i.telegraph.co.uk/multimedia/archive/03597/POTD_chick_3597497k.jpg",
+            "http://www.cutestpaw.com/wp-content/uploads/2016/07/Shark-horse-fictional-animal-picture.jpg",
+            "https://cms.algoafm.co.za/img/tn_201781185222.jpeg?w=270&h=250&mode=crop&scale=both&anchor=topcenter",
+            "https://i2-prod.mirror.co.uk/incoming/article11840943.ece/ALTERNATES/s615/PAY-MATING-BUGS.jpg"
+        };
 
-        return imageData;
+        for(int i = 0; i < IMAGES.length; i++){
+
+            ImageData image_data = new ImageData();
+
+            image_data.id = (i+1);
+            image_data.product_id = 1;
+            image_data.url = IMAGES[i];
+        }
+
+        return image_list;
     }
 
     public class ProductData{

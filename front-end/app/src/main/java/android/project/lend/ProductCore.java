@@ -11,10 +11,10 @@ public class ProductCore
     private String image;
 
     private Boolean changed;
-    private Boolean changed_name;
-    private Boolean changed_price;
-    private Boolean changed_rating;
-    private Boolean changed_image;
+    private Boolean changedName;
+    private Boolean changedPrice;
+    private Boolean changedRating;
+    private Boolean changedImage;
 
     public Integer getId() {
         return this.id;
@@ -33,7 +33,7 @@ public class ProductCore
         if(name == this.name) return;
 
         changed = true;
-        changed_name = true;
+        changedName = true;
 
         this.name = name;
     }
@@ -47,7 +47,7 @@ public class ProductCore
         if(price == this.price) return;
 
         changed = true;
-        changed_price = true;
+        changedPrice = true;
 
         this.price = price;
     }
@@ -61,7 +61,7 @@ public class ProductCore
         if(rating == this.rating) return;
 
         changed = true;
-        changed_rating = true;
+        changedRating = true;
 
         this.rating = rating;
     }
@@ -75,7 +75,7 @@ public class ProductCore
         if(image == this.image) return;
 
         changed = true;
-        changed_image = true;
+        changedImage = true;
 
         this.image = image;
     }
@@ -91,10 +91,10 @@ public class ProductCore
 
         Log.d("PRODUCTCHANGE", "Something was changed!");
 
-        if(changed_name){Log.d("PRODUCTCHANGED", "Name was changed to " + this.name);}
-        if(changed_price){Log.d("PRODUCTCHANGED", "Price was changed to " + this.price);}
-        if(changed_rating){Log.d("PRODUCTCHANGED", "Rating was changed to " + this.rating);}
-        if(changed_image){Log.d("PRODUCTCHANGED", "Image was changed to " + this.image);}
+        if(changedName){Log.d("PRODUCTCHANGED", "Name was changed to " + this.name);}
+        if(changedPrice){Log.d("PRODUCTCHANGED", "Price was changed to " + this.price);}
+        if(changedRating){Log.d("PRODUCTCHANGED", "Rating was changed to " + this.rating);}
+        if(changedImage){Log.d("PRODUCTCHANGED", "Image was changed to " + this.image);}
 
         clearChanges();
     }
@@ -107,9 +107,9 @@ public class ProductCore
     public void clearChanges()
     {
         changed = false;
-        changed_name = false;
-        changed_price = false;
-        changed_rating = false;
-        changed_image = false;
+        changedName = false;
+        changedPrice = false;
+        changedRating = false;
+        changedImage = false;
     }
 }

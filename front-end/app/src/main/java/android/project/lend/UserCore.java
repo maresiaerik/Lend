@@ -5,26 +5,26 @@ import android.util.Log;
 public class UserCore {
 
     private Integer id;
-    private String first_name;
-    private String last_name;
-    private String image_url;
-    private String email_address;
-    private String home_address;
-    private String phone_number;
-    private String card_number;
-    private String card_date;
-    private String card_security;
+    private String firstName;
+    private String lastName;
+    private String imageUrl;
+    private String emailAddress;
+    private String homeAddress;
+    private String phoneNumber;
+    private String cardNumber;
+    private String cardDate;
+    private String cardSecurity;
 
     public Boolean changed;
-    public Boolean changed_first_name;
-    public Boolean changed_last_name;
-    public Boolean changed_image_url;
-    public Boolean changed_email_address;
-    public Boolean changed_home_address;
-    public Boolean changed_phone_number;
-    public Boolean changed_card_number;
-    public Boolean changed_card_date;
-    public Boolean changed_card_security;
+    public Boolean changedFirstName;
+    public Boolean changedLastName;
+    public Boolean changedImageUrl;
+    public Boolean changedEmailAddress;
+    public Boolean changedHomeAddress;
+    public Boolean changedPhoneNumber;
+    public Boolean changedCardNumber;
+    public Boolean changedCardDate;
+    public Boolean changedCardSecurity;
 
     public Integer getId() {
         return id;
@@ -34,130 +34,130 @@ public class UserCore {
         this.id = id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
+    public void setFirstName(String firstName) {
 
-        if(this.first_name == first_name) return;
+        if(this.firstName == firstName) return;
 
         changed = true;
-        changed_first_name = true;
+        changedFirstName = true;
 
-        this.first_name = first_name;
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
+    public void setLastName(String lastName) {
 
-        if(this.last_name == last_name) return;
+        if(this.lastName == lastName) return;
 
         changed = true;
-        changed_last_name = true;
+        changedLastName = true;
 
-        this.last_name = last_name;
+        this.lastName = lastName;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage_url(String image_url) {
+    public void setImageUrl(String imageUrl) {
 
-        if(this.image_url == image_url) return;
+        if(this.imageUrl == imageUrl) return;
 
         changed = true;
-        changed_image_url = true;
+        changedImageUrl = true;
 
-        this.image_url = image_url;
+        this.imageUrl = imageUrl;
     }
 
-    public String getEmail_address() {
-        return email_address;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public void setEmail_address(String email_address) {
+    public void setEmailAddress(String emailAddress) {
 
-        if(this.email_address == email_address) return;
+        if(this.emailAddress == emailAddress) return;
 
         changed = true;
-        changed_email_address = true;
+        changedEmailAddress = true;
 
-        this.email_address = email_address;
+        this.emailAddress = emailAddress;
     }
 
-    public String getHome_address() {
-        return home_address;
+    public String getHomeAddress() {
+        return homeAddress;
     }
 
-    public void setHome_address(String home_address) {
+    public void setHomeAddress(String homeAddress) {
 
-        if(this.home_address == home_address) return;
+        if(this.homeAddress == homeAddress) return;
 
         changed = true;
-        changed_home_address = true;
+        changedHomeAddress = true;
 
-        this.home_address = home_address;
+        this.homeAddress = homeAddress;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone_number(String phone_number) {
+    public void setPhoneNumber(String phoneNumber) {
 
-        if(this.phone_number == phone_number) return;
+        if(this.phoneNumber == phoneNumber) return;
 
         changed = true;
-        changed_phone_number = true;
+        changedPhoneNumber = true;
 
-        this.phone_number = phone_number;
+        this.phoneNumber = phoneNumber;
     }
 
-    public String getCard_number() {
-        return card_number;
+    public String getCardNumber() {
+        return cardNumber;
     }
 
-    public void setCard_number(String card_number) {
+    public void setCardNumber(String cardNumber) {
 
-        if(this.card_number == card_number) return;
+        if(this.cardNumber == cardNumber) return;
 
         changed = true;
-        changed_card_number = true;
+        changedCardNumber = true;
 
-        this.card_number = card_number;
+        this.cardNumber = cardNumber;
     }
 
-    public String getCard_date() {
-        return card_date;
+    public String getCardDate() {
+        return cardDate;
     }
 
-    public void setCard_date(String card_date) {
+    public void setCardDate(String cardDate) {
 
-        if(this.card_date == card_date) return;
+        if(this.cardDate == cardDate) return;
 
         changed = true;
-        changed_card_number = true;
+        changedCardNumber = true;
 
-        this.card_date = card_date;
+        this.cardDate = cardDate;
     }
 
-    public String getCard_security() {
-        return card_security;
+    public String getCardSecurity() {
+        return cardSecurity;
     }
 
-    public void setCard_security(String card_security) {
+    public void setCardSecurity(String cardSecurity) {
 
-        if(this.card_security == card_security) return;
+        if(this.cardSecurity == cardSecurity) return;
 
         changed = true;
-        changed_card_security = true;
+        changedCardSecurity = true;
 
-        this.card_security = card_security;
+        this.cardSecurity = cardSecurity;
     }
 
     public void create()
@@ -171,35 +171,35 @@ public class UserCore {
 
         Log.d("USERCHANGED", "Something was changed!");
 
-        if(changed_first_name){}
-        if(changed_last_name){}
-        if(changed_email_address){}
-        if(changed_home_address){}
-        if(changed_phone_number){}
-        if(changed_card_number){}
-        if(changed_card_date){}
-        if(changed_card_security){}
-        if(changed_image_url){}
+        if(changedFirstName){}
+        if(changedLastName){}
+        if(changedEmailAddress){}
+        if(changedHomeAddress){}
+        if(changedPhoneNumber){}
+        if(changedCardNumber){}
+        if(changedCardDate){}
+        if(changedCardSecurity){}
+        if(changedImageUrl){}
 
         clearChanges();
     }
 
     public void delete()
     {
-        Log.d("USERDELETED", this.first_name + " was deleted");
+        Log.d("USERDELETED", this.firstName + " was deleted");
     }
 
     public void clearChanges()
     {
         changed = false;
-        changed_first_name = false;
-        changed_last_name = false;
-        changed_email_address = false;
-        changed_home_address = false;
-        changed_phone_number = false;
-        changed_card_number = false;
-        changed_card_date = false;
-        changed_card_security = false;
-        changed_image_url = false;
+        changedFirstName = false;
+        changedLastName = false;
+        changedEmailAddress = false;
+        changedHomeAddress = false;
+        changedPhoneNumber = false;
+        changedCardNumber = false;
+        changedCardDate = false;
+        changedCardSecurity = false;
+        changedImageUrl = false;
     }
 }

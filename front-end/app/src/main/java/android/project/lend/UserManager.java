@@ -6,34 +6,32 @@ public class UserManager extends Helper {
 
     private ArrayList<UserData> userList;
 
-    private void getUserData(Integer id){
-
-        userList = getUsers(id);
-    }
-
-    private UserDataItem getUser(Integer id){
+    public ArrayList<UserDataItem> getDataList(Integer id){
 
         ArrayList<UserDataItem> userDataItemList = new ArrayList<>();
-        UserDataItem userDataItem = new UserDataItem();
 
-        getUserData(id);
+        userList = getUserData(id);
 
         for (UserData user : userList) {
 
-            userDataItem.setId(user.id);
-            userDataItem.setFirst_name(user.first_name);
-            userDataItem.setLast_name(user.last_name);
-            userDataItem.setImage_url(user.image_url);
-            userDataItem.setEmail_address(user.email_address);
-            userDataItem.setHome_address(user.home_address);
-            userDataItem.setPhone_number(user.phone_number);
-            userDataItem.setCard_number(user.card_number);
-            userDataItem.setCard_date(user.card_date);
-            userDataItem.setCard_security(user.card_security);
+            UserDataItem user_data_item = new UserDataItem();
 
-            userDataItem.clearChanges();
+            user_data_item.setId(user.id);
+            user_data_item.setFirstName(user.first_name);
+            user_data_item.setLastName(user.last_name);
+            user_data_item.setImageUrl(user.image_url);
+            user_data_item.setEmailAddress(user.email_address);
+            user_data_item.setHomeAddress(user.home_address);
+            user_data_item.setPhoneNumber(user.phone_number);
+            user_data_item.setCardNumber(user.card_number);
+            user_data_item.setCardDate(user.card_date);
+            user_data_item.setCardSecurity(user.card_security);
+
+            user_data_item.clearChanges();
+
+            userDataItemList.add(user_data_item);
         }
 
-        return userDataItem;
+        return userDataItemList;
     }
 }

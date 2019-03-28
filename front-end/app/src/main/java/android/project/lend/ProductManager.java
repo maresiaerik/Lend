@@ -6,16 +6,11 @@ public class ProductManager extends Helper
 {
     private ArrayList<ProductData> productList;
 
-    private void getProductData(){
-
-        productList = getProducts();
-    }
-
     public ArrayList<ProductDataItem> getDataList()
     {
         ArrayList<ProductDataItem> productDataItemList = new ArrayList<>();
 
-        getProductData();
+        productList = getProductData();
 
         for (ProductData product : productList)
         {
