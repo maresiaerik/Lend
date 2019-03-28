@@ -3,4 +3,10 @@
     <color name="colorPrimary">#50a761</color>
     <color name="colorPrimaryDark">#50a761</color>
     <color name="colorAccent">#A75096</color>
+
+    <!--Buttons-->
+    <color name="cancelColour">#FF4040</color>
+    <color name="submitColour">#50a761</color>
+    <color name="whiteColour">#FFFFFF</color>
+
 </resources>

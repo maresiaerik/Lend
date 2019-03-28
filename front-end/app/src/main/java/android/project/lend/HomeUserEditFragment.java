@@ -21,11 +21,11 @@ public class HomeUserEditFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home_user_edit, container, false);
 
         //Setting Image
-        ImageView img = view.findViewById(R.id.userProfilePicEdit);
+        ImageView img = view.findViewById(R.id.user_profile_pic_edit);
         new ImageDownloader(img).execute(MainActivity.USER.getImageUrl());
 
         //Setting First Name
-        TextView userFirstNameEdit = view.findViewById(R.id.userFirstNameEdit);
+        TextView userFirstNameEdit = view.findViewById(R.id.user_first_name_edit);
         userFirstNameEdit.setText(MainActivity.USER.getFirstName());
 
         //Setting Second Name
@@ -33,19 +33,19 @@ public class HomeUserEditFragment extends Fragment {
         userSecondNameEdit.setText(MainActivity.USER.getLastName());
 
         //Setting Email
-        final TextView userEmailEdit = view.findViewById(R.id.userEmailEdit);
+        final TextView userEmailEdit = view.findViewById(R.id.user_email_edit);
         userEmailEdit.setText(MainActivity.USER.getEmailAddress());
 
         //Setting Phone
-        TextView userPhoneEdit = view.findViewById(R.id.userPhoneEdit);
+        TextView userPhoneEdit = view.findViewById(R.id.user_phone_edit);
         userPhoneEdit.setText(MainActivity.USER.getPhoneNumber());
 
         //Setting Email
-        TextView userAddressEdit = view.findViewById(R.id.userAddressEdit);
+        TextView userAddressEdit = view.findViewById(R.id.user_address_edit);
         userAddressEdit.setText(MainActivity.USER.getHomeAddress());
 
         //Setting Credit Card
-        TextView userCardEdit = view.findViewById(R.id.userCardEdit);
+        TextView userCardEdit = view.findViewById(R.id.user_card_edit);
         userCardEdit.setText(MainActivity.USER.getCardNumber());
 
         return view;

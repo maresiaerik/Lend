@@ -23,6 +23,7 @@ public class ExploreFragment extends Fragment {
     View view = null;
     ProductAdapter pa;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,6 +69,7 @@ public class ExploreFragment extends Fragment {
 
 
     private void playground() {
+
         ArrayList<ProductDataItem> productDataItemList = new ArrayList<>();
 
         productDataItemList = productManager.getDataList();
