@@ -2,6 +2,7 @@ package android.project.lend;
 
 
 import android.annotation.SuppressLint;
+import android.support.v4.app.Fragment;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -14,7 +15,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -79,7 +79,7 @@ public class HomeNewItemFragment extends Fragment {
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Fragment homeFragment = new HomeFragment();
+                final Fragment homeFragment = new Fragment();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, homeFragment).commit();
             }
         });
