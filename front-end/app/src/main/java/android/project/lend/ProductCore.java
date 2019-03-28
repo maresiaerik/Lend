@@ -2,6 +2,8 @@ package android.project.lend;
 
 import android.util.Log;
 
+import java.text.DecimalFormat;
+
 public class ProductCore
 {
     private Integer id;
@@ -9,7 +11,6 @@ public class ProductCore
     private float price;
     private Integer rating;
     private String image;
-
     private boolean changed;
     private boolean changed_name;
     private boolean changed_price;

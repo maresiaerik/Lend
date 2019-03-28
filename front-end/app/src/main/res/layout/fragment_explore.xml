@@ -6,9 +6,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center">
+        android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center"
+        android:id="@+id/aa">
        <EditText
            android:layout_width="match_parent"
+           android:maxLines="1"
+           android:inputType="text"
            android:layout_marginTop="10dp"
            android:layout_marginBottom="5dp"
            android:layout_marginRight="5dp"
@@ -23,28 +26,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
+
         android:layout_marginTop="10dp"
 
         >
         <Button
+            android:id="@+id/filter_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Filter"
+            android:text=" Filters"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/button"
+            android:textColor="@color/colorAccent" />
 
-            android:textColor="@color/colorAccent"
-
-
-            />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
-            android:text="Sort by"
-            android:background="@drawable/button"
-            android:textColor="@color/colorAccent"
-            />
 
     </LinearLayout>
 
