@@ -1,6 +1,4 @@
 package android.project.lend;
 
-public class ProductDataItem extends ProductCore
-{
-
+public class ProductDataItem extends ProductCore {
 }

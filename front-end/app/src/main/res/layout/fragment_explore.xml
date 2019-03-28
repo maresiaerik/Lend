@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <include layout="@layout/page_title_layout"/>
-
+    <include layout="@layout/page_title_layout" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center"
@@ -25,11 +26,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-
         android:layout_marginTop="10dp"
-
-        >
+        android:orientation="horizontal">
         <Button
             android:id="@+id/filter_button"
             android:layout_width="wrap_content"
@@ -37,26 +35,22 @@
             android:text=" Filters"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/button"
+            android:background="@drawable/button_accent"
             android:textColor="@color/colorAccent" />
-
-
     </LinearLayout>
-
     <LinearLayout
+        android:id="@+id/explore_item_list_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/explore_item_list_container"
-        android:orientation="vertical"
+        android:layout_marginTop="8dp"
         android:gravity="center"
-        android:layout_marginTop="18dp"
-        >
+        android:orientation="vertical">
+
         <ListView
+            android:id="@+id/item_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/item_view"
-            android:divider="#00000000"
-            />
+            android:divider="#00000000"/>
     </LinearLayout>
 </LinearLayout>
 

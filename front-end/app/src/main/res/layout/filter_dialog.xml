@@ -136,7 +136,7 @@
                     android:text="Show Results"
                     android:textColor="@color/colorAccent"
                     android:id="@+id/filter_accept_button"
-                    android:background="@drawable/button"/>
+                    android:background="@drawable/button_accent"/>
             </LinearLayout>
 
 

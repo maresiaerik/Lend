@@ -6,7 +6,7 @@
     android:padding="20dp">
 
     <ImageView
-        android:id="@+id/userProfilePicEdit"
+        android:id="@+id/user_profile_pic_edit"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:scaleType="centerCrop"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/userFirstNameEdit"
+        android:id="@+id/user_first_name_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:selectAllOnFocus="true"
@@ -32,20 +32,20 @@
         android:textColor="@android:color/black"
         android:textSize="35sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/userFirstNameEdit" />
+        app:layout_constraintTop_toBottomOf="@id/user_first_name_edit" />
 
     <ImageView
-        android:id="@+id/emailIcon"
+        android:id="@+id/email_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:paddingTop="75dp"
         android:src="@drawable/email_icon"
-        app:layout_constraintRight_toLeftOf="@+id/userEmailEdit"
+        app:layout_constraintRight_toLeftOf="@+id/user_email_edit"
         app:layout_constraintTop_toBottomOf="@+id/userSecondNameEdit" />
 
     <EditText
-        android:id="@+id/userEmailEdit"
+        android:id="@+id/user_email_edit"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -64,11 +64,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:src="@drawable/phone_icon"
-        app:layout_constraintRight_toLeftOf="@+id/userPhoneEdit"
-        app:layout_constraintTop_toBottomOf="@+id/emailIcon" />
+        app:layout_constraintRight_toLeftOf="@+id/user_phone_edit"
+        app:layout_constraintTop_toBottomOf="@+id/email_icon" />
 
     <EditText
-        android:id="@+id/userPhoneEdit"
+        android:id="@+id/user_phone_edit"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -79,7 +79,7 @@
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userEmailEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/user_email_edit" />
 
     <ImageView
         android:id="@+id/location_icon"
@@ -87,11 +87,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:src="@drawable/location_icon"
-        app:layout_constraintRight_toLeftOf="@+id/userAddressEdit"
-        app:layout_constraintTop_toBottomOf="@+id/userPhoneEdit" />
+        app:layout_constraintRight_toLeftOf="@+id/user_address_edit"
+        app:layout_constraintTop_toBottomOf="@+id/user_phone_edit" />
 
     <EditText
-        android:id="@+id/userAddressEdit"
+        android:id="@+id/user_address_edit"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -101,7 +101,7 @@
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userPhoneEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/user_phone_edit" />
 
     <ImageView
         android:id="@+id/card_icon"
@@ -109,11 +109,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:src="@drawable/card_icon"
-        app:layout_constraintRight_toLeftOf="@+id/userCardEdit"
-        app:layout_constraintTop_toBottomOf="@+id/userAddressEdit" />
+        app:layout_constraintRight_toLeftOf="@+id/user_card_edit"
+        app:layout_constraintTop_toBottomOf="@+id/user_address_edit" />
 
     <EditText
-        android:id="@+id/userCardEdit"
+        android:id="@+id/user_card_edit"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -124,7 +124,7 @@
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userAddressEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/user_address_edit" />
 
 
 </android.support.constraint.ConstraintLayout>

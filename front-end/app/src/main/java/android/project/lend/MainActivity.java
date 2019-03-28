@@ -6,25 +6,35 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ListView;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ProductManager productManager = new ProductManager();
+    //ProductManager productManager = new ProductManager();
+    UserManager userManager = new UserManager();
+    static public UserDataItem USER;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        USER = userManager.getDataList(1).stream().findFirst().get();
+        Log.d("USERTEST", USER.getFirstName());
+
+        ProductDataItem productDataItem = new ProductDataItem();
+
+        productDataItem.create();
+
+        productDataItem.setName("MyName");
+
+        productDataItem.update();
+
         BottomNavigationView bottom_nav = findViewById(R.id.bottom_navigation);
 
         bottom_nav.setOnNavigationItemSelectedListener(nav_listener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ExploreFragment()).commit();
-
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener nav_listener =

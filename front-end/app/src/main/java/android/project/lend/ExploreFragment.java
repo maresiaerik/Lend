@@ -28,11 +28,10 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
     View view = null;
     ProductAdapter pa;
     ArrayList<ProductDataItem> productDataItemList;
-    ArrayList<ProductDataItem> searchedList = null;
+    ArrayList<ProductDataItem> allItems = null;
     ArrayList<ProductDataItem> filteredList = null;
     Integer minPrice, maxPrice, minRating, maxRating;
     Filter filter;
-
 
     @Nullable
     @Override
@@ -50,7 +49,8 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
             @Override
             public void onClick(View v) {
 
-                filter = new Filter(productDataItemList, view, listView, getContext());
+                Log.d("DEMO_LENGTH", productDataItemList.size() + "");
+                filter = new Filter(allItems, view, listView, getContext());
 
                 if(minRating != null && maxRating != null) {
                     filter.setRatingValues(minRating, maxRating);
@@ -69,7 +69,6 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         TextWatcher txtWatch = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -107,8 +106,11 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
 
 
     private void playground() {
-        //ArrayList<ProductDataItem> productDataItemList = new ArrayList<>();
+        /*
+            ArrayList<ProductDataItem> productDataItemList = new ArrayList<>();
+        */
         productDataItemList = productManager.getDataList();
+        allItems = productManager.getDataList();
 
 
         productDataItemList.get(0).setName("New name");
@@ -149,7 +151,5 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         pa = new ProductAdapter(view.getContext(), items);
         listView.setAdapter(pa);
     }
-
-
 
 }
