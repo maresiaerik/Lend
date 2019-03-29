@@ -99,7 +99,8 @@
         android:inputType="textCapSentences"
         android:padding="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/item_picture_row_2" />
+        app:layout_constraintTop_toBottomOf="@id/item_picture_row_2"
+        app:layout_constraintBottom_toTopOf="@id/price_btn"/>
 
     <Button
         android:id="@+id/price_btn"
@@ -111,17 +112,20 @@
         android:textColor="@color/colorAccent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/new_item_description" />
+        app:layout_constraintTop_toBottomOf="@id/new_item_description"
+        app:layout_constraintBottom_toTopOf="@id/new_item_submit"/>
 
     <Button
         android:id="@+id/new_item_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/button_cancel"
         android:text="Cancel"
         android:textColor="@color/cancelColour"
-        android:layout_marginRight="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/new_item_submit"
         app:layout_constraintTop_toBottomOf="@id/price_btn" />
@@ -130,11 +134,13 @@
         android:id="@+id/new_item_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/button_submit"
         android:text="Submit"
         android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/new_item_cancel"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/price_btn" />

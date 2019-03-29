@@ -2,11 +2,12 @@ package android.project.lend;
 
 
 import android.annotation.SuppressLint;
-import android.support.v4.app.Fragment;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.net.Uri;
@@ -15,6 +16,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -49,6 +52,12 @@ public class HomeNewItemFragment extends Fragment {
     private int gallery = 1, camera = 2, currentPic = 0;
     private String currentPhotoPath;
     private Uri photoURI;
+    private int PERMISSION_ALL = 1;
+    private String[] PERMISSIONS = {
+            android.Manifest.permission.READ_EXTERNAL_STORAGE,
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            android.Manifest.permission.CAMERA
+    };
 
     @SuppressLint("ClickableViewAccessibility")
     @Nullable
@@ -79,21 +88,22 @@ public class HomeNewItemFragment extends Fragment {
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Fragment homeFragment = new Fragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, homeFragment).commit();
+                getActivity().onBackPressed();
             }
         });
+
+        //Set Listeners For Button Animation
         cancelBtn.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
                     v.setBackgroundResource(R.drawable.button_cancel_pressed);
-                    cancelBtn.setTextColor(getResources().getColor(R.color.whiteColour));
+                    cancelBtn.setTextColor(getResources().getColor(R.color.whiteColour, null));
                 }
 
                 if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
                     v.setBackgroundResource(R.drawable.button_cancel);
-                    cancelBtn.setTextColor(getResources().getColor(R.color.cancelColour));
+                    cancelBtn.setTextColor(getResources().getColor(R.color.cancelColour, null));
                 }
 
                 return false;
@@ -104,12 +114,12 @@ public class HomeNewItemFragment extends Fragment {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
                     v.setBackgroundResource(R.drawable.button_submit_pressed);
-                    submitBtn.setTextColor(getResources().getColor(R.color.whiteColour));
+                    submitBtn.setTextColor(getResources().getColor(R.color.whiteColour,null));
                 }
 
                 if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
                     v.setBackgroundResource(R.drawable.button_submit);
-                    submitBtn.setTextColor(getResources().getColor(R.color.submitColour));
+                    submitBtn.setTextColor(getResources().getColor(R.color.submitColour, null));
                 }
 
                 return false;
@@ -120,12 +130,12 @@ public class HomeNewItemFragment extends Fragment {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
                     v.setBackgroundResource(R.drawable.button_accent_pressed);
-                    priceBtn.setTextColor(getResources().getColor(R.color.whiteColour));
+                    priceBtn.setTextColor(getResources().getColor(R.color.whiteColour, null));
                 }
 
                 if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
                     v.setBackgroundResource(R.drawable.button_accent);
-                    priceBtn.setTextColor(getResources().getColor(R.color.colorAccent));
+                    priceBtn.setTextColor(getResources().getColor(R.color.colorAccent, null));
                 }
 
                 return false;
@@ -140,41 +150,53 @@ public class HomeNewItemFragment extends Fragment {
 
         //Setting OnClick Listeners To Image Views
         newImage1.setOnClickListener(new View.OnClickListener() {
-                                           @Override
-                                           public void onClick(View v) {
-                                               showPictureDialog();
-                                               currentPic = 1;
-                                           }
-                                       }
+                                         @Override
+                                         public void onClick(View v) {
+                                             showPictureDialog();
+                                             currentPic = 1;
+                                         }
+                                     }
         );
         newImage2.setOnClickListener(new View.OnClickListener() {
-                                           @Override
-                                           public void onClick(View v) {
-                                               showPictureDialog();
-                                               currentPic = 2;
-                                           }
-                                       }
+                                         @Override
+                                         public void onClick(View v) {
+                                             showPictureDialog();
+                                             currentPic = 2;
+                                         }
+                                     }
         );
         ;
         newImage3.setOnClickListener(new View.OnClickListener() {
-                                           @Override
-                                           public void onClick(View v) {
-                                               showPictureDialog();
-                                               currentPic = 3;
-                                           }
-                                       }
+                                         @Override
+                                         public void onClick(View v) {
+                                             showPictureDialog();
+                                             currentPic = 3;
+                                         }
+                                     }
         );
         newImage4.setOnClickListener(new View.OnClickListener() {
-                                           @Override
-                                           public void onClick(View v) {
-                                               showPictureDialog();
-                                               currentPic = 4;
-                                           }
-                                       }
+                                         @Override
+                                         public void onClick(View v) {
+                                             showPictureDialog();
+                                             currentPic = 4;
+                                         }
+                                     }
         );
 
 
         return view;
+    }
+
+    //Checking Permissions
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     //Save New Product
@@ -238,28 +260,34 @@ public class HomeNewItemFragment extends Fragment {
 
     //Creating Add Picture Dialog Box
     private void showPictureDialog() {
-        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(getContext());
-        String[] pictureDialogItems = {
-                "\uD83D\uDCF7 Take new photo",
-                "\uD83D\uDDBC Select from gallery"};
-        pictureDialog.setItems(pictureDialogItems, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case 0:
-                        takePhotoFromCamera();
-                        break;
-                    case 1:
-                        choosePhotoFromGallery();
-                        break;
+        if(!hasPermissions(getContext(), PERMISSIONS)){
+            ActivityCompat.requestPermissions(getActivity(), PERMISSIONS, PERMISSION_ALL);
+            showPictureDialog();
+        } else {
+            AlertDialog.Builder pictureDialog = new AlertDialog.Builder(getContext());
+            String[] pictureDialogItems = {
+                    "\uD83D\uDCF7 Take new photo",
+                    "\uD83D\uDDBC Select from gallery"};
+            pictureDialog.setItems(pictureDialogItems, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case 0:
+                            takePhotoFromCamera();
+                            break;
+                        case 1:
+                            choosePhotoFromGallery();
+                            break;
+                    }
                 }
-            }
-        });
-        pictureDialog.show();
+            });
+            pictureDialog.show();
+        }
     }
 
     //Start Gallery Intent
     public void choosePhotoFromGallery() {
+        Toast.makeText(getContext(), "Opening Gallery", Toast.LENGTH_SHORT).show();
         Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(galleryIntent, gallery);
@@ -268,12 +296,13 @@ public class HomeNewItemFragment extends Fragment {
 
     //Start Camera Intent
     public void takePhotoFromCamera() {
+        Toast.makeText(getContext(), "Starting Camera", Toast.LENGTH_SHORT).show();
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getContext().getPackageManager()) != null) {
             File photoFile = null;
             try {
                 photoFile = createImageFile();
-            } catch (IOException ex) {
+            } catch (IOException ex){
             }
             if (photoFile != null) {
                 photoURI = FileProvider.getUriForFile(getContext(),
@@ -297,11 +326,11 @@ public class HomeNewItemFragment extends Fragment {
                 Uri contentURI = data.getData();
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), contentURI);
-                    Toast.makeText(getContext(), "Image Saved!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Image Saved", Toast.LENGTH_SHORT).show();
                     saveSelector(bitmap);
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(), "Failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
                 }
             }
         } else if (requestCode == camera) {
@@ -429,7 +458,7 @@ public class HomeNewItemFragment extends Fragment {
 
         });
 
-
+        //Setting Listener For Price Dialog Button Animation
         priceCancel.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
