@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,6 @@ public class ProductAdapter extends ArrayAdapter<ProductDataItem> {
 
     private Context context;
     private List<ProductDataItem> productList = new ArrayList<>();
-
     public ProductAdapter(@NonNull Context context, @LayoutRes ArrayList<ProductDataItem> list) {
         super(context, 0 , list);
         this.context = context;
@@ -36,8 +36,11 @@ public class ProductAdapter extends ArrayAdapter<ProductDataItem> {
 
         ProductDataItem currentProduct = productList.get(position);
 
+
         TextView price = (TextView) listItem.findViewById(R.id.product_price);
-        price.setText("8,60€/day");
+        DecimalFormat df = new DecimalFormat("#.00");
+        String formattedPrice = df.format(currentProduct.getPrice());
+        price.setText(formattedPrice + "€/day");
 
         TextView name = (TextView) listItem.findViewById(R.id.product_name);
         name.setText(currentProduct.getName());

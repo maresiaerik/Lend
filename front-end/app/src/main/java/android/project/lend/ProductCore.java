@@ -12,7 +12,6 @@ public class ProductCore {
     private String image;
     private String description;
     private String category;
-
     private boolean changed;
     private boolean changedLendzId;
     private boolean changedName;

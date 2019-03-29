@@ -8,26 +8,32 @@ import java.util.ArrayList;
 public class SearchBar {
 
 
-    ArrayList<ProductDataItem> productDataItemList = new ArrayList<>();
-    ProductManager list;
-    ArrayList<ProductDataItem> searchItems = new ArrayList<>();
+    private ArrayList<ProductDataItem> productDataItemList;
 
-    public SearchBar(ProductManager list) {
-        this.list = list;
+
+    private ArrayList<ProductDataItem> searchItems = new ArrayList<>();
+
+
+
+    public SearchBar(ArrayList<ProductDataItem> list ) {
+
+        productDataItemList = list;
     }
 
-    public ArrayList<ProductDataItem> search(String word) {
+    public ArrayList<ProductDataItem> search(CharSequence c) {
 
-        productDataItemList = this.list.getDataList();
+        /*
+
+         */
+        String word = c.toString();
 
         for (int i = 0; i < productDataItemList.size(); i++) {
-            if(productDataItemList.get(i).getName().contains(word)) {
+            if(productDataItemList.get(i).getName().toLowerCase().contains(word.toLowerCase())) {
                 searchItems.add(productDataItemList.get(i));
             }
         }
 
+
         return searchItems;
     }
-
-
 }
