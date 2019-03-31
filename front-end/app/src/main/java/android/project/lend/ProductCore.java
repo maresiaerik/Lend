@@ -9,15 +9,14 @@ public class ProductCore {
     private String name;
     private Float price;
     private Integer rating;
-    private String image;
     private String description;
     private String category;
+
     private boolean changed;
     private boolean changedLendzId;
     private boolean changedName;
     private boolean changedPrice;
     private boolean changedRating;
-    private boolean changedImage;
     private boolean changedDescription;
     private boolean changedCategory;
 
@@ -42,6 +41,7 @@ public class ProductCore {
     }
 
     public void setLendzId(Integer lendzId) {
+
         if (lendzId == this.lendzId) return;
 
         changed = true;
@@ -92,20 +92,6 @@ public class ProductCore {
         this.rating = rating;
     }
 
-    public String getImage() {
-        return this.image;
-    }
-
-    public void setImage(String image) {
-
-        if (image == this.image) return;
-
-        changed = true;
-        changedImage = true;
-
-        this.image = image;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -115,10 +101,9 @@ public class ProductCore {
         if (description == this.description) return;
 
         changed = true;
-        changedImage = true;
+        changedDescription = true;
 
         this.description = description;
-
     }
 
     public String getCategory() {
@@ -134,7 +119,6 @@ public class ProductCore {
 
         this.category = category;
     }
-
 
     public void create() {
 
@@ -157,9 +141,6 @@ public class ProductCore {
         if (changedRating) {
             Log.d("PRODUCTCHANGED", "Rating was changed to " + this.rating);
         }
-        if (changedImage) {
-            Log.d("PRODUCTCHANGED", "Image was changed to " + this.image);
-        }
         if (changedDescription) {
             Log.d("PRODUCTCHANGED", "Description was changed to " + this.description);
         }
@@ -181,7 +162,6 @@ public class ProductCore {
         changedName = false;
         changedPrice = false;
         changedRating = false;
-        changedImage = false;
         changedDescription = false;
         changedCategory = false;
     }
