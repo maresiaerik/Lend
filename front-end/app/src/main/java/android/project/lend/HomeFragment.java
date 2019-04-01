@@ -22,16 +22,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
-
-        //TESTING
-        view.findViewById(R.id.TESTING).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent confirmIntent = new Intent(getContext(), ExploreConfirmActivity.class);
-                startActivity(confirmIntent);
-            }
-        });
-
         //Setting Page title
         TextView pageTitle = view.findViewById(R.id.page_title);
         pageTitle.setText("Home");

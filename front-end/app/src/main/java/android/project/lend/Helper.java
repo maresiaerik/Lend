@@ -1,6 +1,5 @@
 package android.project.lend;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -28,31 +27,52 @@ public class Helper {
         return product_list;
     }
 
-    public ArrayList<UserData> getUserData(Integer id){
+    public UserData getUserData(Integer id){
+
+        UserData userData = new UserData();
+
+        userData.id = 1;
+        userData.firstName = "Florian";
+        userData.lastName = "Brandsma";
+        userData.imageUrl = "https://secure.i.telegraph.co.uk/multimedia/archive/03597/POTD_chick_3597497k.jpg";
+        userData.emailAddress = "t7brfl00@students.oamk.fi";
+        userData.homeAddress = "Kotkantie 1";
+        userData.phoneNumber = "+3581234567890";
+        userData.cardNumber = "1234 4567 8910";
+        userData.cardDate = "01/20";
+        userData.cardSecurity = "123";
+
+        return userData;
+    }
+
+    public ArrayList<UserData> getUserData(){
 
         ArrayList<UserData> user_list = new ArrayList<>();
 
-        UserData user_data = new UserData();
+        for(int i = 0; i < 10; i++) {
 
-        user_data.id = 1;
-        user_data.first_name = "Florian";
-        user_data.last_name = "Brandsma";
-        user_data.image_url = "https://secure.i.telegraph.co.uk/multimedia/archive/03597/POTD_chick_3597497k.jpg";
-        user_data.email_address = "t7brfl00@students.oamk.fi";
-        user_data.home_address = "Kotkantie 1";
-        user_data.phone_number = "+3581234567890";
-        user_data.card_number = "1234 4567 8910";
-        user_data.card_date = "01/20";
-        user_data.card_security = "123";
+            UserData user_data = new UserData();
 
-        user_list.add(user_data);
+            user_data.id = (i+1);
+            user_data.firstName = "Florian";
+            user_data.lastName = "Brandsma";
+            user_data.imageUrl = "https://secure.i.telegraph.co.uk/multimedia/archive/03597/POTD_chick_3597497k.jpg";
+            user_data.emailAddress = "t7brfl00@students.oamk.fi";
+            user_data.homeAddress = "Kotkantie 1";
+            user_data.phoneNumber = "+3581234567890";
+            user_data.cardNumber = "1234 4567 8910";
+            user_data.cardDate = "01/20";
+            user_data.cardSecurity = "123";
+
+            user_list.add(user_data);
+        }
 
         return user_list;
     }
 
-    public ArrayList<ImageData> getImageData(Integer id){
+    public ArrayList<ImageData> getImageData(){
 
-        ArrayList<ImageData> image_list = new ArrayList<>();
+        ArrayList<ImageData> imageList = new ArrayList<>();
 
         final String[] IMAGES = new String[] {
             "https://secure.i.telegraph.co.uk/multimedia/archive/03597/POTD_chick_3597497k.jpg",
@@ -63,14 +83,35 @@ public class Helper {
 
         for(int i = 0; i < IMAGES.length; i++){
 
-            ImageData image_data = new ImageData();
+            ImageData imageData = new ImageData();
 
-            image_data.id = (i+1);
-            image_data.product_id = 1;
-            image_data.url = IMAGES[i];
+            imageData.id = (i+1);
+            imageData.productId = 1;
+            imageData.url = IMAGES[i];
+
+            imageList.add(imageData);
         }
 
-        return image_list;
+        return imageList;
+    }
+
+    public ArrayList<LendzData> getLendzData(){
+
+        ArrayList<LendzData> lendzList = new ArrayList<>();
+
+        for(int i = 0; i < 10; i++){
+
+            LendzData lendzData = new LendzData();
+
+            lendzData.id = (i+1);
+            lendzData.lenderUserId = (1+(i%2));
+            lendzData.startDate = "31/03/2019";
+            lendzData.dueDate = "03/04/2019";
+
+            lendzList.add(lendzData);
+        }
+
+        return lendzList;
     }
 
     public class ProductData{
@@ -85,20 +126,28 @@ public class Helper {
     public class UserData{
 
         Integer id;
-        String first_name;
-        String last_name;
-        String image_url;
-        String email_address;
-        String home_address;
-        String phone_number;
-        String card_number;
-        String card_date;
-        String card_security;
+        String firstName;
+        String lastName;
+        String imageUrl;
+        String emailAddress;
+        String homeAddress;
+        String phoneNumber;
+        String cardNumber;
+        String cardDate;
+        String cardSecurity;
     }
 
     public class ImageData{
         Integer id;
-        Integer product_id;
+        Integer productId;
         String url;
+    }
+
+    public class LendzData{
+        Integer id;
+        Integer productId;
+        Integer lenderUserId;
+        String startDate;
+        String dueDate;
     }
 }

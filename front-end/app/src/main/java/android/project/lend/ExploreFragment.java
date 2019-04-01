@@ -1,18 +1,28 @@
 package android.project.lend;
 
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import org.florescu.android.rangeseekbar.RangeSeekBar;
+import java.io.Serializable;
+import java.lang.reflect.Type;
 
 import java.util.ArrayList;
 
@@ -25,8 +35,10 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
     ArrayList<ProductDataItem> productDataItemList;
     ArrayList<ProductDataItem> allItems = null;
     ArrayList<ProductDataItem> filteredList = null;
-    Integer minPrice, maxPrice, minRating, maxRating;
+    Integer minPrice, maxPrice, minRating, maxRating, categoryPosition, sortByPosition;
     Filter filter;
+    ProductDataItem selectedItem = null;
+
 
     @Nullable
     @Override
@@ -40,11 +52,18 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         playground();
 
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                openDetailedView(view.getId());
+            }
+        });
+
         view.findViewById(R.id.filter_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Log.d("DEMO_LENGTH", productDataItemList.size() + "");
                 filter = new Filter(allItems, view, listView, getContext());
 
                 if(minRating != null && maxRating != null) {
@@ -52,6 +71,12 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
                 }
                 if (minPrice != null && maxPrice != null) {
                     filter.setPriceValues(minPrice, maxPrice);
+                }
+                if(categoryPosition != null ) {
+                    filter.setCategory(categoryPosition);
+                }
+                if(sortByPosition != null) {
+                    filter.setSortBy(sortByPosition);
                 }
 
                 filter.show();
@@ -104,9 +129,9 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         /*
             ArrayList<ProductDataItem> productDataItemList = new ArrayList<>();
         */
-        productDataItemList = productManager.getDataList();
-        allItems = productManager.getDataList();
 
+        productDataItemList = productManager.getProductList();
+        allItems = productManager.getProductList();
 
         productDataItemList.get(0).setName("New name");
         productDataItemList.get(0).update();
@@ -128,12 +153,14 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
     }
 
     @Override
-    public void filterSelected(ArrayList<ProductDataItem> items, Integer minPrice, Integer maxPrice, Integer minRating, Integer maxRating) {
+    public void filterSelected(ArrayList<ProductDataItem> items, Integer minPrice, Integer maxPrice, Integer minRating, Integer maxRating, Integer catIndex, Integer sortByIndex) {
 
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
         this.minRating = minRating;
         this.maxRating = maxRating;
+        this.categoryPosition = catIndex;
+        this.sortByPosition = sortByIndex;
         filteredList = items;
         productDataItemList = filteredList;
         updateView();
@@ -146,5 +173,30 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         pa = new ProductAdapter(view.getContext(), items);
         listView.setAdapter(pa);
     }
+
+    private void openDetailedView(Integer itemId) {
+
+        ProductDataItem selectedItem = null;
+
+        for (int i = 0; i <allItems.size() ; i++) {
+            if(allItems.get(i).getId() == itemId) {
+                selectedItem = allItems.get(i);
+                break;
+            }
+        }
+        if(selectedItem != null) {
+
+            DetailedItemView detailedItemView = new DetailedItemView();
+
+            Bundle bundle = new Bundle();
+
+            bundle.putSerializable("selectedItem", selectedItem);
+            detailedItemView.setArguments(bundle);
+            getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, detailedItemView).commit();
+        }
+
+
+    }
+
 
 }

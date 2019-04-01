@@ -6,25 +6,46 @@ public class ImageManager extends Helper {
 
     public ArrayList<ImageData> imageList;
 
-    public ArrayList<ImageDataItem> getDataList(Integer id){
+    public ImageManager(){
 
-        ArrayList<ImageDataItem> image_data_item_list = new ArrayList<>();
+        imageList = getImageData();
+    }
 
-        imageList = getImageData(id);
+    public ArrayList<ImageDataItem> getImageList(){
 
-        for (ImageData image : imageList) {
+        ArrayList<ImageDataItem> imageDataItems = new ArrayList<>();
 
-            ImageDataItem image_data_item = new ImageDataItem();
+        for (final ImageData image : imageList) {
 
-            image_data_item.setId(image.id);
-            image_data_item.setProductId(image.product_id);
-            image_data_item.setUrl(image.url);
+            ImageDataItem imageDataItem = setImage(image);
 
-            image_data_item.clearChanges();
-
-            image_data_item_list.add(image_data_item);
+            imageDataItems.add(imageDataItem);
         }
 
-        return image_data_item_list;
+        return imageDataItems;
+    }
+
+    public ImageDataItem getImage(Integer id){
+
+        for(final ImageData image : imageList){
+
+            if(image.id == id)
+                return setImage(image);
+        }
+
+        return null;
+    }
+
+    public ImageDataItem setImage(ImageData image){
+
+        ImageDataItem imageDataItem = new ImageDataItem();
+
+        imageDataItem.setId(image.id);
+        imageDataItem.setProductId(image.productId);
+        imageDataItem.setUrl(image.url);
+
+        imageDataItem.clearChanges();
+
+        return imageDataItem;
     }
 }

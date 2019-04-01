@@ -18,7 +18,9 @@ public class ExploreConfirmActivity extends AppCompatActivity {
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                finish();
+                Intent ExploreIntent = new Intent(getBaseContext(), MainActivity.class);
+                startActivity(ExploreIntent);
             }
         });
 

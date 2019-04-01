@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        USER = userManager.getDataList(1).stream().findFirst().get();
+        USER = userManager.getUser(1);
         Log.d("USERTEST", USER.getFirstName());
 
         ProductDataItem productDataItem = new ProductDataItem();
