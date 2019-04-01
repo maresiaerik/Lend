@@ -1,6 +1,5 @@
 package android.project.lend;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -20,11 +19,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.ListView;
-
+import android.widget.TextView;
 import org.florescu.android.rangeseekbar.RangeSeekBar;
-
 import java.io.Serializable;
 import java.lang.reflect.Type;
+
 import java.util.ArrayList;
 
 public class ExploreFragment extends Fragment implements Filter.OnFilterSelected {
@@ -48,9 +47,8 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
 
         view = inflater.inflate(R.layout.fragment_explore, container, false);
         TextView pageTitle = view.findViewById(R.id.page_title);
-
-
         pageTitle.setText("Explore");
+
         playground();
 
 
@@ -133,7 +131,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         */
 
         productDataItemList = productManager.getProductList();
-        allItems = productManager.getProductList();
+        //allItems = productManager.getProductList();
 
         productDataItemList.get(0).setName("New name");
         productDataItemList.get(0).update();
@@ -149,6 +147,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
 
         listView = (ListView) view.findViewById(R.id.item_view);
 
+        allItems = productDataItemList;
         pa = new ProductAdapter(view.getContext(), productDataItemList);
 
         listView.setAdapter(pa);

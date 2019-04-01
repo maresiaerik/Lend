@@ -1,11 +1,10 @@
 package android.project.lend;
 
 
+import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -23,7 +22,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -55,9 +53,9 @@ public class HomeNewItemFragment extends Fragment {
     private Uri photoURI;
     private int PERMISSION_ALL = 1;
     private String[] PERMISSIONS = {
-            android.Manifest.permission.READ_EXTERNAL_STORAGE,
-            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            android.Manifest.permission.CAMERA
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA
     };
 
     @SuppressLint("ClickableViewAccessibility")
@@ -90,56 +88,6 @@ public class HomeNewItemFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().onBackPressed();
-            }
-        });
-
-        //Set Listeners For Button Animation
-        cancelBtn.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
-                    v.setBackgroundResource(R.drawable.button_cancel_pressed);
-                    cancelBtn.setTextColor(getResources().getColor(R.color.whiteColour, null));
-                }
-
-                if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
-                    v.setBackgroundResource(R.drawable.button_cancel);
-                    cancelBtn.setTextColor(getResources().getColor(R.color.cancelColour, null));
-                }
-
-                return false;
-            }
-        });
-        submitBtn.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
-                    v.setBackgroundResource(R.drawable.button_submit_pressed);
-                    submitBtn.setTextColor(getResources().getColor(R.color.whiteColour,null));
-                }
-
-                if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
-                    v.setBackgroundResource(R.drawable.button_submit);
-                    submitBtn.setTextColor(getResources().getColor(R.color.submitColour, null));
-                }
-
-                return false;
-            }
-        });
-        priceBtn.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
-                    v.setBackgroundResource(R.drawable.button_accent_pressed);
-                    priceBtn.setTextColor(getResources().getColor(R.color.whiteColour, null));
-                }
-
-                if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
-                    v.setBackgroundResource(R.drawable.button_accent);
-                    priceBtn.setTextColor(getResources().getColor(R.color.colorAccent, null));
-                }
-
-                return false;
             }
         });
 
@@ -250,8 +198,7 @@ public class HomeNewItemFragment extends Fragment {
                 newProduct.setPrice(itemPrice);
             }
         }
-
-
+        //Confirm Final Check + Update Product
         if (priceCheck) {
             Toast.makeText(getContext(), "Item Added", Toast.LENGTH_SHORT).show();
             newProduct.update();
@@ -259,30 +206,32 @@ public class HomeNewItemFragment extends Fragment {
 
     }
 
-    //Creating Add Picture Dialog Box
+    //Creating Add Picture Dialog Box And Checking Permissions
     private void showPictureDialog() {
-        if(!hasPermissions(getContext(), PERMISSIONS)){
+        if (!hasPermissions(getContext(), PERMISSIONS)) {
             ActivityCompat.requestPermissions(getActivity(), PERMISSIONS, PERMISSION_ALL);
             showPictureDialog();
         } else {
-            AlertDialog.Builder pictureDialog = new AlertDialog.Builder(getContext());
-            String[] pictureDialogItems = {
-                    "\uD83D\uDCF7 Take new photo",
-                    "\uD83D\uDDBC Select from gallery"};
-            pictureDialog.setItems(pictureDialogItems, new DialogInterface.OnClickListener() {
+            final Dialog pictureDialog = new Dialog(getContext());
+            pictureDialog.setContentView(R.layout.picture_input_layout);
+            pictureDialog.show();
+            //Get Dialog Camera Icon
+            pictureDialog.findViewById(R.id.contact_message).setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    switch (which) {
-                        case 0:
-                            takePhotoFromCamera();
-                            break;
-                        case 1:
-                            choosePhotoFromGallery();
-                            break;
-                    }
+                public void onClick(View v) {
+                    takePhotoFromCamera();
+                    pictureDialog.dismiss();
+                }
+
+            });
+            //Get Dialog Gallery Icon
+            pictureDialog.findViewById(R.id.message).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    choosePhotoFromGallery();
+                    pictureDialog.dismiss();
                 }
             });
-            pictureDialog.show();
         }
     }
 
@@ -304,9 +253,9 @@ public class HomeNewItemFragment extends Fragment {
             try {
 
                 photoFile = createImageFile();
+
             } catch (IOException ex){
-                Log.d("CAMERATEST", ex.toString());
-                Toast.makeText(getContext(), ex.toString(), Toast.LENGTH_LONG);
+
             }
             if (photoFile != null) {
                 photoURI = FileProvider.getUriForFile(getContext(),
@@ -356,19 +305,22 @@ public class HomeNewItemFragment extends Fragment {
 
     //Create Image File
     private File createImageFile() throws IOException {
-        String imageFileName = "JPEG_" + Calendar.getInstance().getTimeInMillis() + "_";
+        File image = null;
         File storageDir = new File(
                 Environment.getExternalStorageDirectory() + imageDirectory);
-        ;
-        File image = File.createTempFile(
-                imageFileName,
-                ".jpg",
-                storageDir
-        );
-        currentPhotoPath = image.getAbsolutePath();
-        galleryAddPic();
+        if (!storageDir.exists()) {
+            storageDir.mkdirs();
+        }
+        try {
+            String imageFileName = "JPEG_" + Calendar.getInstance().getTimeInMillis() + "_";
+            image = File.createTempFile(imageFileName, ".jpg", storageDir);
+            currentPhotoPath = image.getAbsolutePath();
+            galleryAddPic();
+        } catch (IOException ex) {
+        }
         return image;
     }
+
 
     //Save Image To Gallery
     private void galleryAddPic() {
@@ -461,41 +413,6 @@ public class HomeNewItemFragment extends Fragment {
             }
 
         });
-
-        //Setting Listener For Price Dialog Button Animation
-        priceCancel.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
-                    v.setBackgroundResource(R.drawable.button_cancel_pressed);
-                    priceCancel.setTextColor(getResources().getColor(R.color.whiteColour));
-                }
-
-                if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
-                    v.setBackgroundResource(R.drawable.button_cancel);
-                    priceCancel.setTextColor(getResources().getColor(R.color.cancelColour));
-                }
-
-                return false;
-            }
-        });
-        priceSubmit.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
-                    v.setBackgroundResource(R.drawable.button_submit_pressed);
-                    priceSubmit.setTextColor(getResources().getColor(R.color.whiteColour));
-                }
-
-                if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
-                    v.setBackgroundResource(R.drawable.button_submit);
-                    priceSubmit.setTextColor(getResources().getColor(R.color.submitColour));
-                }
-
-                return false;
-            }
-        });
-
 
     }
 

@@ -39,7 +39,9 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class DetailedItemView extends Fragment implements DatePickerDialog.OnDateSetListener {
+public class DetailedItemView extends Fragment implements DatePickerDialog.OnDateSetListener{
+
+
 
     View view;
     ProductDataItem item;
@@ -49,6 +51,13 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
     DatePickerDialog endCalendar;
     SimpleDateFormat startDate;
     Calendar now = Calendar.getInstance();
+    Button borrowBtn;
+    DatePickerDialog.OnDateSetListener startDateListener,endDateListener;
+
+
+    public interface onConfirmationListener {
+        public void onConfirmationOpened(ArrayList<ProductDataItem> addedItems);
+    }
 
 
     @Nullable
@@ -77,7 +86,6 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
             @Override
             public void onClick(View v) {
 
-
                 openStartCalendar();
             }
         });
@@ -92,10 +100,34 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
             }
         });
 
+        //Setting Borrow Button Listener
+        borrowBtn = view.findViewById(R.id.detailed_item_borrow_button);
+        borrowBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                /*
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("itemData", item);
+                */
+
+                Intent confirmIntent = new Intent(getContext(), ExploreConfirmActivity.class);
+
+
+                ArrayList<ProductDataItem> addedItem = new ArrayList<>();
+                addedItem.add(item);
+
+                onConfirmationListener listener = (onConfirmationListener) new ExploreConfirmActivity();
+
+                listener.onConfirmationOpened(addedItem);
+
+                startActivity(confirmIntent);
+            }
+        });
+
+
         return view;
     }
-
-
 
     private void openStartCalendar() {
 
@@ -111,6 +143,7 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
 
         startCalendar.setMinDate(now);
 
+
         //setDates();
 
         startCalendar.show(getActivity().getFragmentManager(),"DatepickerdialogStartDate");
@@ -125,7 +158,10 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
                 now.get(Calendar.DAY_OF_MONTH)
         );
 
+
+
         endCalendar.setMinDate(now);
+
 
 
 
@@ -133,7 +169,6 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
         startCalendar.show(getActivity().getFragmentManager(),"DatepickerdialogEndDate");
 
     }
-
 
 
     private void setUpStartDateCalendar() {
@@ -146,7 +181,7 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
         title.setText("Set end date");
     }
 
-    public void setDates()  {
+    public void setDates() {
 
 
         Calendar cal = Calendar.getInstance();
@@ -162,8 +197,7 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
 
             SimpleDateFormat bbb = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
             cal3.setTime(bbb.parse("Thu May 16 16:02:37 GMT 2019"));// all done
-        }
-        catch (ParseException p) {
+        } catch (ParseException p) {
             Log.d("CALENDAR_PARSE_ERROR", p + "");
         }
 
@@ -177,19 +211,25 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
     }
 
 
-
     @Override
     public void onDateSet(DatePickerDialog v, int year, int monthOfYear, int dayOfMonth) {
 
 
         String date = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+
         TextView startDayText = view.findViewById(R.id.startday_text);
         startDayText.setText(date);
     }
 
+    private class OpenCalendar {
 
+        public OpenCalendar() {
+
+        }
+    }
 
 
 }
+
 
 

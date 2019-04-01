@@ -163,9 +163,9 @@
                     android:layout_height="wrap_content"
                     android:padding="15dp"
                     android:text="Show Results"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@drawable/button_accent_action"
                     android:id="@+id/filter_accept_button"
-                    android:background="@drawable/button_accent"/>
+                    android:background="@drawable/button_accent_action"/>
             </LinearLayout>
 
 
