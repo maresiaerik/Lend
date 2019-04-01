@@ -80,6 +80,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/detailed_item_borrow_button"
                     android:text="Borrow!"
                    />
             </LinearLayout>

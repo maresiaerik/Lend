@@ -38,7 +38,9 @@ public class ProductAdapter extends ArrayAdapter<ProductDataItem> {
 
         ProductDataItem currentProduct = productList.get(position);
 
+
         listItem.setId(currentProduct.getId());
+
         TextView price = (TextView) listItem.findViewById(R.id.product_price);
         DecimalFormat df = new DecimalFormat("#.00");
         String formattedPrice = df.format(currentProduct.getPrice());
@@ -51,14 +53,15 @@ public class ProductAdapter extends ArrayAdapter<ProductDataItem> {
         TextView name = (TextView) listItem.findViewById(R.id.product_name);
         name.setText(currentProduct.getName());
 
-        ImageView img = listItem.findViewById(R.id.imageView);
-        new ImageDownloader(img).execute(currentProduct.getImage());
+        if(currentProduct.imageDataItems.size() > 0) {
 
+            ImageView img = listItem.findViewById(R.id.imageView);
+            new ImageDownloader(img).execute(currentProduct.imageDataItems.get(0).getUrl());
+        }
 
         RatingBar rating = listItem.findViewById(R.id.product_rating);
 
         rating.setRating(currentProduct.getRating());
-
 
         return listItem;
     }

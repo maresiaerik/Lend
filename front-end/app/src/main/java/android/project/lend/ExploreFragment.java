@@ -131,9 +131,9 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         /*
             ArrayList<ProductDataItem> productDataItemList = new ArrayList<>();
         */
-        productDataItemList = productManager.getDataList();
-        allItems = productDataItemList;
 
+        productDataItemList = productManager.getProductList();
+        allItems = productManager.getProductList();
 
         productDataItemList.get(0).setName("New name");
         productDataItemList.get(0).update();
