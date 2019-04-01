@@ -12,13 +12,13 @@ import java.util.ArrayList;
 public class ImageCarousel extends PagerAdapter {
 
     private Context ctx;
-    private ArrayList<String> imageIds;
+    private ArrayList<ImageDataItem> imageIds;
     private ProductDataItem item;
 
     public ImageCarousel(Context c, ProductDataItem item) {
         this.ctx = c;
         this.item = item;
-        imageIds = item.getAllImages();
+        imageIds = item.imageDataItems;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class ImageCarousel extends PagerAdapter {
         ImageView imageView = new ImageView(ctx);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
-        new ImageDownloader(imageView).execute(imageIds.get(position));
+        new ImageDownloader(imageView).execute(imageIds.get(position).getUrl());
 
         container.addView(imageView, 0);
 

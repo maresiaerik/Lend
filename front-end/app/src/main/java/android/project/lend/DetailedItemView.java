@@ -2,6 +2,7 @@ package android.project.lend;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
@@ -27,7 +28,9 @@ import android.widget.TextView;
 
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.wdullaer.materialdatetimepicker.date.MonthAdapter;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -42,25 +45,10 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
     ProductDataItem item;
     LinearLayout l;
     Dialog calendarView;
-    DatePickerDialog dpd;
-
-
-
-
-
-    public enum calendarType {
-
-        StartDate(0), EndDate(1);
-
-        private final int value;
-        private calendarType(int value) {
-            this.value = value;
-        }
-
-        public String toString() {
-            return Integer.toString(value);
-        }
-    }
+    DatePickerDialog startCalendar;
+    DatePickerDialog endCalendar;
+    SimpleDateFormat startDate;
+    Calendar now = Calendar.getInstance();
 
 
     @Nullable
@@ -72,6 +60,7 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
 
         Bundle args = getArguments();
         item = (ProductDataItem) args.getSerializable("selectedItem");
+
 
         heading.setText(item.getName());
         categoryName.setText(item.getCategory());
@@ -88,50 +77,60 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
             @Override
             public void onClick(View v) {
 
-                openCalendar(calendarType.StartDate);
+
+                openStartCalendar();
             }
         });
+
 
         endDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //openCalendar(calendarType.EndDate);
+
+                //openEndCalendar();
+
             }
         });
 
         return view;
     }
 
-    private void openCalendar(calendarType type) {
-        //calendarView = new Dialog(view.getContext());
-        //calendarView.setContentView(R.layout.set_up_calendar_view);
-        //LinearLayout container = view.findViewById(R.id.calendar_container);
-        Calendar calendar = Calendar.getInstance();
 
-        dpd = DatePickerDialog.newInstance(
+
+    private void openStartCalendar() {
+
+
+
+        startCalendar = DatePickerDialog.newInstance(
                 this,
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
         );
 
-        dpd.setMinDate(calendar);
+
+        startCalendar.setMinDate(now);
+
+        //setDates();
+
+        startCalendar.show(getActivity().getFragmentManager(),"DatepickerdialogStartDate");
+
+    }
+
+    private void openEndCalendar() {
+        endCalendar = DatePickerDialog.newInstance(
+                this,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
+        );
+
+        endCalendar.setMinDate(now);
 
 
-        setDates();
 
-        dpd.show(getActivity().getFragmentManager(),"Datepickerdialog");
 
-/*
-        if(type == calendarType.StartDate) {
-            setUpStartDateCalendar();
-        }
-        else if(type == calendarType.EndDate) {
-            setUpEndDateCalendar();
-        }
-        calendarView.show();
-
-*/
+        startCalendar.show(getActivity().getFragmentManager(),"DatepickerdialogEndDate");
 
     }
 
@@ -174,13 +173,14 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
                 cal2,
                 cal3
         };
-        dpd.setDisabledDays(a);
+       //dpd.setDisabledDays(a);
     }
 
 
 
     @Override
     public void onDateSet(DatePickerDialog v, int year, int monthOfYear, int dayOfMonth) {
+
 
         String date = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
         TextView startDayText = view.findViewById(R.id.startday_text);
