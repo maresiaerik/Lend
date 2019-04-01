@@ -8,11 +8,18 @@
 
     <!--Category Drop Down list-->
     <string-array name="category_items_dropdown">
-        <item>Category</item>
+        <item>-- Category --</item>
         <item>Handheld Tools</item>
         <item>Power Tools</item>
         <item>Tool kits</item>
         <item>Accessories</item>
+    </string-array>
+
+    <!--Sort By Drop Down list-->
+    <string-array name="sort_by_dropdown">
+        <item>-- Sort By --</item>
+        <item>Price (Lowest First)</item>
+        <item>Rating (Highest First)</item>
     </string-array>
 
 

@@ -2,7 +2,10 @@ package android.project.lend;
 
 import android.util.Log;
 
-public class ProductCore {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class ProductCore implements Serializable {
     private Integer id;
     private Integer userId;
     private Integer lendzId;
@@ -10,6 +13,7 @@ public class ProductCore {
     private Float price;
     private Integer rating;
     private String image;
+    private ArrayList<String> img = new ArrayList<>();
     private String description;
     private String category;
     private boolean changed;
@@ -90,6 +94,13 @@ public class ProductCore {
         changedRating = true;
 
         this.rating = rating;
+    }
+
+    public void setImages(String url) {
+        this.img.add(url);
+    }
+    public ArrayList<String> getAllImages() {
+        return this.img;
     }
 
     public String getImage() {

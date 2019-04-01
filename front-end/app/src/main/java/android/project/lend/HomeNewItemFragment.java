@@ -21,6 +21,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -301,8 +302,11 @@ public class HomeNewItemFragment extends Fragment {
         if (takePictureIntent.resolveActivity(getContext().getPackageManager()) != null) {
             File photoFile = null;
             try {
+
                 photoFile = createImageFile();
             } catch (IOException ex){
+                Log.d("CAMERATEST", ex.toString());
+                Toast.makeText(getContext(), ex.toString(), Toast.LENGTH_LONG);
             }
             if (photoFile != null) {
                 photoURI = FileProvider.getUriForFile(getContext(),
