@@ -1,12 +1,12 @@
 package android.project.lend;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -21,6 +21,16 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
+
+
+        //TESTING
+        view.findViewById(R.id.TESTING).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent confirmIntent = new Intent(getContext(), ExploreConfirmActivity.class);
+                startActivity(confirmIntent);
+            }
+        });
 
         //Setting Page title
         TextView pageTitle = view.findViewById(R.id.page_title);
@@ -50,40 +60,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, newItemFragment).commit();
-            }
-        });
-
-        addNewItem.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
-                    v.setBackgroundResource(R.drawable.button_submit);
-                    addNewItem.setTextColor(getResources().getColor(R.color.submitColour));
-                }
-
-                if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
-                    v.setBackgroundResource(R.drawable.button_submit_pressed);
-                    addNewItem.setTextColor(getResources().getColor(R.color.whiteColour));
-
-                }
-
-                return false;
-            }
-        });
-        userEditBtn.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
-                    v.setBackgroundResource(R.drawable.button_accent_pressed);
-                    userEditBtn.setTextColor(getResources().getColor(R.color.whiteColour));
-                }
-
-                if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
-                    v.setBackgroundResource(R.drawable.button_accent);
-                    userEditBtn.setTextColor(getResources().getColor(R.color.colorAccent));
-                }
-
-                return false;
             }
         });
 

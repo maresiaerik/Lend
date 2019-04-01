@@ -1,6 +1,5 @@
 package android.project.lend;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,14 +10,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import org.florescu.android.rangeseekbar.RangeSeekBar;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class ExploreFragment extends Fragment implements Filter.OnFilterSelected {
@@ -40,8 +35,8 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
 
         view = inflater.inflate(R.layout.fragment_explore, container, false);
         TextView pageTitle = view.findViewById(R.id.page_title);
-
         pageTitle.setText("Explore");
+
         playground();
 
 

@@ -4,11 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/page_title_layout" />
+    <include layout="@layout/page_title_layout"/>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center"
         android:id="@+id/aa">
+
        <EditText
            android:layout_width="match_parent"
            android:maxLines="1"
@@ -35,9 +38,11 @@
             android:text=" Filters"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/button_accent"
-            android:textColor="@color/colorAccent" />
+            android:background="@drawable/button_accent_action"
+            android:textColor="@drawable/button_accent_action" />
     </LinearLayout>
+
+
     <LinearLayout
         android:id="@+id/explore_item_list_container"
         android:layout_width="match_parent"

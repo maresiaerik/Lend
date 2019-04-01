@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     UserManager userManager = new UserManager();
     static public UserDataItem USER;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +35,10 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottom_nav = findViewById(R.id.bottom_navigation);
 
         bottom_nav.setOnNavigationItemSelectedListener(nav_listener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ExploreFragment()).commit();
+
+        bottom_nav.setSelectedItemId(FragmentManager.getCurrentFragmentId());
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, FragmentManager.getCurrentFragment()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener nav_listener =
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                             selected_fragment = new HomeFragment();
                             break;
                     }
+                    getSupportFragmentManager().popBackStack();
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selected_fragment).commit();
                     return true;
                 }
