@@ -2,13 +2,9 @@
     <string name="app_name">Lend</string>
     <string name="page_title_string">Page Title</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
     <!--Category Drop Down list-->
     <string-array name="category_items_dropdown">
-        <item>-- Category --</item>
+        <item>-Category-</item>
         <item>Handheld Tools</item>
         <item>Power Tools</item>
         <item>Tool kits</item>

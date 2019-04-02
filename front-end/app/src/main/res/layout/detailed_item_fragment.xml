@@ -91,7 +91,7 @@
                     android:background="@drawable/button_submit_action"
                     android:padding="10dp"
                     android:textColor="@drawable/button_submit_action"
-                    android:text="Borrow!"
+                    android:text="Borrow"
                    />
             </LinearLayout>
         </LinearLayout>

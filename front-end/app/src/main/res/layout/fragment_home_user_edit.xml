@@ -10,25 +10,29 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/profile_pic"
+        android:src="@drawable/add_image_icon"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <EditText
         android:id="@+id/user_first_name_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:hint="First name"
         android:selectAllOnFocus="true"
+        android:inputType="textPersonName"
         android:textColor="@android:color/black"
         android:textSize="35sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <EditText
         android:id="@+id/userSecondNameEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:selectAllOnFocus="true"
+        android:inputType="textPersonName"
+        android:hint="Last name"
         android:textColor="@android:color/black"
         android:textSize="35sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -53,6 +57,7 @@
         android:paddingTop="75dp"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
+        android:inputType="textEmailAddress"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -98,6 +103,7 @@
         android:hint="Address"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
+        android:inputType="textPostalAddress"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

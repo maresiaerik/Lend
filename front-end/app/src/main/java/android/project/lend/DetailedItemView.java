@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -43,8 +44,7 @@ import java.util.Locale;
 import java.util.zip.Inflater;
 
 
-public class DetailedItemView extends Fragment implements DatePickerDialog.OnDateSetListener {
-
+public class DetailedItemView extends Fragment implements DatePickerDialog.OnDateSetListener{
 
     View view;
     ProductDataItem item;
@@ -62,12 +62,9 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
     Button endDate;
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
+    String finalStartDate, finalEndDate;
 
 
-
-    public interface onConfirmationListener {
-        public void onConfirmationOpened(ArrayList<ProductDataItem> addedItems);
-    }
 
 
     @Nullable
@@ -79,7 +76,6 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
 
         Bundle args = getArguments();
         item = (ProductDataItem) args.getSerializable("selectedItem");
-
 
         heading.setText(item.getName());
         categoryName.setText(item.getCategory());
@@ -111,6 +107,7 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
             }
         });
 
+        // ** Dates Need Sent To Intent ** \\
         //Setting Borrow Button Listener
         borrowBtn = view.findViewById(R.id.detailed_item_borrow_button);
         borrowBtn.setOnClickListener(new View.OnClickListener() {
@@ -119,18 +116,12 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
 
                 Intent confirmIntent = new Intent(getContext(), ExploreConfirmActivity.class);
 
-                ArrayList<ProductDataItem> addedItem = new ArrayList<>();
-                addedItem.add(item);
-
-                onConfirmationListener listener = (onConfirmationListener) new ExploreConfirmActivity();
-
-                listener.onConfirmationOpened(addedItem);
-
+                confirmIntent.putExtra("itemData", (Parcelable) item);
+                confirmIntent.putExtra("startDate", finalStartDate);
+                confirmIntent.putExtra("endDate", finalEndDate);
                 startActivity(confirmIntent);
             }
         });
-
-
         return view;
     }
 
@@ -194,13 +185,13 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
         }
 
 
-
         endCalendar.setMinDate(givenDate);
 
 
         Calendar[] startDay = {
             givenDate
         };
+
 
         Calendar[] disabled = setDates();
 
@@ -282,7 +273,6 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
     @Override
     public void onDateSet(DatePickerDialog v, int year, int monthOfYear, int dayOfMonth) {
 
-        Log.d("HELLOOOO", dayOfMonth + " ");
 
         if(v.getTag() == startTag) {
             givenStartYear = year;
@@ -290,6 +280,7 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
             givenStartDayOfMonth = dayOfMonth;
 
             String d = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+            finalStartDate = d;
 
             startDate.setText(d);
 
@@ -297,6 +288,7 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
         else if(v.getTag() == endtag){
 
             String d = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+            finalEndDate = d;
             endDate.setText(d);
 
         }
