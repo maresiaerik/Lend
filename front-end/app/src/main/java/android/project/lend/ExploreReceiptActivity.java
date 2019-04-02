@@ -7,18 +7,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.text.DecimalFormat;
 
 public class ExploreReceiptActivity extends AppCompatActivity {
 
     String number;
-    TextView email;
+    TextView itemEmail, itemPhone;
+    ProductCore itemData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explore_receipt);
+
+        Intent intent = getIntent();
+        itemData = intent.getParcelableExtra("itemData");
+        if(itemData != null){
+           setReceiptDetails();
+        }
 
         //Setting Fragment To Lendz For Main Activity
         FragmentManager.setCurrentFragment(1);
@@ -46,11 +54,11 @@ public class ExploreReceiptActivity extends AppCompatActivity {
         });
 
         //Get Contact Number
-        TextView contactNumber = findViewById(R.id.receipt_contact_number);
-        number = contactNumber.getText().toString();
+        itemPhone = findViewById(R.id.receipt_contact_number);
+        number = itemPhone.getText().toString();
 
         //Set Contact Number To Open Dialog For Call Or Text
-        contactNumber.setOnClickListener(new View.OnClickListener() {
+        itemPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openContactDialog();
@@ -58,13 +66,35 @@ public class ExploreReceiptActivity extends AppCompatActivity {
         });
 
         //Set Email To Open Email Intent
-        email = findViewById(R.id.receipt_contact_email);
-        email.setOnClickListener(new View.OnClickListener() {
+        itemEmail = findViewById(R.id.receipt_contact_email);
+        itemEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openEmail();
             }
         });
+    }
+
+    //Setting Receipt Details From Intent Extras
+    private void setReceiptDetails() {
+        //Name
+        TextView itemName = findViewById(R.id.receipt_item_name);
+        itemName.setText(itemData.getName());
+        //Price
+        TextView itemPrice = findViewById(R.id.receipt_price_price);
+        DecimalFormat df = new DecimalFormat("#.00");
+        itemPrice.setText("€"+df.format((itemData.getPrice()+2)));
+        //Dates
+        //From
+        TextView itemFrom = findViewById(R.id.receipt_from_date);
+        //Until
+        TextView itemUntil = findViewById(R.id.receipt_until_date);
+        //Address
+        TextView itemLocation = findViewById(R.id.receipt_location_location);
+        //Phone
+//        itemPhone.setText();
+        //Email
+//        itemEmail.setText();
     }
 
     //Start Map Intent With Address
@@ -106,7 +136,7 @@ public class ExploreReceiptActivity extends AppCompatActivity {
 
     //Start Email Intent
     private void openEmail() {
-        String emailAddress = email.getText().toString();
+        String emailAddress = itemEmail.getText().toString();
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO,
                 Uri.fromParts("mailto", emailAddress, null));
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Lend: ");

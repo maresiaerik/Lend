@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 import static android.app.Activity.RESULT_CANCELED;
@@ -40,6 +41,7 @@ import static java.lang.Float.parseFloat;
 
 public class HomeNewItemFragment extends Fragment {
 
+    DecimalFormat df = new DecimalFormat("#.00");
     private View view;
     private String itemTitle, itemDescription, itemCategory;
     private EditText inputPriceText;
@@ -167,9 +169,10 @@ public class HomeNewItemFragment extends Fragment {
 
         //Get Category
         Spinner categorySpinner = view.findViewById(R.id.category_spinner);
+        String[] catDrop = getResources().getStringArray(R.array.category_items_dropdown);
         itemCategory = categorySpinner.getSelectedItem().toString();
         if (titleCheck) {
-            if (itemCategory.equals("Category")) {
+            if (itemCategory.equals(catDrop[0])) {
                 Toast.makeText(getContext(), "Please select valid category", Toast.LENGTH_SHORT).show();
             } else {
                 categoryCheck = true;
@@ -379,6 +382,8 @@ public class HomeNewItemFragment extends Fragment {
         priceSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 final String inputPriceTextString = inputPriceText.getText().toString();
                 if (inputPriceTextString.length() > 0 && parseFloat(inputPriceTextString) > 0) {
                     priceBtn.setText("€ " + inputPriceTextString + "/day");
@@ -404,9 +409,8 @@ public class HomeNewItemFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 TextView priceCalc = priceDialog.findViewById(R.id.price_calc_text);
                 if (s.toString().length() > 0) {
-                    double input = Double.parseDouble(s.toString());
-                    double usersProfit = Math.floor(input * 0.95);
-                    priceCalc.setText("You'll receive €" + usersProfit + " per day");
+                    float input = parseFloat(s.toString());
+                    priceCalc.setText("You'll receive €" + df.format(input * 0.95) + " per day");
                 } else {
                     priceCalc.setText("");
                 }

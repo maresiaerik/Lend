@@ -8,6 +8,7 @@
     <color name="cancelColour">#FF4040</color>
     <color name="submitColour">#50a761</color>
     <color name="whiteColour">#FFFFFF</color>
+    <color name="disabledColour">#BCBCBC</color>
     <color name="clickableText">#4F8FFC</color>
 
 </resources>

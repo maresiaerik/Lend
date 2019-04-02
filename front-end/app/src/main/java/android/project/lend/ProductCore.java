@@ -1,11 +1,13 @@
 package android.project.lend;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ProductCore implements Serializable {
+public class ProductCore implements Serializable, Parcelable {
     private Integer id;
     private Integer userId;
     private Integer lendzId;
@@ -22,6 +24,61 @@ public class ProductCore implements Serializable {
     private boolean changedRating;
     private boolean changedDescription;
     private boolean changedCategory;
+
+    protected ProductCore(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            userId = null;
+        } else {
+            userId = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            lendzId = null;
+        } else {
+            lendzId = in.readInt();
+        }
+        name = in.readString();
+        if (in.readByte() == 0) {
+            price = null;
+        } else {
+            price = in.readFloat();
+        }
+        if (in.readByte() == 0) {
+            rating = null;
+        } else {
+            rating = in.readInt();
+        }
+        description = in.readString();
+        category = in.readString();
+        changed = in.readByte() != 0;
+        changedLendzId = in.readByte() != 0;
+        changedName = in.readByte() != 0;
+        changedPrice = in.readByte() != 0;
+        changedRating = in.readByte() != 0;
+        changedDescription = in.readByte() != 0;
+        changedCategory = in.readByte() != 0;
+    }
+
+    public static final Creator<ProductCore> CREATOR = new Creator<ProductCore>() {
+        @Override
+        public ProductCore createFromParcel(Parcel in) {
+            return new ProductCore(in);
+        }
+
+        @Override
+        public ProductCore[] newArray(int size) {
+            return new ProductCore[size];
+        }
+    };
+
+    public ProductCore() {
+
+
+    }
 
     public Integer getId() {
         return this.id;
@@ -166,5 +223,54 @@ public class ProductCore implements Serializable {
         changedRating = false;
         changedDescription = false;
         changedCategory = false;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(id);
+        }
+        if (userId == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(userId);
+        }
+        if (lendzId == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(lendzId);
+        }
+        dest.writeString(name);
+        if (price == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeFloat(price);
+        }
+        if (rating == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(rating);
+        }
+        dest.writeString(description);
+        dest.writeString(category);
+        dest.writeByte((byte) (changed ? 1 : 0));
+        dest.writeByte((byte) (changedLendzId ? 1 : 0));
+        dest.writeByte((byte) (changedName ? 1 : 0));
+        dest.writeByte((byte) (changedPrice ? 1 : 0));
+        dest.writeByte((byte) (changedRating ? 1 : 0));
+        dest.writeByte((byte) (changedDescription ? 1 : 0));
+        dest.writeByte((byte) (changedCategory ? 1 : 0));
     }
 }

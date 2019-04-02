@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -41,8 +42,6 @@ import java.util.Locale;
 
 public class DetailedItemView extends Fragment implements DatePickerDialog.OnDateSetListener{
 
-
-
     View view;
     ProductDataItem item;
     LinearLayout l;
@@ -55,11 +54,6 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
     DatePickerDialog.OnDateSetListener startDateListener,endDateListener;
 
 
-    public interface onConfirmationListener {
-        public void onConfirmationOpened(ArrayList<ProductDataItem> addedItems);
-    }
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,7 +63,6 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
 
         Bundle args = getArguments();
         item = (ProductDataItem) args.getSerializable("selectedItem");
-
 
         heading.setText(item.getName());
         categoryName.setText(item.getCategory());
@@ -100,32 +93,18 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
             }
         });
 
+        // ** Dates Need Sent To Intent ** \\
         //Setting Borrow Button Listener
         borrowBtn = view.findViewById(R.id.detailed_item_borrow_button);
         borrowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                /*
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("itemData", item);
-                */
-
                 Intent confirmIntent = new Intent(getContext(), ExploreConfirmActivity.class);
 
-
-                ArrayList<ProductDataItem> addedItem = new ArrayList<>();
-                addedItem.add(item);
-
-                onConfirmationListener listener = (onConfirmationListener) new ExploreConfirmActivity();
-
-                listener.onConfirmationOpened(addedItem);
-
+                confirmIntent.putExtra("itemData", (Parcelable) item);
                 startActivity(confirmIntent);
             }
         });
-
-
         return view;
     }
 
@@ -161,10 +140,6 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
 
 
         endCalendar.setMinDate(now);
-
-
-
-
 
         startCalendar.show(getActivity().getFragmentManager(),"DatepickerdialogEndDate");
 
