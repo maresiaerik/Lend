@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageSwitcher;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -31,16 +32,18 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.date.MonthAdapter;
 
 import java.io.Serializable;
+import java.sql.Array;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.zip.Inflater;
 
 
-public class DetailedItemView extends Fragment implements DatePickerDialog.OnDateSetListener{
-
+public class DetailedItemView extends Fragment implements DatePickerDialog.OnDateSetListener {
 
 
     View view;
@@ -49,10 +52,17 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
     Dialog calendarView;
     DatePickerDialog startCalendar;
     DatePickerDialog endCalendar;
-    SimpleDateFormat startDate;
+
     Calendar now = Calendar.getInstance();
     Button borrowBtn;
     DatePickerDialog.OnDateSetListener startDateListener,endDateListener;
+    String startTag = "DatepickerdialogStart", endtag = "DatepickerdialogEnd";
+    Integer givenStartYear, givenStartMonth, givenStartDayOfMonth;
+    Button startDate;
+    Button endDate;
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+
 
 
     public interface onConfirmationListener {
@@ -79,8 +89,9 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
         ImageCarousel adapter = new ImageCarousel(getContext(), item);
         imageContainer.setAdapter(adapter);
 
-        final Button startDate = view.findViewById(R.id.detailed_item_start_date_button);
-        Button endDate = view.findViewById(R.id.detailed_item_end_date_button);
+        startDate = view.findViewById(R.id.detailed_item_start_date_button);
+        endDate = view.findViewById(R.id.detailed_item_end_date_button);
+
 
         startDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +106,7 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
             @Override
             public void onClick(View v) {
 
-                //openEndCalendar();
+                openEndCalendar();
 
             }
         });
@@ -106,13 +117,7 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
             @Override
             public void onClick(View v) {
 
-                /*
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("itemData", item);
-                */
-
                 Intent confirmIntent = new Intent(getContext(), ExploreConfirmActivity.class);
-
 
                 ArrayList<ProductDataItem> addedItem = new ArrayList<>();
                 addedItem.add(item);
@@ -132,7 +137,6 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
     private void openStartCalendar() {
 
 
-
         startCalendar = DatePickerDialog.newInstance(
                 this,
                 now.get(Calendar.YEAR),
@@ -143,11 +147,32 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
 
         startCalendar.setMinDate(now);
 
+        startCalendar.setDisabledDays(setDates());
 
-        //setDates();
+        startCalendar.show(getActivity().getFragmentManager(),startTag);
 
-        startCalendar.show(getActivity().getFragmentManager(),"DatepickerdialogStartDate");
+    }
 
+    private Calendar[] setDates() {
+
+        Calendar a = now.getInstance(), b = now.getInstance(), c = now.getInstance(), d = now.getInstance(), e = now.getInstance(), f  = now.getInstance();
+        try{
+            a.setTime(dateFormat.parse("04/04/2019"));
+            b.setTime(dateFormat.parse("05/04/2019"));
+            c.setTime(dateFormat.parse("06/04/2019"));
+            d.setTime(dateFormat.parse("12/04/2019"));
+            e.setTime(dateFormat.parse("18/04/2019"));
+            f.setTime(dateFormat.parse("23/05/2019"));
+        }
+        catch (ParseException fff) {
+            Log.d("FAIL", fff + " ");
+        }
+
+        Calendar[] disabled = {
+            a,b,c,d,e,f
+        };
+
+        return disabled;
     }
 
     private void openEndCalendar() {
@@ -159,76 +184,124 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
         );
 
 
-
-        endCalendar.setMinDate(now);
-
-
-
-
-
-        startCalendar.show(getActivity().getFragmentManager(),"DatepickerdialogEndDate");
-
-    }
-
-
-    private void setUpStartDateCalendar() {
-        TextView title = calendarView.findViewById(R.id.calendar_dialog_title);
-        title.setText("Set start date");
-    }
-
-    private void setUpEndDateCalendar() {
-        TextView title = calendarView.findViewById(R.id.calendar_dialog_title);
-        title.setText("Set end date");
-    }
-
-    public void setDates() {
-
-
-        Calendar cal = Calendar.getInstance();
-        Calendar cal2 = Calendar.getInstance();
-        Calendar cal3 = Calendar.getInstance();
+        Calendar givenDate = now.getInstance();
 
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-            cal.setTime(sdf.parse("Tue May 14 16:02:37 GMT 2019"));// all done
-
-            SimpleDateFormat aaa = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-            cal2.setTime(aaa.parse("Wed May 15 16:02:37 GMT 2019"));// all done
-
-            SimpleDateFormat bbb = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-            cal3.setTime(bbb.parse("Thu May 16 16:02:37 GMT 2019"));// all done
-        } catch (ParseException p) {
-            Log.d("CALENDAR_PARSE_ERROR", p + "");
+            givenDate.setTime(dateFormat.parse(givenStartDayOfMonth + "/" + givenStartMonth + "/" + givenStartYear));
+        }
+        catch (ParseException e) {
+            Log.d("INSIDEOPENENDCALENDAR", e + " ");
         }
 
 
-        Calendar[] a = {
-                cal,
-                cal2,
-                cal3
+
+        endCalendar.setMinDate(givenDate);
+
+
+        Calendar[] startDay = {
+            givenDate
         };
-       //dpd.setDisabledDays(a);
+
+        Calendar[] disabled = setDates();
+
+
+        if(disabled.length > 0) {
+
+            Calendar[] maxSelectableDay = {
+                    getNextDisabledDate(disabled)
+            };
+
+            if(maxSelectableDay[0] == null) {
+                endCalendar.setDisabledDays(disabled);
+            }
+            else {
+                endCalendar.setMaxDate(maxSelectableDay[0]);
+            }
+        }
+        else {
+            endCalendar.setDisabledDays(disabled);
+
+        }
+
+
+        endCalendar.setDisabledDays(disabled);
+        endCalendar.setHighlightedDays(startDay);
+
+        endCalendar.show(getActivity().getFragmentManager(), endtag);
+
+    }
+
+    private Calendar getNextDisabledDate(Calendar[] d) {
+
+        List<Calendar> disabled = Arrays.asList(d);
+
+        ArrayList<Calendar> newDisabled = new ArrayList<>();
+
+        Calendar startDate = now.getInstance();
+
+
+        try {
+            startDate.setTime(dateFormat.parse(givenStartDayOfMonth + "/" + givenStartMonth + "/" + givenStartYear));
+        }
+        catch (ParseException e) {
+            Log.d("INSIDEGETNEXTDISABLEDDATE", e + " ");
+        }
+
+        for (int i = 0; i < disabled.size() ; i++) {
+
+            if(disabled.get(i).after(startDate)) {
+                newDisabled.add(disabled.get(i));
+            }
+        }
+
+        Log.d("LENGTHOFARRAY", newDisabled.size() + " ");
+
+
+        if(newDisabled.size() < 1) {
+            //return something empty
+            Calendar[] r = new Calendar[1];
+            r[0] = null;
+            return r[0];
+        }
+        Calendar[] nextDate = new Calendar[newDisabled.size()];
+
+        for (int i = 0; i < newDisabled.size(); i++) {
+            Log.d("INDEXTEST", i + " ");
+
+            nextDate[i] = newDisabled.get(i);
+        }
+
+        Arrays.sort(nextDate);
+
+
+        return nextDate[0];
+
     }
 
 
     @Override
     public void onDateSet(DatePickerDialog v, int year, int monthOfYear, int dayOfMonth) {
 
+        Log.d("HELLOOOO", dayOfMonth + " ");
 
-        String date = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+        if(v.getTag() == startTag) {
+            givenStartYear = year;
+            givenStartMonth = monthOfYear + 1;
+            givenStartDayOfMonth = dayOfMonth;
 
-        TextView startDayText = view.findViewById(R.id.startday_text);
-        startDayText.setText(date);
-    }
+            String d = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
 
-    private class OpenCalendar {
-
-        public OpenCalendar() {
+            startDate.setText(d);
 
         }
+        else if(v.getTag() == endtag){
+
+            String d = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+            endDate.setText(d);
+
+        }
+
     }
-
-
 }
 
 

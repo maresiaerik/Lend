@@ -25,7 +25,6 @@ public class ProductDataItem extends ProductCore implements Serializable, Parcel
     };
 
     public ProductDataItem() {
-
     }
 
     @Override
