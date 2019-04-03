@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,11 +27,11 @@ public class HomeUserEditFragment extends Fragment {
         new ImageDownloader(img).execute(MainActivity.USER.getImageUrl());
 
         //Setting First Name
-        TextView userFirstNameEdit = view.findViewById(R.id.user_first_name_edit);
+        EditText userFirstNameEdit = view.findViewById(R.id.user_first_name_edit);
         userFirstNameEdit.setText(MainActivity.USER.getFirstName());
 
         //Setting Second Name
-        TextView userSecondNameEdit = view.findViewById(R.id.userSecondNameEdit);
+        EditText userSecondNameEdit = view.findViewById(R.id.userSecondNameEdit);
         userSecondNameEdit.setText(MainActivity.USER.getLastName());
 
         //Setting Email
@@ -47,6 +49,17 @@ public class HomeUserEditFragment extends Fragment {
         //Setting Credit Card
         TextView userCardEdit = view.findViewById(R.id.user_card_edit);
         userCardEdit.setText(MainActivity.USER.getCardNumber());
+
+
+        //Preventing Name Editing
+        userFirstNameEdit.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.input_disabled));
+        userFirstNameEdit.setFocusable(false);
+        userFirstNameEdit.setFocusableInTouchMode(false);
+        userFirstNameEdit.setClickable(false);
+        userSecondNameEdit.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.input_disabled));
+        userSecondNameEdit.setFocusable(false);
+        userSecondNameEdit.setFocusableInTouchMode(false);
+        userSecondNameEdit.setClickable(false);
 
         return view;
     }

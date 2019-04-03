@@ -144,7 +144,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/button_submit_action"
-        android:text="Borrow"
+        android:text="Log/Bor"
         android:textColor="@drawable/button_submit_action"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/confirm_cancel_btn"

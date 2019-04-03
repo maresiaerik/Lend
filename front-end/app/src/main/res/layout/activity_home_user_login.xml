@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".HomeUserLogin">
+
+    <EditText
+        android:id="@+id/login_email"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_disabled"
+        android:hint="Email"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:layout_marginBottom="40dp"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/login_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/login_password"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:hint="Password"
+        android:background="@drawable/button_disabled"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/login_register_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/login_login_btn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_submit_reverse_action"
+        android:text="Login"
+        android:textColor="@drawable/button_submit_reverse_action"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/login_cancel_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/login_cancel_btn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_cancel_action"
+        android:text="Cancel"
+        android:layout_marginBottom="10dp"
+        android:textColor="@drawable/button_cancel_action"
+        app:layout_constraintBottom_toTopOf="@+id/login_register_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/login_register_btn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_accent_action"
+        android:text="Register"
+        android:layout_marginBottom="40dp"
+        android:textColor="@drawable/button_accent_action"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

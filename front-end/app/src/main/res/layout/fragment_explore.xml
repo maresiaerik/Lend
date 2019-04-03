@@ -19,7 +19,7 @@
            android:layout_marginBottom="5dp"
            android:layout_marginRight="5dp"
            android:layout_marginLeft="5dp"
-           android:hint="Search for a tool!"
+           android:hint="Search"
            android:layout_height="wrap_content"
            android:background="@drawable/searchbar"
            android:id="@+id/explore_search"
