@@ -1,16 +1,19 @@
 package android.project.lend;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class ProductManager extends Helper
 {
     public ArrayList<ProductData> productList;
-    public ArrayList<ImageData> imageList;
+
+    UserManager userManager = new UserManager();
+    ImageManager imageManager = new ImageManager();
 
     public ProductManager(){
 
         productList = getProductData();
-        imageList = getImageData();
     }
 
     public ArrayList<ProductDataItem> getProductList()
@@ -43,36 +46,16 @@ public class ProductManager extends Helper
         ProductDataItem productDataItem = new ProductDataItem();
 
         productDataItem.setId(product.id);
+        productDataItem.owner = userManager.getUser(product.userId);
         productDataItem.setName(product.name);
         productDataItem.setPrice(product.price);
         productDataItem.setRating(product.rating);
-        productDataItem.imageDataItems = filterImages(product.id);
+        productDataItem.imageDataItems = imageManager.getProductImages(product.id);
+        productDataItem.setDescription(product.description);
+        productDataItem.setCategory(product.category);
 
         productDataItem.clearChanges();
 
         return productDataItem;
-    }
-
-    private ArrayList<ImageDataItem> filterImages(Integer productId)
-    {
-        ArrayList<ImageDataItem> imageDataItems = new ArrayList<>();
-
-        for(final ImageData image : imageList){
-
-            if(image.productId == productId) {
-
-                ImageDataItem imageDataItem = new ImageDataItem();
-
-                imageDataItem.setId(image.id);
-                imageDataItem.setProductId(productId);
-                imageDataItem.setUrl(image.url);
-
-                imageDataItem.clearChanges();
-
-                imageDataItems.add(imageDataItem);
-            }
-        }
-
-        return imageDataItems;
     }
 }

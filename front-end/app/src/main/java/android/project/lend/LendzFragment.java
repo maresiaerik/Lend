@@ -7,11 +7,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class LendzFragment extends Fragment {
 
     View view;
+
+    ListView listView = null;
+    LendzAdapter lendzAdapter;
+
+    LendzManager lendzManager = new LendzManager();
+    private ArrayList<LendzDataItem> lendzDataItemList;
 
     @Nullable
     @Override
@@ -19,6 +28,12 @@ public class LendzFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_lendz, container, false);
         TextView pageTitle = view.findViewById(R.id.page_title);
         pageTitle.setText("Lendz");
+
+        lendzDataItemList = lendzManager.getLendzList();
+
+        listView = (ListView) view.findViewById(R.id.item_view);
+        lendzAdapter = new LendzAdapter(view.getContext(), lendzDataItemList);
+        listView.setAdapter(lendzAdapter);
 
         return view;
     }

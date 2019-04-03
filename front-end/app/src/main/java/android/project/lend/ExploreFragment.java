@@ -31,7 +31,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
     ProductManager productManager = new ProductManager();
     ListView listView = null;
     View view = null;
-    ProductAdapter pa;
+    ProductAdapter productAdapter;
     ArrayList<ProductDataItem> productDataItemList;
     ArrayList<ProductDataItem> allItems = null;
     ArrayList<ProductDataItem> filteredList = null;
@@ -49,8 +49,14 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         TextView pageTitle = view.findViewById(R.id.page_title);
         pageTitle.setText("Explore");
 
+        productDataItemList = productManager.getProductList();
+        allItems = productManager.getProductList();
+
         playground();
 
+        listView = (ListView) view.findViewById(R.id.item_view);
+        productAdapter = new ProductAdapter(view.getContext(), productDataItemList);
+        listView.setAdapter(productAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -130,9 +136,6 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
             ArrayList<ProductDataItem> productDataItemList = new ArrayList<>();
         */
 
-        productDataItemList = productManager.getProductList();
-        allItems = productManager.getProductList();
-
         productDataItemList.get(0).setName("New name");
         productDataItemList.get(0).update();
 
@@ -144,12 +147,6 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         productDataItemList.get(5).update();
 
         productDataItemList.get(3).delete();
-
-        listView = (ListView) view.findViewById(R.id.item_view);
-
-        pa = new ProductAdapter(view.getContext(), productDataItemList);
-
-        listView.setAdapter(pa);
     }
 
     @Override
@@ -170,8 +167,8 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
     private void updateView() {
 
         ArrayList<ProductDataItem> items = filteredList == null ? productDataItemList : filteredList;
-        pa = new ProductAdapter(view.getContext(), items);
-        listView.setAdapter(pa);
+        productAdapter = new ProductAdapter(view.getContext(), items);
+        listView.setAdapter(productAdapter);
     }
 
     private void openDetailedView(Integer itemId) {

@@ -1,11 +1,12 @@
 package android.project.lend;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class LendzManager extends Helper {
 
     private ArrayList<LendzData> lendzList = new ArrayList<>();
-    private ArrayList<UserData> userList = new ArrayList<>();
 
     ProductManager productManager = new ProductManager();
     UserManager userManager = new UserManager();
@@ -13,7 +14,6 @@ public class LendzManager extends Helper {
     public LendzManager(){
 
         lendzList = getLendzData();
-        userList = getUserData();
     }
 
     public ArrayList<LendzDataItem> getLendzList() {
