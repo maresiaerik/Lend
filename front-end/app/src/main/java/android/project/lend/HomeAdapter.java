@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +17,11 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductAdapter extends ArrayAdapter<ProductDataItem> {
+public class HomeAdapter extends ArrayAdapter<ProductDataItem> {
 
     private Context context;
     private List<ProductDataItem> productList = new ArrayList<>();
-    public ProductAdapter(@NonNull Context context, @LayoutRes ArrayList<ProductDataItem> list) {
+    public HomeAdapter(@NonNull Context context, @LayoutRes ArrayList<ProductDataItem> list) {
         super(context, 0 , list);
         this.context = context;
         productList = list;
@@ -39,13 +38,11 @@ public class ProductAdapter extends ArrayAdapter<ProductDataItem> {
 
         listItem.setId(currentProduct.getId());
 
-        TextView price = (TextView) listItem.findViewById(R.id.product_price);
-        DecimalFormat df = new DecimalFormat("#.00");
-        String formattedPrice = df.format(currentProduct.getPrice());
-        price.setText(formattedPrice + "€/day");
-
         TextView name = (TextView) listItem.findViewById(R.id.product_name);
         name.setText(currentProduct.getName());
+
+        TextView status = (TextView) listItem.findViewById(R.id.product_status);
+        status.setText(MainActivity.PRODUCT_STATUS[currentProduct.getStatus()]);
 
         ImageView img = listItem.findViewById(R.id.imageView);
 
@@ -60,8 +57,7 @@ public class ProductAdapter extends ArrayAdapter<ProductDataItem> {
         }
 
         RatingBar rating = listItem.findViewById(R.id.product_rating);
-
-        rating.setRating(currentProduct.getRating());
+        rating.setVisibility(View.GONE);
 
         return listItem;
     }

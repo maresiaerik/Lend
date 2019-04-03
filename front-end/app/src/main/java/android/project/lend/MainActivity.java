@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     //ProductManager productManager = new ProductManager();
     UserManager userManager = new UserManager();
     static public UserDataItem USER;
-
+    static public String[] PRODUCT_STATUS = new String[] {"Available","Lendzed","Returned"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         USER = userManager.getUser(1);
-        Log.d("USERTEST", USER.getFirstName());
 
         ProductDataItem productDataItem = new ProductDataItem();
 

@@ -16,15 +16,35 @@ public class ProductManager extends Helper
         productList = getProductData();
     }
 
-    public ArrayList<ProductDataItem> getProductList()
+    public ArrayList<ProductDataItem> getExploreProductList(UserDataItem user)
     {
         ArrayList<ProductDataItem> productDataItemList = new ArrayList<>();
 
         for (final ProductData product : productList)
         {
-            ProductDataItem productDataItem = setProduct(product);
+            if(user != null && product.userId != user.getId() || user == null) {
 
-            productDataItemList.add(productDataItem);
+                ProductDataItem productDataItem = setProduct(product);
+
+                productDataItemList.add(productDataItem);
+            }
+        }
+
+        return productDataItemList;
+    }
+
+    public ArrayList<ProductDataItem> getHomeProductList(Integer userId)
+    {
+        ArrayList<ProductDataItem> productDataItemList = new ArrayList<>();
+
+        for (final ProductData product : productList)
+        {
+            if(product.userId == userId) {
+
+                ProductDataItem productDataItem = setProduct(product);
+
+                productDataItemList.add(productDataItem);
+            }
         }
 
         return productDataItemList;
@@ -53,6 +73,7 @@ public class ProductManager extends Helper
         productDataItem.imageDataItems = imageManager.getProductImages(product.id);
         productDataItem.setDescription(product.description);
         productDataItem.setCategory(product.category);
+        productDataItem.setStatus(product.status);
 
         productDataItem.clearChanges();
 

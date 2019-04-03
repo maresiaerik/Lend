@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ProductCore implements Serializable, Parcelable {
+
     private Integer id;
     private Integer userId;
     private Integer lendzId;
@@ -16,14 +17,16 @@ public class ProductCore implements Serializable, Parcelable {
     private Integer rating;
     private String description;
     private String category;
+    private Integer status;
 
-    private boolean changed;
-    private boolean changedLendzId;
-    private boolean changedName;
-    private boolean changedPrice;
-    private boolean changedRating;
-    private boolean changedDescription;
-    private boolean changedCategory;
+    private Boolean changed = false;
+    private Boolean changedLendzId = false;
+    private Boolean changedName = false;
+    private Boolean changedPrice = false;
+    private Boolean changedRating = false;
+    private Boolean changedDescription = false;
+    private Boolean changedCategory = false;
+    private Boolean changedStatus = false;
 
     protected ProductCore(Parcel in) {
         if (in.readByte() == 0) {
@@ -61,6 +64,7 @@ public class ProductCore implements Serializable, Parcelable {
         changedRating = in.readByte() != 0;
         changedDescription = in.readByte() != 0;
         changedCategory = in.readByte() != 0;
+        changedStatus = in.readByte() != 0;
     }
 
     public static final Creator<ProductCore> CREATOR = new Creator<ProductCore>() {
@@ -179,6 +183,20 @@ public class ProductCore implements Serializable, Parcelable {
         this.category = category;
     }
 
+    public Integer getStatus(){
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+
+        if(status == this.status) return;
+
+        changed = true;
+        changedStatus = true;
+
+        this.status = status;
+    }
+
     public void create() {
 
     }
@@ -206,6 +224,7 @@ public class ProductCore implements Serializable, Parcelable {
         if (changedCategory) {
             Log.d("PRODUCTCHANGED", "Category was changed to " + this.category);
         }
+        if(changedStatus){}
 
         clearChanges();
     }
@@ -223,6 +242,7 @@ public class ProductCore implements Serializable, Parcelable {
         changedRating = false;
         changedDescription = false;
         changedCategory = false;
+        changedStatus = false;
     }
 
     @Override
@@ -272,5 +292,6 @@ public class ProductCore implements Serializable, Parcelable {
         dest.writeByte((byte) (changedRating ? 1 : 0));
         dest.writeByte((byte) (changedDescription ? 1 : 0));
         dest.writeByte((byte) (changedCategory ? 1 : 0));
+        dest.writeByte((byte) (changedStatus ? 1: 0));
     }
 }

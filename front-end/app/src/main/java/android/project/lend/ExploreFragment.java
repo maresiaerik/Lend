@@ -1,12 +1,9 @@
 package android.project.lend;
 
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -14,15 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
-import org.florescu.android.rangeseekbar.RangeSeekBar;
-import java.io.Serializable;
-import java.lang.reflect.Type;
 
 import java.util.ArrayList;
 
@@ -31,7 +22,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
     ProductManager productManager = new ProductManager();
     ListView listView = null;
     View view = null;
-    ProductAdapter productAdapter;
+    ExploreAdapter exploreAdapter;
     ArrayList<ProductDataItem> productDataItemList;
     ArrayList<ProductDataItem> allItems = null;
     ArrayList<ProductDataItem> filteredList = null;
@@ -49,14 +40,14 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         TextView pageTitle = view.findViewById(R.id.page_title);
         pageTitle.setText("Explore");
 
-        productDataItemList = productManager.getProductList();
-        allItems = productManager.getProductList();
+        productDataItemList = productManager.getExploreProductList(MainActivity.USER);
+        allItems = productManager.getExploreProductList(MainActivity.USER);
 
         playground();
 
         listView = (ListView) view.findViewById(R.id.item_view);
-        productAdapter = new ProductAdapter(view.getContext(), productDataItemList);
-        listView.setAdapter(productAdapter);
+        exploreAdapter = new ExploreAdapter(view.getContext(), productDataItemList);
+        listView.setAdapter(exploreAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -142,11 +133,9 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         productDataItemList.get(2).setName("John");
         productDataItemList.get(2).update();
 
-        productDataItemList.get(5).setRating(5);
-        productDataItemList.get(5).setName("Just name");
-        productDataItemList.get(5).update();
-
-        productDataItemList.get(3).delete();
+        productDataItemList.get(3).setRating(5);
+        productDataItemList.get(3).setName("Just name");
+        productDataItemList.get(3).update();
     }
 
     @Override
@@ -167,8 +156,8 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
     private void updateView() {
 
         ArrayList<ProductDataItem> items = filteredList == null ? productDataItemList : filteredList;
-        productAdapter = new ProductAdapter(view.getContext(), items);
-        listView.setAdapter(productAdapter);
+        exploreAdapter = new ExploreAdapter(view.getContext(), items);
+        listView.setAdapter(exploreAdapter);
     }
 
     private void openDetailedView(Integer itemId) {

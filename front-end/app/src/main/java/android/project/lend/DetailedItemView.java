@@ -80,7 +80,7 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
         heading.setText(item.getName());
         categoryName.setText(item.getCategory());
         TextView description = view.findViewById(R.id.detailed_item_description);
-        description.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin id mi cursus, porttitor turpis a, finibus ligula. Curabitur a malesuada dui. In finibus augue felis, id venenatis nibh fringilla id. Donec rutrum bibendum est pharetra volutpat. Donec sit amet dolor blandit, viverra ante ut, elementum neque.");
+        description.setText(item.getDescription());
         ViewPager imageContainer = view.findViewById(R.id.detailed_image_carousel);
         ImageCarousel adapter = new ImageCarousel(getContext(), item);
         imageContainer.setAdapter(adapter);
