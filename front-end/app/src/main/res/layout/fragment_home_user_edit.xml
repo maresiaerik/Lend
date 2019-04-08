@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_user_edit_constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp">
@@ -19,34 +21,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="First name"
-        android:selectAllOnFocus="true"
         android:inputType="textPersonName"
+        android:padding="2dp"
+        android:selectAllOnFocus="true"
         android:textColor="@android:color/black"
         android:textSize="35sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/userSecondNameEdit"
+        android:id="@+id/user_second_name_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:selectAllOnFocus="true"
-        android:inputType="textPersonName"
         android:hint="Last name"
+        android:inputType="textPersonName"
+        android:padding="2dp"
+        android:selectAllOnFocus="true"
         android:textColor="@android:color/black"
         android:textSize="35sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/user_first_name_edit" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_first_name_edit" />
 
     <ImageView
         android:id="@+id/email_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:paddingTop="75dp"
+        android:paddingTop="20dp"
         android:src="@drawable/email_icon"
         app:layout_constraintRight_toLeftOf="@+id/user_email_edit"
-        app:layout_constraintTop_toBottomOf="@+id/userSecondNameEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/user_second_name_edit" />
 
     <EditText
         android:id="@+id/user_email_edit"
@@ -54,14 +58,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Email Address"
-        android:paddingTop="75dp"
+        android:inputType="textEmailAddress"
+        android:paddingTop="20dp"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
-        android:inputType="textEmailAddress"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userSecondNameEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/user_second_name_edit" />
 
     <ImageView
         android:id="@+id/phone_icon"
@@ -101,9 +105,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Address"
+        android:inputType="textPostalAddress"
         android:selectAllOnFocus="true"
         android:textAlignment="center"
-        android:inputType="textPostalAddress"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -132,5 +136,112 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_address_edit" />
 
+    <EditText
+        android:id="@+id/register_card_expiry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="MM/YY"
+        android:inputType="date"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/register_expiry_text"
+        app:layout_constraintTop_toBottomOf="@+id/user_card_edit" />
+
+    <EditText
+        android:id="@+id/register_card_csv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:hint="CSV"
+        android:inputType="number"
+        android:maxLength="3"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/user_card_edit"
+        app:layout_constraintStart_toEndOf="@+id/register_card_expiry"
+        app:layout_constraintTop_toBottomOf="@+id/user_card_edit" />
+
+    <TextView
+        android:id="@+id/register_expiry_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exp: "
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/register_card_expiry"
+        app:layout_constraintStart_toStartOf="@+id/user_card_edit"
+        app:layout_constraintTop_toBottomOf="@+id/user_card_edit" />
+
+
+    <ImageView
+        android:id="@+id/password_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/lock_outline_icon"
+        app:layout_constraintEnd_toStartOf="@+id/register_password"
+        app:layout_constraintTop_toBottomOf="@+id/register_card_expiry" />
+
+    <EditText
+        android:id="@+id/register_password"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_card_expiry" />
+
+    <ImageView
+        android:id="@+id/password_confirm_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/lock_solid_icon"
+        app:layout_constraintEnd_toStartOf="@+id/register_password_confirm"
+        app:layout_constraintTop_toBottomOf="@+id/register_password" />
+
+    <EditText
+        android:id="@+id/register_password_confirm"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Confirm"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_password" />
+
+    <Button
+        android:id="@+id/register_cancel_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_cancel_action"
+        android:text="Cancel"
+        android:textColor="@drawable/button_cancel_action"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_password_confirm"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/register_submit_btn"/>
+
+    <Button
+        android:id="@+id/register_submit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_submit_action"
+        android:text="Register"
+        android:textColor="@drawable/button_submit_action"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_password_confirm"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/register_cancel_btn"/>
 
 </android.support.constraint.ConstraintLayout>

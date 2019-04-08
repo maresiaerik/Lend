@@ -2,7 +2,7 @@ package android.project.lend;
 
 import android.support.v4.app.Fragment;
 
-public class FragmentManager {
+public class FragmentHandler {
 
     private static int currentFragment;
 

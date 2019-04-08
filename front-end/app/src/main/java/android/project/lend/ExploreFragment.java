@@ -1,5 +1,6 @@
 package android.project.lend;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -7,12 +8,18 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GestureDetectorCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -20,7 +27,9 @@ import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import org.florescu.android.rangeseekbar.RangeSeekBar;
+
 import java.io.Serializable;
 import java.lang.reflect.Type;
 
@@ -37,15 +46,17 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
     ArrayList<ProductDataItem> filteredList = null;
     Integer minPrice, maxPrice, minRating, maxRating, categoryPosition, sortByPosition;
     Filter filter;
+    Button filterBtn;
+    EditText sbar;
     ProductDataItem selectedItem = null;
-
+    int scrolling;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
         view = inflater.inflate(R.layout.fragment_explore, container, false);
+        listView = view.findViewById(R.id.item_view);
         TextView pageTitle = view.findViewById(R.id.page_title);
         pageTitle.setText("Explore");
 
@@ -54,7 +65,6 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
 
         playground();
 
-        listView = (ListView) view.findViewById(R.id.item_view);
         productAdapter = new ProductAdapter(view.getContext(), productDataItemList);
         listView.setAdapter(productAdapter);
 
@@ -66,22 +76,56 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
             }
         });
 
-        view.findViewById(R.id.filter_button).setOnClickListener(new View.OnClickListener() {
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            private int mLastFirstVisibleItem;
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                scrolling = scrollState;
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (mLastFirstVisibleItem < firstVisibleItem && scrolling == 2) {
+                    filterBtn.animate().translationY(-100).alpha(0).setDuration(200).withEndAction(new Runnable() {
+                        @Override
+                        public void run() {
+                            filterBtn.setVisibility(View.GONE);
+                        }
+                    });
+                    sbar.animate().translationY(-100).alpha(0).setDuration(200).withEndAction(new Runnable() {
+                        @Override
+                        public void run() {
+                            sbar.setVisibility(View.GONE);
+                        }
+                    });
+                }
+                if ((mLastFirstVisibleItem > firstVisibleItem && scrolling == 2) || firstVisibleItem == 0 && visibleItemCount == 2) {
+                    filterBtn.setVisibility(View.VISIBLE);
+                    filterBtn.animate().translationY(0).alpha(1).setDuration(200);
+                    sbar.setVisibility(View.VISIBLE);
+                    sbar.animate().translationY(0).alpha(1).setDuration(200);
+                }
+                mLastFirstVisibleItem = firstVisibleItem;
+            }
+        });
+        filterBtn = view.findViewById(R.id.filter_button);
+        filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 filter = new Filter(allItems, view, listView, getContext());
 
-                if(minRating != null && maxRating != null) {
+                if (minRating != null && maxRating != null) {
                     filter.setRatingValues(minRating, maxRating);
                 }
                 if (minPrice != null && maxPrice != null) {
                     filter.setPriceValues(minPrice, maxPrice);
                 }
-                if(categoryPosition != null ) {
+                if (categoryPosition != null) {
                     filter.setCategory(categoryPosition);
                 }
-                if(sortByPosition != null) {
+                if (sortByPosition != null) {
                     filter.setSortBy(sortByPosition);
                 }
 
@@ -90,7 +134,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
             }
         });
 
-        EditText sbar = view.findViewById(R.id.explore_search);
+        sbar = view.findViewById(R.id.explore_search);
 
         TextWatcher txtWatch = new TextWatcher() {
             @Override
@@ -111,7 +155,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         };
 
         sbar.addTextChangedListener(txtWatch);
-        return  view;
+        return view;
 
     }
 
@@ -123,8 +167,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         SearchBar searchBar = new SearchBar(items);
         ArrayList<ProductDataItem> searchedItems = searchBar.search(word);
 
-        filteredList = word.length()  == 0 ? productDataItemList : searchedItems;
-
+        filteredList = word.length() == 0 ? productDataItemList : searchedItems;
 
         updateView();
 
@@ -175,13 +218,13 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
 
         ProductDataItem selectedItem = null;
 
-        for (int i = 0; i <allItems.size() ; i++) {
-            if(allItems.get(i).getId() == itemId) {
+        for (int i = 0; i < allItems.size(); i++) {
+            if (allItems.get(i).getId() == itemId) {
                 selectedItem = allItems.get(i);
                 break;
             }
         }
-        if(selectedItem != null) {
+        if (selectedItem != null) {
 
             DetailedItemView detailedItemView = new DetailedItemView();
 
@@ -191,9 +234,6 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
             detailedItemView.setArguments(bundle);
             getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, detailedItemView).commit();
         }
-
-
     }
-
 
 }
