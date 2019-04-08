@@ -10,11 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
+    ProductManager productManager = new ProductManager();
+    ListView listView = null;
     View view;
+    HomeAdapter homeAdapter;
+    ArrayList<ProductDataItem> productDataItemList;
 
     @SuppressLint("ClickableViewAccessibility")
     @Nullable
@@ -52,6 +59,12 @@ public class HomeFragment extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, newItemFragment).commit();
             }
         });
+
+        productDataItemList = productManager.getHomeProductList(MainActivity.USER.getId());
+
+        listView = (ListView) view.findViewById(R.id.item_view);
+        homeAdapter = new HomeAdapter(view.getContext(), productDataItemList);
+        listView.setAdapter(homeAdapter);
 
         return view;
 

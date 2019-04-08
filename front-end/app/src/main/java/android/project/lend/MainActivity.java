@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     static public UserDataItem USER;
     BottomNavigationView bottom_nav;
     int endFrag =-1;
+    static public String[] PRODUCT_STATUS = new String[] {"Available","Lendzed","Returned"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         USER = userManager.getUser(1);
-        Log.d("USERTEST", USER.getFirstName());
 
         ProductDataItem productDataItem = new ProductDataItem();
 

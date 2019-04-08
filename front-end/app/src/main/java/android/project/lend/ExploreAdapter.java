@@ -18,14 +18,14 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LendzAdapter extends ArrayAdapter<LendzDataItem> {
+public class ExploreAdapter extends ArrayAdapter<ProductDataItem> {
 
     private Context context;
-    private List<LendzDataItem> lendzList = new ArrayList<>();
-    public LendzAdapter(@NonNull Context context, @LayoutRes ArrayList<LendzDataItem> list) {
+    private List<ProductDataItem> productList = new ArrayList<>();
+    public ExploreAdapter(@NonNull Context context, @LayoutRes ArrayList<ProductDataItem> list) {
         super(context, 0 , list);
         this.context = context;
-        lendzList = list;
+        productList = list;
     }
 
     @NonNull
@@ -35,21 +35,23 @@ public class LendzAdapter extends ArrayAdapter<LendzDataItem> {
         if(listItem == null)
             listItem = LayoutInflater.from(context).inflate(R.layout.product_list_item,parent,false);
 
-        LendzDataItem currentLendz = lendzList.get(position);
+        ProductDataItem currentProduct = productList.get(position);
 
-        listItem.setId(currentLendz.getId());
+        listItem.setId(currentProduct.getId());
+
+        TextView price = (TextView) listItem.findViewById(R.id.product_price);
+        DecimalFormat df = new DecimalFormat("#.00");
+        String formattedPrice = df.format(currentProduct.getPrice());
+        price.setText(formattedPrice + "€/day");
 
         TextView name = (TextView) listItem.findViewById(R.id.product_name);
-        name.setText(currentLendz.product.getName());
-
-        TextView dueDate = (TextView) listItem.findViewById(R.id.product_status);
-        dueDate.setText(currentLendz.getDueDate());
+        name.setText(currentProduct.getName());
 
         ImageView img = listItem.findViewById(R.id.imageView);
 
-        if(currentLendz.product.imageDataItems.size() > 0) {
+        if(currentProduct.imageDataItems.size() > 0) {
 
-            new ImageDownloader(img).execute(currentLendz.product.imageDataItems.get(0).getUrl());
+            new ImageDownloader(img).execute(currentProduct.imageDataItems.get(0).getUrl());
 
         } else {
 
@@ -58,7 +60,8 @@ public class LendzAdapter extends ArrayAdapter<LendzDataItem> {
         }
 
         RatingBar rating = listItem.findViewById(R.id.product_rating);
-        rating.setVisibility(View.GONE);
+
+        rating.setRating(currentProduct.getRating());
 
         return listItem;
     }

@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <include
-        android:id="@+id/include"
-        layout="@layout/page_title_layout" />
-
-    <Button
-        android:id="@+id/userEditBtn"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TESTER"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:background="@drawable/button_accent_action"
-        android:textColor="@drawable/button_accent_action"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="horizontal">
+        <include
+            android:id="@+id/include"
+            layout="@layout/page_title_layout" />
+
+        <Button
+            android:id="@+id/userEditBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TESTER"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="125dp"
+            android:background="@drawable/button_accent_action"
+            android:textColor="@drawable/button_accent_action"/>
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/addNewItemBtn"
@@ -34,5 +40,19 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userEditBtn" />
 
+    <LinearLayout
+        android:id="@+id/explore_item_list_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/addNewItemBtn">
 
-</android.support.constraint.ConstraintLayout>
+        <ListView
+            android:id="@+id/item_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#00000000"/>
+    </LinearLayout>
+</LinearLayout>

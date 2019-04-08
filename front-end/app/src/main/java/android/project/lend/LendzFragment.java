@@ -29,7 +29,7 @@ public class LendzFragment extends Fragment {
         TextView pageTitle = view.findViewById(R.id.page_title);
         pageTitle.setText("Lendz");
 
-        lendzDataItemList = lendzManager.getLendzList();
+        lendzDataItemList = lendzManager.getLendzList(MainActivity.USER.getId());
 
         listView = (ListView) view.findViewById(R.id.item_view);
         lendzAdapter = new LendzAdapter(view.getContext(), lendzDataItemList);

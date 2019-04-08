@@ -22,6 +22,7 @@
                     android:id="@+id/detailed_category_name"
                     android:text=""
                     android:textSize="25dp"
+                    android:padding="10dp"
                     />
             </LinearLayout>
             <LinearLayout

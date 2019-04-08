@@ -16,14 +16,16 @@ public class Helper {
             ProductData productData = new ProductData();
 
             productData.id = (i + 1);
+            productData.userId = (1+(i%2));
             productData.name = "Product " + (i + 1);
 
             Random r = new Random();
-            productData.price = r.nextFloat() * (100 - 5) + 5;
+            productData.price = (r.nextFloat() * (100 - 5) + 5);
             productData.rating = r.nextInt((5-1) + 1 ) + 1;
             productData.imageUrl = "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F5%2F57%2FFraming_hammer.jpg%2F1200px-Framing_hammer.jpg&f=1";
             productData.description = "This is a description.";
             productData.category = "Power Tools";
+            productData.status = 1;
 
             product_list.add(productData);
         }
@@ -129,6 +131,7 @@ public class Helper {
         String imageUrl;
         String description;
         String category;
+        Integer status;
     }
 
     public class UserData{
@@ -146,12 +149,14 @@ public class Helper {
     }
 
     public class ImageData{
+
         Integer id;
         Integer productId;
         String url;
     }
 
     public class LendzData{
+
         Integer id;
         Integer productId;
         Integer lenderUserId;
