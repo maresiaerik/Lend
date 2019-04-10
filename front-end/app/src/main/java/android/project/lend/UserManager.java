@@ -2,13 +2,21 @@ package android.project.lend;
 
 import java.util.ArrayList;
 
-public class UserManager extends Helper {
+public class UserManager extends Helper implements IManager {
 
-    ArrayList<UserData> userList = new ArrayList<>();
+    private IDataController dataController;
+    public Boolean loaded = false;
 
-    public UserManager(){
+    private ArrayList<UserData> userList = new ArrayList<>();
 
-        userList =  getUserData();
+    private IManager parentManager;
+
+    public UserManager(IDataController dataController, IManager parentManager){
+
+        this.dataController = dataController;
+        this.parentManager = parentManager;
+
+        getUserData(this, userList);
     }
 
     public ArrayList<UserDataItem> getUserList(){
@@ -54,5 +62,24 @@ public class UserManager extends Helper {
         userDataItem.clearChanges();
 
         return userDataItem;
+    }
+
+    @Override
+    public void setLoaded(Boolean loaded) {
+
+        this.loaded = loaded;
+
+        if(parentManager != null)
+            parentManager.checkStatus();
+        else
+            checkStatus();
+    }
+
+    @Override
+    public void checkStatus() {
+
+        if(!loaded) return;
+
+        dataController.setData();
     }
 }

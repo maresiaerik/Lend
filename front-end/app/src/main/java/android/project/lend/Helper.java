@@ -2,35 +2,66 @@ package android.project.lend;
 
 import android.util.Log;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Helper {
 
-    public ArrayList<ProductData> getProductData(){
+    public void getProductData(final IManager manager, final ArrayList<ProductData> productList){
 
-        ArrayList<ProductData> product_list = new ArrayList<>();
+        final RequestQueue req = Volley.newRequestQueue(MainActivity.mainActivityContext);
+        Gson gson = new Gson();
+        String url = "https://www.oamk.fi/fi/";
 
-        for(int i = 0; i < 10; i++)
-        {
-            ProductData productData = new ProductData();
+        final StringRequest stringRequest = new StringRequest(StringRequest.Method.GET, url, new Response.Listener<String>() {
 
-            productData.id = (i + 1);
-            productData.userId = (1+(i%2));
-            productData.name = "Product " + (i + 1);
+            @Override
+            public void onResponse(String response) {
 
-            Random r = new Random();
-            productData.price = (r.nextFloat() * (100 - 5) + 5);
-            productData.rating = r.nextInt((5-1) + 1 ) + 1;
-            productData.imageUrl = "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F5%2F57%2FFraming_hammer.jpg%2F1200px-Framing_hammer.jpg&f=1";
-            productData.description = "This is a description.";
-            productData.category = "Power Tools";
-            productData.status = 1;
+                String string = response.substring(0, 10);
 
-            product_list.add(productData);
-        }
+                Log.d("RESPONSE", response.substring(0, 10));
 
-        return product_list;
+                for(int i = 0; i < 10; i++)
+                {
+                    ProductData productData = new ProductData();
+
+                    productData.id = (i + 1);
+                    productData.userId = (1+(i%2));
+                    productData.name = string + (i + 1);
+
+                    Random r = new Random();
+                    productData.price = (r.nextFloat() * (100 - 5) + 5);
+                    productData.rating = r.nextInt((5-1) + 1 ) + 1;
+                    productData.imageUrl = "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F5%2F57%2FFraming_hammer.jpg%2F1200px-Framing_hammer.jpg&f=1";
+                    productData.description = "This is a description.";
+                    productData.category = "Power Tools";
+                    productData.status = 1;
+
+                    productList.add(productData);
+                }
+
+            manager.setLoaded(true);
+
+            }
+        },
+            new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("IN_ERROR", error + "");
+                }
+            }
+        );
+
+    req.add(stringRequest);
+
     }
 
     public UserData getUserData(Integer id){
@@ -51,34 +82,53 @@ public class Helper {
         return userData;
     }
 
-    public ArrayList<UserData> getUserData(){
+    public void getUserData(final IManager manager, final ArrayList<UserData> userList){
 
-        ArrayList<UserData> user_list = new ArrayList<>();
+        final RequestQueue req = Volley.newRequestQueue(MainActivity.mainActivityContext);
+        Gson gson = new Gson();
+        String url = "https://www.oamk.fi/fi/";
 
-        for(int i = 0; i < 10; i++) {
+        final StringRequest stringRequest = new StringRequest(StringRequest.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
 
-            UserData userData = new UserData();
+                for (int i = 0; i < 10; i++) {
 
-            userData.id = (i+1);
-            userData.firstName = "Florian";
-            userData.lastName = "Brandsma";
-            userData.imageUrl = "https://secure.i.telegraph.co.uk/multimedia/archive/03597/POTD_chick_3597497k.jpg";
-            userData.emailAddress = "t7brfl00@students.oamk.fi";
-            userData.homeAddress = "Kotkantie 1";
-            userData.phoneNumber = "+3581234567890";
-            userData.cardNumber = "1234 4567 8910";
-            userData.cardDate = "01/20";
-            userData.cardSecurity = "123";
+                    UserData userData = new UserData();
 
-            user_list.add(userData);
-        }
+                    userData.id = (i + 1);
+                    userData.firstName = "Florian";
+                    userData.lastName = "Brandsma";
+                    userData.imageUrl = "https://secure.i.telegraph.co.uk/multimedia/archive/03597/POTD_chick_3597497k.jpg";
+                    userData.emailAddress = "t7brfl00@students.oamk.fi";
+                    userData.homeAddress = "Kotkantie 1";
+                    userData.phoneNumber = "+3581234567890";
+                    userData.cardNumber = "1234 4567 8910";
+                    userData.cardDate = "01/20";
+                    userData.cardSecurity = "123";
 
-        return user_list;
+                    userList.add(userData);
+                }
+
+                manager.setLoaded(true);
+            }
+        },
+            new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("IN_ERROR", error + "");
+                }
+            }
+        );
+
+        req.add(stringRequest);
     }
 
-    public ArrayList<ImageData> getImageData(){
+    public void getImageData(final IManager manager, final ArrayList<ImageData> imageList){
 
-        ArrayList<ImageData> imageList = new ArrayList<>();
+        final RequestQueue req = Volley.newRequestQueue(MainActivity.mainActivityContext);
+        Gson gson = new Gson();
+        String url = "https://www.oamk.fi/fi/";
 
         final String[] IMAGES = new String[] {
             "https://secure.i.telegraph.co.uk/multimedia/archive/03597/POTD_chick_3597497k.jpg",
@@ -87,38 +137,70 @@ public class Helper {
             "https://i2-prod.mirror.co.uk/incoming/article11840943.ece/ALTERNATES/s615/PAY-MATING-BUGS.jpg"
         };
 
-        for(int i = 0; i < IMAGES.length; i++){
+        final StringRequest stringRequest = new StringRequest(StringRequest.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
 
-            ImageData imageData = new ImageData();
+                for (int i = 0; i < IMAGES.length; i++) {
 
-            imageData.id = (i+1);
-            imageData.productId = 1;
-            imageData.url = IMAGES[i];
+                    ImageData imageData = new ImageData();
 
-            imageList.add(imageData);
-        }
+                    imageData.id = (i + 1);
+                    imageData.productId = 1;
+                    imageData.url = IMAGES[i];
 
-        return imageList;
+                    imageList.add(imageData);
+                }
+
+                manager.setLoaded(true);
+            }
+        },
+            new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("IN_ERROR", error + "");
+                }
+            }
+        );
+
+        req.add(stringRequest);
     }
 
-    public ArrayList<LendzData> getLendzData(){
+    public void getLendzData(final IManager manager, final ArrayList<LendzData> lendzList){
 
-        ArrayList<LendzData> lendzList = new ArrayList<>();
+        final RequestQueue req = Volley.newRequestQueue(MainActivity.mainActivityContext);
+        Gson gson = new Gson();
+        String url = "https://www.oamk.fi/fi/";
 
-        for(int i = 0; i < 10; i++){
+        final StringRequest stringRequest = new StringRequest(StringRequest.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
 
-            LendzData lendzData = new LendzData();
+                for (int i = 0; i < 10; i++) {
 
-            lendzData.id = (i+1);
-            lendzData.lenderUserId = (1+(i%2));
-            lendzData.productId = (i+1);
-            lendzData.startDate = "31/03/2019";
-            lendzData.dueDate = "03/04/2019";
+                    LendzData lendzData = new LendzData();
 
-            lendzList.add(lendzData);
-        }
+                    lendzData.id = (i + 1);
+                    lendzData.lenderUserId = (1 + (i % 2));
+                    lendzData.productId = (i + 1);
+                    lendzData.startDate = "31/03/2019";
+                    lendzData.dueDate = "03/04/2019";
 
-        return lendzList;
+                    lendzList.add(lendzData);
+                }
+
+                manager.setLoaded(true);
+            }
+        },
+            new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("IN_ERROR", error + "");
+                }
+            }
+        );
+
+        req.add(stringRequest);
     }
 
     public class ProductData{

@@ -4,16 +4,27 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-public class LendzManager extends Helper {
+public class LendzManager extends Helper implements IManager {
+
+    private IDataController dataController;
+    public Boolean loaded = false;
 
     private ArrayList<LendzData> lendzList = new ArrayList<>();
 
-    ProductManager productManager = new ProductManager();
-    UserManager userManager = new UserManager();
+    private ProductManager productManager;
+    private UserManager userManager;
 
-    public LendzManager(){
+    private IManager parentManager;
 
-        lendzList = getLendzData();
+    public LendzManager(IDataController dataController, IManager parentManager){
+
+        this.dataController = dataController;
+        this.parentManager = parentManager;
+
+        productManager = new ProductManager(dataController, this);
+        userManager = new UserManager(dataController, this);
+
+        getLendzData(this, lendzList);
     }
 
     public ArrayList<LendzDataItem> getLendzList(Integer userId) {
@@ -57,5 +68,26 @@ public class LendzManager extends Helper {
         lendzDataItem.clearChanges();
 
         return lendzDataItem;
+    }
+
+    @Override
+    public void setLoaded(Boolean loaded) {
+
+        this.loaded = loaded;
+
+        if(parentManager != null)
+            parentManager.checkStatus();
+        else
+            checkStatus();
+    }
+
+    @Override
+    public void checkStatus() {
+
+        if(!loaded) return;
+        if(!productManager.loaded) return;
+        if(!userManager.loaded) return;
+
+        dataController.setData();
     }
 }

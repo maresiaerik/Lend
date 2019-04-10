@@ -48,7 +48,7 @@ public class HomeAdapter extends ArrayAdapter<ProductDataItem> {
 
         if(currentProduct.imageDataItems.size() > 0) {
 
-            new ImageDownloader(img).execute(currentProduct.imageDataItems.get(0).getUrl());
+            //img.setImageDrawable(currentProduct.imageDataItems.get(0).image);
 
         } else {
 

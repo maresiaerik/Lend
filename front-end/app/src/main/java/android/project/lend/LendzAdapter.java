@@ -49,7 +49,7 @@ public class LendzAdapter extends ArrayAdapter<LendzDataItem> {
 
         if(currentLendz.product.imageDataItems.size() > 0) {
 
-            new ImageDownloader(img).execute(currentLendz.product.imageDataItems.get(0).getUrl());
+            //img.setImageDrawable(currentLendz.product.imageDataItems.get(0).image);
 
         } else {
 

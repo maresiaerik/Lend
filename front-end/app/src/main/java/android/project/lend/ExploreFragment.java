@@ -19,20 +19,24 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ExploreFragment extends Fragment implements Filter.OnFilterSelected {
+public class ExploreFragment extends Fragment implements Filter.OnFilterSelected, IDataController {
 
-    ProductManager productManager = new ProductManager();
-    ListView listView = null;
-    View view = null;
-    ExploreAdapter exploreAdapter;
-    ArrayList<ProductDataItem> productDataItemList;
-    ArrayList<ProductDataItem> allItems = null;
-    ArrayList<ProductDataItem> filteredList = null;
-    Integer minPrice, maxPrice, minRating, maxRating, categoryPosition, sortByPosition;
-    Filter filter;
+    private ProductManager productManager = null;
+    private ArrayList<ProductDataItem> productDataItemList;
+
+    private View view = null;
+    private ListView listView = null;
+    private ExploreAdapter exploreAdapter;
+
+    private ArrayList<ProductDataItem> allItems = null;
+    private ArrayList<ProductDataItem> filteredList = null;
+    private Integer minPrice, maxPrice, minRating, maxRating, categoryPosition, sortByPosition;
+    private Filter filter;
+
+    private ProductDataItem selectedItem = null;
+
     Button filterBtn;
     EditText sbar;
-    ProductDataItem selectedItem = null;
     int scrolling;
 
     @Nullable
@@ -44,14 +48,9 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         TextView pageTitle = view.findViewById(R.id.page_title);
         pageTitle.setText("Explore");
 
-        productDataItemList = productManager.getExploreProductList(MainActivity.USER);
-        allItems = productManager.getExploreProductList(MainActivity.USER);
-
-        playground();
-
         listView = (ListView) view.findViewById(R.id.item_view);
-        exploreAdapter = new ExploreAdapter(view.getContext(), productDataItemList);
-        listView.setAdapter(exploreAdapter);
+
+        productManager = new ProductManager(this,null);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -196,7 +195,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
 
     }
 
-    private void updateView() {
+    public void updateView() {
 
         ArrayList<ProductDataItem> items = filteredList == null ? productDataItemList : filteredList;
         exploreAdapter = new ExploreAdapter(view.getContext(), items);
@@ -225,4 +224,14 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         }
     }
 
+    @Override
+    public void setData() {
+
+        productDataItemList = productManager.getExploreProductList(MainActivity.USER);
+        allItems = productManager.getExploreProductList(MainActivity.USER);
+
+        ArrayList<ProductDataItem> items = filteredList == null ? productDataItemList : filteredList;
+        exploreAdapter = new ExploreAdapter(view.getContext(), items);
+        listView.setAdapter(exploreAdapter);
+    }
 }
