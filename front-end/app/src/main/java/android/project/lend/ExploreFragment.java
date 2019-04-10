@@ -99,6 +99,10 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
             @Override
             public void onClick(View v) {
 
+                Log.d("AllItems_LEngthg", allItems.size() + "");
+                Log.d("ProductDATA_Length", productDataItemList.size() + "");
+                //Log.d("FilterListLength", filteredList.size() + "");
+
                 filter = new Filter(allItems, view, listView, getContext());
 
                 if (minRating != null && maxRating != null) {
@@ -163,7 +167,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         /*
             ArrayList<ProductDataItem> productDataItemList = new ArrayList<>();
         */
-
+/*
         productDataItemList.get(0).setName("New name");
         productDataItemList.get(0).update();
 
@@ -173,6 +177,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         productDataItemList.get(3).setRating(5);
         productDataItemList.get(3).setName("Just name");
         productDataItemList.get(3).update();
+        */
     }
 
     @Override
@@ -185,6 +190,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         this.categoryPosition = catIndex;
         this.sortByPosition = sortByIndex;
         filteredList = items;
+        Log.d("ITEMS_FILTER", items.size() + "");
         productDataItemList = filteredList;
         updateView();
 

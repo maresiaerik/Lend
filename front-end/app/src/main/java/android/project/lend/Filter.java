@@ -65,6 +65,8 @@ public class Filter{
         ratingsBar = dialog.findViewById(R.id.filter_ratings_seekbar);
         categoryList = dialog.findViewById(R.id.filter_category_list);
         sortList = dialog.findViewById(R.id.filter_sort_by_list);
+        final String[] carDrop = view.getResources().getStringArray(R.array.category_items_dropdown);
+        final String[] sortDrop = view.getResources().getStringArray(R.array.sort_by_dropdown);
 
         dialog.findViewById(R.id.filter_accept_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +78,8 @@ public class Filter{
                 minRating = ratingsBar.getSelectedMinValue();
                 maxRating = ratingsBar.getSelectedMaxValue();
 
-                if (categoryList.getSelectedItem().equals("-- Category --")) {
+                if (categoryList.getSelectedItem().equals(carDrop[0])) {
+
                     isCategorySelected = false;
                 }
                 else {
@@ -85,7 +88,7 @@ public class Filter{
 
                 categoryIndex = categoryList.getSelectedItemPosition();
 
-                if(sortList.getSelectedItem().equals("-- Sort By --")) {
+                if(sortList.getSelectedItem().equals(sortDrop[0])) {
                     isSortBySelected = false;
                 }
                 else {
@@ -169,6 +172,7 @@ public class Filter{
         }
 
         if (filterCallback != null) {
+            Log.d("FILTER_FILTERED_LIST_LENGTH", filteredList.size() + "");
             filterCallback.filterSelected(filteredList, minPrice, maxPrice, minRating, maxRating, categoryIndex, sortByIndex);
         }
 
