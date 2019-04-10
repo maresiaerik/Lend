@@ -13,7 +13,7 @@ import java.text.DecimalFormat;
 
 public class ExploreReceiptActivity extends AppCompatActivity {
 
-    String number;
+    String number, startDate, endDate;
     TextView itemEmail, itemPhone;
     ProductCore itemData;
 
@@ -21,15 +21,16 @@ public class ExploreReceiptActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explore_receipt);
-
         Intent intent = getIntent();
         itemData = intent.getParcelableExtra("itemData");
-        if(itemData != null){
-           setReceiptDetails();
+        startDate = intent.getStringExtra("datesBtn");
+        endDate = intent.getStringExtra("endDate");
+        if((itemData != null) && (startDate != null) && (endDate != null)){
+            setReceiptDetails();
         }
 
         //Setting Fragment To Lendz For Main Activity
-        FragmentManager.setCurrentFragment(1);
+        FragmentHandler.setCurrentFragment(1);
 
         //Set Intent For MainActivity
         final Intent mainIntent = new Intent(this, MainActivity.class);
@@ -87,8 +88,10 @@ public class ExploreReceiptActivity extends AppCompatActivity {
         //Dates
         //From
         TextView itemFrom = findViewById(R.id.receipt_from_date);
+        itemFrom.setText(startDate);
         //Until
         TextView itemUntil = findViewById(R.id.receipt_until_date);
+        itemUntil.setText(endDate);
         //Address
         TextView itemLocation = findViewById(R.id.receipt_location_location);
         //Phone

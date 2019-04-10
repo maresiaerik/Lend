@@ -59,21 +59,12 @@
                    <Button
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="Start Date"
-                       android:layout_marginRight="50dp"
-                       android:id="@+id/detailed_item_start_date_button"
+                       android:text="Select dates"
+                       android:id="@+id/detailed_item_dates"
                        android:background="@drawable/button_accent_action"
                        android:textColor="@drawable/button_accent_action"
                        android:padding="10dp"
-                       />
-                   <Button
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="End Date"
-                       android:id="@+id/detailed_item_end_date_button"
-                       android:background="@drawable/button_accent_action"
-                       android:textColor="@drawable/button_accent_action"
-                       android:padding="10dp"
+                       android:layout_gravity="center"
                        />
                </LinearLayout>
 

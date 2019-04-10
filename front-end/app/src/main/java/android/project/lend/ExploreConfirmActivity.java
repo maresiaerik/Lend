@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class ExploreConfirmActivity extends AppCompatActivity {
 
     ProductCore itemData;
-    String starDate, endDate;
+    String startDate, endDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +55,13 @@ public class ExploreConfirmActivity extends AppCompatActivity {
                     login();
                 }
             });
-            
+
         }
 
-        //Get Item Data From Intent 
+        //Get Item Data From Intent
         Intent intent = getIntent();
         itemData = intent.getParcelableExtra("itemData");
-        starDate = intent.getStringExtra("startDate");
+        startDate = intent.getStringExtra("datesBtn");
         endDate = intent.getStringExtra("endDate");
 
         if (itemData != null) {
@@ -88,7 +88,7 @@ public class ExploreConfirmActivity extends AppCompatActivity {
 //        itemImage
         //Dates
         TextView itemDates = findViewById(R.id.confirm_date_date);
-        itemDates.setText( starDate +" - "+ endDate );
+        itemDates.setText( startDate +" - "+ endDate );
         //Price
         TextView itemPrice = findViewById(R.id.confirm_price_price);
         DecimalFormat df = new DecimalFormat("#.00");
@@ -106,11 +106,13 @@ public class ExploreConfirmActivity extends AppCompatActivity {
         int userId =  MainActivity.USER.getId();
         int itemId = itemData.getId();
         float totalPrice = (itemData.getPrice() + 2);
-        String startDate = **from intent**
+        String datesBtn = **from intent**
         String endDate =  **from intent**
         */
         Intent receiptIntent = new Intent(getBaseContext(), ExploreReceiptActivity.class);
         receiptIntent.putExtra("itemData", (Parcelable) itemData);
+        receiptIntent.putExtra("datesBtn", startDate);
+        receiptIntent.putExtra("endDate", endDate);
         startActivity(receiptIntent);
     }
 

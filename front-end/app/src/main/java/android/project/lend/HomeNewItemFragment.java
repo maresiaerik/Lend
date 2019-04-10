@@ -12,6 +12,8 @@ import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.project.lend.ProductDataItem;
+import android.project.lend.R;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

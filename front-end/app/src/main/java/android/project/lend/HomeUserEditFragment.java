@@ -5,10 +5,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,7 +31,7 @@ public class HomeUserEditFragment extends Fragment {
         userFirstNameEdit.setText(MainActivity.USER.getFirstName());
 
         //Setting Second Name
-        EditText userSecondNameEdit = view.findViewById(R.id.userSecondNameEdit);
+        EditText userSecondNameEdit = view.findViewById(R.id.user_second_name_edit);
         userSecondNameEdit.setText(MainActivity.USER.getLastName());
 
         //Setting Email
@@ -60,6 +60,12 @@ public class HomeUserEditFragment extends Fragment {
         userSecondNameEdit.setFocusable(false);
         userSecondNameEdit.setFocusableInTouchMode(false);
         userSecondNameEdit.setClickable(false);
+
+        //Hide Register + Cancel Buttons
+        Button cancelBtn = view.findViewById(R.id.register_cancel_btn);
+        Button registerBtn = view.findViewById(R.id.register_submit_btn);
+        cancelBtn.setVisibility(View.INVISIBLE);
+        registerBtn.setVisibility(View.INVISIBLE);
 
         return view;
     }
