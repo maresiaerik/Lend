@@ -1,16 +1,22 @@
 package android.project.lend;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
-public class ImageManager extends Helper {
+public class ImageManager extends Helper implements IManager {
 
-    public ArrayList<ImageData> imageList;
+    private IDataController dataController;
+    public Boolean loaded = false;
 
-    public ImageManager(){
+    public ArrayList<ImageData> imageList = new ArrayList<>();
 
-        imageList = getImageData();
+    private IManager parentManager;
+
+    public ImageManager(IDataController dataController, IManager parentManager){
+
+        this.dataController = dataController;
+        this.parentManager = parentManager;
+
+        getImageData(this, imageList);
     }
 
     public ArrayList<ImageDataItem> getImageList(){
@@ -61,10 +67,32 @@ public class ImageManager extends Helper {
 
         imageDataItem.setId(image.id);
         imageDataItem.setProductId(image.productId);
+
         imageDataItem.setUrl(image.url);
+
+        //new ImageDownloader(imageDataItem.imageView).execute(image.url);
 
         imageDataItem.clearChanges();
 
         return imageDataItem;
+    }
+
+    @Override
+    public void setLoaded(Boolean loaded) {
+
+        this.loaded = loaded;
+
+        if(parentManager != null)
+            parentManager.checkStatus();
+        else
+            checkStatus();
+    }
+
+    @Override
+    public void checkStatus() {
+
+        if(!loaded) return;
+
+        dataController.setData();
     }
 }

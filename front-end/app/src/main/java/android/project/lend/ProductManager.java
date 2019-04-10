@@ -1,19 +1,28 @@
 package android.project.lend;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
-public class ProductManager extends Helper
+public class ProductManager extends Helper implements IManager
 {
-    public ArrayList<ProductData> productList;
+    private IDataController dataController;
+    public Boolean loaded = false;
 
-    UserManager userManager = new UserManager();
-    ImageManager imageManager = new ImageManager();
+    public ArrayList<ProductData> productList = new ArrayList<>();
 
-    public ProductManager(){
+    private UserManager userManager;
+    private ImageManager imageManager;
 
-        productList = getProductData();
+    private IManager parentManager;
+
+    public ProductManager(IDataController dataController, IManager parentManager){
+
+        this.dataController = dataController;
+        this.parentManager = parentManager;
+
+        userManager = new UserManager(dataController, this);
+        imageManager = new ImageManager(dataController, this);
+
+        getProductData(this, productList);
     }
 
     public ArrayList<ProductDataItem> getExploreProductList(UserDataItem user)
@@ -78,5 +87,25 @@ public class ProductManager extends Helper
         productDataItem.clearChanges();
 
         return productDataItem;
+    }
+
+    @Override
+    public void setLoaded(Boolean loaded) {
+
+        this.loaded = loaded;
+
+        if(parentManager != null)
+            parentManager.checkStatus();
+        else
+            checkStatus();
+    }
+
+    public void checkStatus() {
+
+        if(!loaded) return;
+        if(!userManager.loaded) return;
+        if(!imageManager.loaded) return;
+
+        dataController.setData();
     }
 }

@@ -32,9 +32,7 @@ public class ImageCore {
         this.productId = productId;
     }
 
-    public String getUrl() {
-        return url;
-    }
+    public String getUrl() { return url; }
 
     public void setUrl(String url) {
 
@@ -55,7 +53,6 @@ public class ImageCore {
         if(!changed) return;
 
         if(changedProductId){}
-        if(changedUrl){}
     }
 
     public void delete(){
@@ -65,7 +62,6 @@ public class ImageCore {
     public void clearChanges(){
 
         changed = false;
-        changedUrl = false;
         changedProductId = false;
     }
 }

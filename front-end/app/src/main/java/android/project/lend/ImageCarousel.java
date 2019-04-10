@@ -11,19 +11,19 @@ import java.util.ArrayList;
 
 public class ImageCarousel extends PagerAdapter {
 
-    private Context ctx;
-    private ArrayList<ImageDataItem> imageIds;
-    private ProductDataItem item;
+    private Context context;
+    private ArrayList<ImageDataItem> imageDataItems;
+    private ProductDataItem productDataItem;
 
-    public ImageCarousel(Context c, ProductDataItem item) {
-        this.ctx = c;
-        this.item = item;
-        imageIds = item.imageDataItems;
+    public ImageCarousel(Context context, ProductDataItem productDataItem) {
+        this.context = context;
+        this.productDataItem = productDataItem;
+        imageDataItems = productDataItem.imageDataItems;
     }
 
     @Override
     public int getCount() {
-        return imageIds.size();
+        return imageDataItems.size();
     }
 
     @Override
@@ -34,11 +34,11 @@ public class ImageCarousel extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        ImageView imageView = new ImageView(ctx);
+        ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
-        new ImageDownloader(imageView).execute(imageIds.get(position).getUrl());
-
+        new ImageDownloader(imageView).execute(imageDataItems.get(position).getUrl());
+        //imageView.setImageDrawable(imageDataItems.get(0).image);
         container.addView(imageView, 0);
 
         return imageView;

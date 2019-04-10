@@ -1,5 +1,6 @@
 package android.project.lend;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -9,19 +10,25 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements IDataController {
 
     //ProductManager productManager = new ProductManager();
-    UserManager userManager = new UserManager();
+    UserManager userManager;
     static public UserDataItem USER;
     static public String[] PRODUCT_STATUS = new String[] {"Available","Lendzed","Returned"};
+
+    public static Context mainActivityContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        USER = userManager.getUser(1);
+        MainActivity.mainActivityContext = getApplicationContext();
+
+        userManager = new UserManager(this, null);
 
         ProductDataItem productDataItem = new ProductDataItem();
 
@@ -61,4 +68,12 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
+    @Override
+    public void setData() {
+
+        Log.d("TESTRESPONSE","Logged in");
+
+        USER = userManager.getUser(1);
+    }
 }
