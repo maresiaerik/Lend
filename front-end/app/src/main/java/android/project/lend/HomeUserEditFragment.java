@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 public class HomeUserEditFragment extends Fragment {
     View view;
 
@@ -24,7 +26,8 @@ public class HomeUserEditFragment extends Fragment {
 
         //Setting Image
         ImageView img = view.findViewById(R.id.user_profile_pic_edit);
-        new ImageDownloader(img).execute(MainActivity.USER.getImageUrl());
+        Glide.with(this).load(MainActivity.USER.getImageUrl()).into(img);
+        //new ImageDownloader(img).execute(MainActivity.USER.getImageUrl());
 
         //Setting First Name
         EditText userFirstNameEdit = view.findViewById(R.id.user_first_name_edit);
@@ -47,9 +50,20 @@ public class HomeUserEditFragment extends Fragment {
         userAddressEdit.setText(MainActivity.USER.getHomeAddress());
 
         //Setting Credit Card
-        TextView userCardEdit = view.findViewById(R.id.user_card_edit);
+        EditText userCardEdit = view.findViewById(R.id.user_card_edit);
         userCardEdit.setText(MainActivity.USER.getCardNumber());
 
+        //Setting Credit Card Date
+        EditText userCreditCardDate = view.findViewById(R.id.register_card_expiry);
+        userCreditCardDate.setText(MainActivity.USER.getCardDate());
+
+        //Setting Credit Card CSV
+        EditText userCreditCardCSV = view.findViewById(R.id.register_card_csv);
+        userCreditCardCSV.setText(MainActivity.USER.getCardSecurity());
+
+        //Setting User Password
+        EditText userPassowrd = view.findViewById(R.id.register_password);
+        //userPassowrd.setText(MainActivity.USER.getPassword());
 
         //Preventing Name Editing
         userFirstNameEdit.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.input_disabled));

@@ -59,6 +59,7 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
         categoryName.setText(category[new Integer(item.getCategory())]);
         description.setText(item.getDescription());
         ViewPager imageContainer = view.findViewById(R.id.detailed_image_carousel);
+
         ImageCarousel adapter = new ImageCarousel(getContext(), item);
         imageContainer.setAdapter(adapter);
 

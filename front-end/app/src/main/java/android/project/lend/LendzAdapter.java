@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +51,7 @@ public class LendzAdapter extends ArrayAdapter<LendzDataItem> {
 
         if(currentLendz.product.imageDataItems.size() > 0) {
 
-            //img.setImageDrawable(currentLendz.product.imageDataItems.get(0).image);
+            Glide.with(listItem).load(currentLendz.product.imageDataItems.get(0).getUrl()).into(img);
 
         } else {
 

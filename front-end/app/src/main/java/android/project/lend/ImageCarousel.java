@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class ImageCarousel extends PagerAdapter {
@@ -37,8 +39,7 @@ public class ImageCarousel extends PagerAdapter {
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
-        new ImageDownloader(imageView).execute(imageDataItems.get(position).getUrl());
-        //imageView.setImageDrawable(imageDataItems.get(0).image);
+        Glide.with(context).load(imageDataItems.get(position).getUrl()).into(imageView);
         container.addView(imageView, 0);
 
         return imageView;
