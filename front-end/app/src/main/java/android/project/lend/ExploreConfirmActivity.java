@@ -58,7 +58,7 @@ public class ExploreConfirmActivity extends AppCompatActivity {
 
         //Checking For User + Setting Button Text + Listener
         Button borrowBtn = findViewById(R.id.confirm_borrow_btn);
-        if (MainActivity.USER.getId()>0/*false*/) {
+        if (MainActivity.USER != null && MainActivity.USER.getId() != null/*false*/ ) {
             borrowBtn.setText("Borrow");
             borrowBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -119,8 +119,11 @@ public class ExploreConfirmActivity extends AppCompatActivity {
         itemTotal.setText("€" + df.format((itemData.getPrice() + 2)));
 
         //Initialize new Instance of Lendz
-        Helper helper = new Helper();
-        newLenzDataItem = helper.new LendzData(itemData.getId(), MainActivity.USER.getId(), startDate, endDate);
+        if(MainActivity.USER != null && MainActivity.USER.getId() != null) {
+            Helper helper = new Helper();
+            newLenzDataItem = helper.new LendzData(itemData.getId(), MainActivity.USER.getId(), startDate, endDate);
+        }
+
 
     }
 
