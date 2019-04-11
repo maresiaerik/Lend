@@ -33,8 +33,6 @@ public class Helper {
                 Gson gson = new Gson();
                 Type listType = new TypeToken<ArrayList<ProductData>>(){}.getType();
                 ArrayList<ProductData> responseProductList = gson.fromJson(response, listType);
-
-
                 for (ProductData product : responseProductList) {
                     productList.add(product);
                 }
@@ -47,8 +45,6 @@ public class Helper {
 
             }
         });
-
-
 
         req.add(stringRequest);
     }
@@ -189,6 +185,15 @@ public class Helper {
             this.category = category;
             this.status = status;
         }
+        public ProductData(Integer userId, String name, Float price, Integer rating, String description, String category, Integer status) {
+            this.userId = userId;
+            this.name = name;
+            this.price = price;
+            this.rating = rating;
+            this.description = description;
+            this.category = category;
+            this.status = status;
+        }
     }
 
     public class UserData{
@@ -226,6 +231,17 @@ public class Helper {
             this.cardDate = cardDate;
             this.cardSecurity = cardSecurity;
         }
+        public UserData( String firstName, String lastName, String imageUrl, String emailAddress, String homeAddress, String phoneNumber, String cardNumber, String cardDate, String cardSecurity) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.imageUrl = imageUrl;
+            this.emailAddress = emailAddress;
+            this.homeAddress = homeAddress;
+            this.phoneNumber = phoneNumber;
+            this.cardNumber = cardNumber;
+            this.cardDate = cardDate;
+            this.cardSecurity = cardSecurity;
+        }
     }
 
     public class ImageData{
@@ -238,6 +254,10 @@ public class Helper {
 
         public ImageData(Integer id, Integer productId, String url) {
             this.id = id;
+            this.productId = productId;
+            this.url = url;
+        }
+        public ImageData( Integer productId, String url) {
             this.productId = productId;
             this.url = url;
         }
@@ -258,6 +278,12 @@ public class Helper {
 
         public LendzData(Integer id, Integer productId, Integer lenderUserId, String startDate, String dueDate) {
             this.id = id;
+            this.productId = productId;
+            this.lenderUserId = lenderUserId;
+            this.startDate = startDate;
+            this.dueDate = dueDate;
+        }
+        public LendzData(Integer productId, Integer lenderUserId, String startDate, String dueDate) {
             this.productId = productId;
             this.lenderUserId = lenderUserId;
             this.startDate = startDate;

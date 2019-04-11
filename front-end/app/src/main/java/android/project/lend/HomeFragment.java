@@ -72,6 +72,7 @@ public class HomeFragment extends Fragment implements IDataController {
 
         productManager = new ProductManager(this,null);
 
+
         return view;
     }
 

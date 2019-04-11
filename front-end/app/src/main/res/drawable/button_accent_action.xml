@@ -11,6 +11,10 @@
         android:state_pressed="true"
         android:drawable="@drawable/button_accent_pressed"
         android:color="@color/whiteColour"/>
+    <item
+        android:state_enabled="false"
+        android:drawable="@drawable/button_disabled"
+        android:color="@color/disabledColour"/>
 
     <item android:drawable="@drawable/button_accent"
         android:color="@color/colorAccent"/>

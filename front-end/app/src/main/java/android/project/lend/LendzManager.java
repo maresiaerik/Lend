@@ -27,22 +27,32 @@ public class LendzManager extends Helper implements IManager {
         getLendzData(this, lendzList);
     }
 
+    public LendzManager(IDataController dataController){
 
-    public ArrayList<LendzDataItem> getLendzList() {
+        this.dataController = dataController;
+
+        getLendzData(this, lendzList);
+    }
+
+    public ArrayList<LendzDataItem> getLendzListByProduct(Integer productId){
 
         ArrayList<LendzDataItem> lendzDataItemList = new ArrayList<>();
 
         for (final LendzData lendz : lendzList) {
 
+            if(lendz.productId == productId) {
+
                 LendzDataItem lendzDataItem = setLendz(lendz);
 
                 lendzDataItemList.add(lendzDataItem);
+            }
+
         }
 
         return lendzDataItemList;
     }
 
-    public ArrayList<LendzDataItem> getLendzList(Integer userId) {
+    public ArrayList<LendzDataItem> getLendzListByUser(Integer userId) {
 
         ArrayList<LendzDataItem> lendzDataItemList = new ArrayList<>();
 
@@ -59,7 +69,7 @@ public class LendzManager extends Helper implements IManager {
         return lendzDataItemList;
     }
 
-    public LendzDataItem getLendz(Integer id) {
+    public LendzDataItem getLendzById(Integer id) {
 
         for(final LendzData lendz : lendzList){
 
@@ -75,8 +85,13 @@ public class LendzManager extends Helper implements IManager {
         LendzDataItem lendzDataItem = new LendzDataItem();
 
         lendzDataItem.setId(lendz.id);
-        lendzDataItem.product = productManager.getProduct(lendz.productId);
-        lendzDataItem.lender = userManager.getUser(lendz.lenderUserId);
+
+        if(productManager != null)
+            lendzDataItem.product = productManager.getProduct(lendz.productId);
+
+        if(userManager != null)
+            lendzDataItem.lender = userManager.getUser(lendz.lenderUserId);
+
         lendzDataItem.setStartDate(lendz.startDate);
         lendzDataItem.setDueDate(lendz.dueDate);
 
@@ -100,8 +115,8 @@ public class LendzManager extends Helper implements IManager {
     public void checkStatus() {
 
         if(!loaded) return;
-        if(!productManager.loaded) return;
-        if(!userManager.loaded) return;
+        if(productManager != null && !productManager.loaded) return;
+        if(userManager != null && !userManager.loaded) return;
 
         dataController.setData();
     }
