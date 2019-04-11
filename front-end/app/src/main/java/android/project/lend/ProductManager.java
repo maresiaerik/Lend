@@ -1,5 +1,7 @@
 package android.project.lend;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class ProductManager extends Helper implements IManager
@@ -39,6 +41,7 @@ public class ProductManager extends Helper implements IManager
             }
         }
 
+        Log.d("PRODUCTMANAGER", productDataItemList.size() + "");
         return productDataItemList;
     }
 

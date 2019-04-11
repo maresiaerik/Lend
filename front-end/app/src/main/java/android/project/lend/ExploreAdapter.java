@@ -37,7 +37,9 @@ public class ExploreAdapter extends ArrayAdapter<ProductDataItem> {
 
         ProductDataItem currentProduct = productList.get(position);
 
+
         listItem.setId(currentProduct.getId());
+
 
         TextView price = (TextView) listItem.findViewById(R.id.product_price);
         DecimalFormat df = new DecimalFormat("#.00");
@@ -45,7 +47,8 @@ public class ExploreAdapter extends ArrayAdapter<ProductDataItem> {
         price.setText(formattedPrice + "€/day");
 
         TextView name = (TextView) listItem.findViewById(R.id.product_name);
-        name.setText(currentProduct.getName());
+
+        name.setText(currentProduct.getName().length() > 10 ? currentProduct.getName().substring(0,9) + "..." : currentProduct.getName());
 
         ImageView img = listItem.findViewById(R.id.imageView);
 
@@ -61,7 +64,7 @@ public class ExploreAdapter extends ArrayAdapter<ProductDataItem> {
 
         RatingBar rating = listItem.findViewById(R.id.product_rating);
 
-        rating.setRating(currentProduct.getRating());
+        //rating.setRating(new Float(currentProduct.getRating()));
 
         return listItem;
     }
