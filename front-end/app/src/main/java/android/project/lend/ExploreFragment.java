@@ -212,7 +212,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         }
         if (selectedItem != null) {
 
-            DetailedItemView detailedItemView = new DetailedItemView();
+            DetailedItemViewFragment detailedItemView = new DetailedItemViewFragment();
 
             Bundle bundle = new Bundle();
 

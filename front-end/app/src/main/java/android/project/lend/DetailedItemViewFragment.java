@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -28,19 +27,22 @@ import java.util.Date;
 import java.util.List;
 
 
-public class DetailedItemView extends Fragment implements DatePickerDialog.OnDateSetListener {
+public class DetailedItemViewFragment extends Fragment implements DatePickerDialog.OnDateSetListener, IDataController {
 
-    View view;
-    ProductDataItem item;
-    DatePickerDialog startCalendar;
-    DatePickerDialog endCalendar;
+    private LendzManager lendzManager;
+    private ArrayList<LendzDataItem> lendzDataItemList;
 
-    Calendar now = Calendar.getInstance();
-    Button borrowBtn;
-    String startTag = "DatepickerdialogStart", endtag = "DatepickerdialogEnd", finalStartDate, finalEndDate;
-    Integer givenStartYear, givenStartMonth, givenStartDayOfMonth;
-    Button datesBtn;
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    private View view = null;
+    private ProductDataItem productDataItem;
+    private DatePickerDialog startCalendar;
+    private DatePickerDialog endCalendar;
+
+    private Calendar now = Calendar.getInstance();
+    private Button borrowBtn;
+    private String startTag = "DatepickerdialogStart", endtag = "DatepickerdialogEnd", finalStartDate, finalEndDate;
+    private Integer givenStartYear, givenStartMonth, givenStartDayOfMonth;
+    private Button datesBtn;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     @Nullable
     @Override
@@ -52,18 +54,16 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
         TextView description = view.findViewById(R.id.detailed_item_description);
 
         Bundle args = getArguments();
-        item = (ProductDataItem) args.getSerializable("selectedItem");
+        productDataItem = (ProductDataItem) args.getSerializable("selectedItem");
 
-        heading.setText(item.getName());
-        categoryName.setText(item.getCategory());
-        description.setText(item.getDescription());
+        heading.setText(productDataItem.getName());
+        categoryName.setText(productDataItem.getCategory());
+        description.setText(productDataItem.getDescription());
         ViewPager imageContainer = view.findViewById(R.id.detailed_image_carousel);
-        ImageCarousel adapter = new ImageCarousel(getContext(), item);
+        ImageCarousel adapter = new ImageCarousel(getContext(), productDataItem);
         imageContainer.setAdapter(adapter);
 
-
         datesBtn = view.findViewById(R.id.detailed_item_dates);
-
         datesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,12 +78,15 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
             @Override
             public void onClick(View v) {
                 Intent confirmIntent = new Intent(getContext(), ExploreConfirmActivity.class);
-                confirmIntent.putExtra("itemData", (Parcelable) item);
+                confirmIntent.putExtra("itemData", (Parcelable) productDataItem);
                 confirmIntent.putExtra("datesBtn", finalStartDate);
                 confirmIntent.putExtra("endDate", finalEndDate);
                 startActivity(confirmIntent);
             }
         });
+
+        lendzManager = new LendzManager(this);
+
         return view;
     }
 
@@ -270,6 +273,12 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
             }
         }
 
+    }
+
+    @Override
+    public void setData() {
+
+        lendzDataItemList = lendzManager.getLendzListByProduct(productDataItem.getId());
     }
 }
 
