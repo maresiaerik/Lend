@@ -21,13 +21,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".HomeUserLogin"></activity>
+        <activity android:name=".HomeUserLogin"/>
         <activity android:name=".HomeUserRegister" />
         <activity android:name=".ExploreReceiptActivity" />
         <activity android:name=".ExploreConfirmActivity" />
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustNothing">
+            android:windowSoftInputMode="adjustPan"
+           >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

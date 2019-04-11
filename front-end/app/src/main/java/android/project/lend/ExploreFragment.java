@@ -113,7 +113,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
                 if (sortByPosition != null) {
                     filter.setSortBy(sortByPosition);
                 }
-
+                Log.d("HERE", ""+allItems.size());
                 filter.show();
                 filter.setFilterCallback(ExploreFragment.this);
             }
@@ -177,7 +177,6 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
 
     @Override
     public void filterSelected(ArrayList<ProductDataItem> items, Integer minPrice, Integer maxPrice, Integer minRating, Integer maxRating, Integer catIndex, Integer sortByIndex) {
-
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
         this.minRating = minRating;
@@ -187,7 +186,6 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         filteredList = items;
         productDataItemList = filteredList;
         updateView();
-
     }
 
     private void updateView() {
