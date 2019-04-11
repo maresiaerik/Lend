@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,6 +58,11 @@ public class DetailedItemView extends Fragment implements DatePickerDialog.OnDat
         heading.setText(item.getName());
         String[] category = getResources().getStringArray(R.array.category_items_dropdown);
         categoryName.setText(category[new Integer(item.getCategory())]);
+        TextView price = view.findViewById(R.id.detailed_price);
+        DecimalFormat df = new DecimalFormat("#.00");
+        String formattedPrice = df.format(item.getPrice());
+        price.setText(formattedPrice + "€/day");
+
         description.setText(item.getDescription());
         ViewPager imageContainer = view.findViewById(R.id.detailed_image_carousel);
 
