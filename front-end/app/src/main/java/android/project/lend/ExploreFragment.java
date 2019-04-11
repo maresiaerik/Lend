@@ -188,7 +188,6 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         this.categoryPosition = catIndex;
         this.sortByPosition = sortByIndex;
         filteredList = items;
-        Log.d("ITEMS_FILTER", items.size() + "");
         productDataItemList = filteredList;
         updateView();
     }
@@ -212,7 +211,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         }
         if (selectedItem != null) {
 
-            DetailedItemView detailedItemView = new DetailedItemView();
+            DetailedItemViewFragment detailedItemView = new DetailedItemViewFragment();
 
             Bundle bundle = new Bundle();
 

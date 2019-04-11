@@ -7,13 +7,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.text.DecimalFormat;
 
 public class ExploreReceiptActivity extends AppCompatActivity {
 
-    String number, startDate, endDate;
+    String number, startDate, endDate, imageURL;
     TextView itemEmail, itemPhone;
     ProductCore itemData;
 
@@ -25,6 +28,7 @@ public class ExploreReceiptActivity extends AppCompatActivity {
         itemData = intent.getParcelableExtra("itemData");
         startDate = intent.getStringExtra("datesBtn");
         endDate = intent.getStringExtra("endDate");
+        imageURL = intent.getStringExtra("imageURL");
         if((itemData != null) && (startDate != null) && (endDate != null)){
             setReceiptDetails();
         }
@@ -78,6 +82,10 @@ public class ExploreReceiptActivity extends AppCompatActivity {
 
     //Setting Receipt Details From Intent Extras
     private void setReceiptDetails() {
+
+        //Image
+        ImageView img = findViewById(R.id.receipt_item_image);
+        Glide.with(this).load(imageURL).into(img);
         //Name
         TextView itemName = findViewById(R.id.receipt_item_name);
         itemName.setText(itemData.getName());

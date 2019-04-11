@@ -1,6 +1,7 @@
 package android.project.lend;
 
 import android.media.Image;
+import android.service.autofill.UserData;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -24,8 +25,6 @@ public class Helper {
     public void getProductData(final IManager manager, final ArrayList<ProductData> productList){
 
         final RequestQueue req = Volley.newRequestQueue(MainActivity.mainActivityContext);
-
-        String url = "https://www.oamk.fi/fi/";
         String productPath = "items";
 
         final StringRequest stringRequest = new StringRequest(Request.Method.GET, HTTP_BASE_URL + productPath, new Response.Listener<String>() {
@@ -34,8 +33,6 @@ public class Helper {
                 Gson gson = new Gson();
                 Type listType = new TypeToken<ArrayList<ProductData>>(){}.getType();
                 ArrayList<ProductData> responseProductList = gson.fromJson(response, listType);
-
-
                 for (ProductData product : responseProductList) {
                     productList.add(product);
                 }
@@ -44,18 +41,16 @@ public class Helper {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("ERROR", error + "");
+                Log.d("PRODUCT_ERROR", error + "");
 
             }
         });
-
-
 
         req.add(stringRequest);
     }
 
     public UserData getUserData(Integer id){
-
+/*
         UserData userData = new UserData();
 
         userData.id = 1;
@@ -68,36 +63,25 @@ public class Helper {
         userData.cardNumber = "1234 4567 8910";
         userData.cardDate = "01/20";
         userData.cardSecurity = "123";
-
-        return userData;
+*/
+        return null;
     }
 
     public void getUserData(final IManager manager, final ArrayList<UserData> userList){
 
         final RequestQueue req = Volley.newRequestQueue(MainActivity.mainActivityContext);
-        Gson gson = new Gson();
-        String url = "https://www.oamk.fi/fi/";
+        String users = "users";
 
-        final StringRequest stringRequest = new StringRequest(StringRequest.Method.GET, url, new Response.Listener<String>() {
+        final StringRequest stringRequest = new StringRequest(StringRequest.Method.GET, HTTP_BASE_URL + users, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                for (int i = 0; i < 10; i++) {
+                Gson gson = new Gson();
+                Type listType = new TypeToken<ArrayList<UserData>>(){}.getType();
+                ArrayList<UserData> responseUser = gson.fromJson(response, listType);
 
-                    UserData userData = new UserData();
-
-                    userData.id = (i + 1);
-                    userData.firstName = "Florian";
-                    userData.lastName = "Brandsma";
-                    userData.imageUrl = "https://secure.i.telegraph.co.uk/multimedia/archive/03597/POTD_chick_3597497k.jpg";
-                    userData.emailAddress = "t7brfl00@students.oamk.fi";
-                    userData.homeAddress = "Kotkantie 1";
-                    userData.phoneNumber = "+3581234567890";
-                    userData.cardNumber = "1234 4567 8910";
-                    userData.cardDate = "01/20";
-                    userData.cardSecurity = "123";
-
-                    userList.add(userData);
+                for (UserData user: responseUser) {
+                    userList.add(user);
                 }
 
                 manager.setLoaded(true);
@@ -106,7 +90,7 @@ public class Helper {
             new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d("IN_ERROR", error + "");
+                    Log.d("IN_USER_ERROR", error + "");
                 }
             }
         );
@@ -137,7 +121,7 @@ public class Helper {
             new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d("IN_ERROR", error + "");
+                    Log.d("IN_IMAGE_ERROR", error + "");
                 }
             }
         );
@@ -145,27 +129,21 @@ public class Helper {
         req.add(stringRequest);
     }
 
-    public void getLendzData(final IManager manager, final ArrayList<LendzData> lendzList){
+    public void getLendzData(final IManager manager, final ArrayList<LendzData> lendzList) {
 
         final RequestQueue req = Volley.newRequestQueue(MainActivity.mainActivityContext);
-        Gson gson = new Gson();
-        String url = "https://www.oamk.fi/fi/";
+        String borrowed = "borrowed";
 
-        final StringRequest stringRequest = new StringRequest(StringRequest.Method.GET, url, new Response.Listener<String>() {
+        final StringRequest stringRequest = new StringRequest(StringRequest.Method.GET, HTTP_BASE_URL + borrowed, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                for (int i = 0; i < 10; i++) {
+                Gson gson = new Gson();
+                Type listType = new TypeToken<ArrayList<LendzData>>(){}.getType();
+                ArrayList<LendzData> responseLendz = gson.fromJson(response, listType);
 
-                    LendzData lendzData = new LendzData();
-
-                    lendzData.id = (i + 1);
-                    lendzData.lenderUserId = (1 + (i % 2));
-                    lendzData.productId = (i + 1);
-                    lendzData.startDate = "31/03/2019";
-                    lendzData.dueDate = "03/04/2019";
-
-                    lendzList.add(lendzData);
+                for (LendzData lendz: responseLendz) {
+                    lendzList.add(lendz);
                 }
 
                 manager.setLoaded(true);
@@ -190,6 +168,7 @@ public class Helper {
         Integer userId;
         String name;
         Float price;
+        @SerializedName("ratings")
         Integer rating;
         String imageUrl;
         String description;
@@ -220,16 +199,50 @@ public class Helper {
 
     public class UserData{
 
+        @SerializedName("id_user")
         Integer id;
+        @SerializedName("fname")
         String firstName;
+        @SerializedName("lname")
         String lastName;
+        @SerializedName("pic")
         String imageUrl;
+        @SerializedName("email")
         String emailAddress;
+        @SerializedName("address")
         String homeAddress;
+        @SerializedName("phone")
         String phoneNumber;
+        @SerializedName("card_num")
         String cardNumber;
+        @SerializedName("card_date")
         String cardDate;
+        @SerializedName("card_sec")
         String cardSecurity;
+
+        public UserData(Integer id, String firstName, String lastName, String imageUrl, String emailAddress, String homeAddress, String phoneNumber, String cardNumber, String cardDate, String cardSecurity) {
+            this.id = id;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.imageUrl = imageUrl;
+            this.emailAddress = emailAddress;
+            this.homeAddress = homeAddress;
+            this.phoneNumber = phoneNumber;
+            this.cardNumber = cardNumber;
+            this.cardDate = cardDate;
+            this.cardSecurity = cardSecurity;
+        }
+        public UserData( String firstName, String lastName, String imageUrl, String emailAddress, String homeAddress, String phoneNumber, String cardNumber, String cardDate, String cardSecurity) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.imageUrl = imageUrl;
+            this.emailAddress = emailAddress;
+            this.homeAddress = homeAddress;
+            this.phoneNumber = phoneNumber;
+            this.cardNumber = cardNumber;
+            this.cardDate = cardDate;
+            this.cardSecurity = cardSecurity;
+        }
     }
 
     public class ImageData{
@@ -245,7 +258,8 @@ public class Helper {
             this.productId = productId;
             this.url = url;
         }
-        public ImageData(Integer productId, String url) {
+
+        public ImageData( Integer productId, String url) {
             this.productId = productId;
             this.url = url;
         }
@@ -253,10 +267,29 @@ public class Helper {
 
     public class LendzData{
 
+        @SerializedName("id_borrowed")
         Integer id;
+        @SerializedName("item_id")
         Integer productId;
+        @SerializedName("user_id")
         Integer lenderUserId;
+        @SerializedName("start_date")
         String startDate;
+        @SerializedName("end_date")
         String dueDate;
+
+        public LendzData(Integer id, Integer productId, Integer lenderUserId, String startDate, String dueDate) {
+            this.id = id;
+            this.productId = productId;
+            this.lenderUserId = lenderUserId;
+            this.startDate = startDate;
+            this.dueDate = dueDate;
+        }
+        public LendzData(Integer productId, Integer lenderUserId, String startDate, String dueDate) {
+            this.productId = productId;
+            this.lenderUserId = lenderUserId;
+            this.startDate = startDate;
+            this.dueDate = dueDate;
+        }
     }
 }

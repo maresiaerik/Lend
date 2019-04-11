@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +16,12 @@ public class LendzFragment extends Fragment implements IDataController {
 
     private LendzManager lendzManager;
     private ArrayList<LendzDataItem> lendzDataItemList;
+    static public ArrayList<LendzDataItem> allLendzDataItemList;
 
     private View view = null;
     private ListView listView = null;
     private LendzAdapter lendzAdapter;
+
 
     @Nullable
     @Override
@@ -39,9 +40,7 @@ public class LendzFragment extends Fragment implements IDataController {
 
     @Override
     public void setData() {
-
-        lendzDataItemList = lendzManager.getLendzList(MainActivity.USER.getId());
-
+        lendzDataItemList = lendzManager.getLendzListByUser(MainActivity.USER.getId());
         lendzAdapter = new LendzAdapter(view.getContext(), lendzDataItemList);
         listView.setAdapter(lendzAdapter);
     }

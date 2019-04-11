@@ -215,7 +215,7 @@ public class HomeNewItemFragment extends Fragment {
                     itemPrice, 0, itemDescription, itemCategory, 0);
 
             uploadItem();
-            Toast.makeText(getContext(), "Saving...", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Adding new item...", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -234,7 +234,7 @@ public class HomeNewItemFragment extends Fragment {
                     ItemResponse itemResponse = gson.fromJson(response, ItemResponse.class);
                     newItemId = (itemResponse.getInsertId());
                     uploadImages(newItemId); /*Upload Any Images To Imgur*/
-
+                    getActivity().onBackPressed();
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -300,7 +300,6 @@ public class HomeNewItemFragment extends Fragment {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(galleryIntent, gallery);
-
     }
 
     //Start Camera Intent
@@ -310,11 +309,8 @@ public class HomeNewItemFragment extends Fragment {
         if (takePictureIntent.resolveActivity(getContext().getPackageManager()) != null) {
             File photoFile = null;
             try {
-
                 photoFile = createImageFile();
-
             } catch (IOException ex) {
-
             }
             if (photoFile != null) {
                 photoURI = FileProvider.getUriForFile(getContext(),

@@ -1,5 +1,6 @@
 package android.project.lend;
 
+
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -75,8 +76,7 @@ public class MainActivity extends AppCompatActivity implements IDataController {
                     manager.popBackStack();
                     FragmentTransaction ft = manager.beginTransaction();
                     if(endFrag==startFrag){
-                        ft.replace(R.id.fragment_container, selected_fragment);
-                        ft.commit();
+                        return true;
                     }
                     else if(endFrag>startFrag) {
                         ft.setCustomAnimations(R.anim.in_left, R.anim.out_right);

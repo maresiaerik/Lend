@@ -15,14 +15,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/detailed_category_name"
                     android:text=""
+                    android:layout_weight="1.6"
                     android:textSize="25dp"
                     android:padding="10dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+                    android:text=""
+                    android:textSize="25dp"
+                    android:padding="10dp"
+                    android:id="@+id/detailed_price"
                     />
             </LinearLayout>
             <LinearLayout
@@ -59,7 +70,7 @@
                    <Button
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="Select dates"
+                       android:text="Loading dates"
                        android:id="@+id/detailed_item_dates"
                        android:background="@drawable/button_accent_action"
                        android:textColor="@drawable/button_accent_action"
