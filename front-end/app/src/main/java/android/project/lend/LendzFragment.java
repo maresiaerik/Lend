@@ -17,10 +17,12 @@ public class LendzFragment extends Fragment implements IDataController {
 
     private LendzManager lendzManager;
     private ArrayList<LendzDataItem> lendzDataItemList;
+    static public ArrayList<LendzDataItem> allLendzDataItemList;
 
     private View view = null;
     private ListView listView = null;
     private LendzAdapter lendzAdapter;
+
 
     @Nullable
     @Override
@@ -41,7 +43,7 @@ public class LendzFragment extends Fragment implements IDataController {
     public void setData() {
 
         lendzDataItemList = lendzManager.getLendzList(MainActivity.USER.getId());
-
+        allLendzDataItemList = lendzManager.getLendzList();
         lendzAdapter = new LendzAdapter(view.getContext(), lendzDataItemList);
         listView.setAdapter(lendzAdapter);
     }

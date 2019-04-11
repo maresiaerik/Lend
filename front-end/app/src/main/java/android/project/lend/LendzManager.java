@@ -27,6 +27,21 @@ public class LendzManager extends Helper implements IManager {
         getLendzData(this, lendzList);
     }
 
+
+    public ArrayList<LendzDataItem> getLendzList() {
+
+        ArrayList<LendzDataItem> lendzDataItemList = new ArrayList<>();
+
+        for (final LendzData lendz : lendzList) {
+
+                LendzDataItem lendzDataItem = setLendz(lendz);
+
+                lendzDataItemList.add(lendzDataItem);
+        }
+
+        return lendzDataItemList;
+    }
+
     public ArrayList<LendzDataItem> getLendzList(Integer userId) {
 
         ArrayList<LendzDataItem> lendzDataItemList = new ArrayList<>();

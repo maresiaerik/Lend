@@ -64,7 +64,7 @@ public class ExploreAdapter extends ArrayAdapter<ProductDataItem> {
 
         RatingBar rating = listItem.findViewById(R.id.product_rating);
 
-        //rating.setRating(new Float(currentProduct.getRating()));
+        rating.setRating(currentProduct.getRating());
 
         return listItem;
     }
