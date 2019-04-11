@@ -8,12 +8,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.project.lend.ProductDataItem;
-import android.project.lend.R;
+import android.project.lend.IMGUR.ImgurUploader;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,7 +20,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,9 +31,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import static android.app.Activity.RESULT_CANCELED;
@@ -44,19 +44,20 @@ import static java.lang.Float.parseFloat;
 public class HomeNewItemFragment extends Fragment {
 
     DecimalFormat df = new DecimalFormat("#.00");
-    private View view;
-    private String itemTitle, itemDescription, itemCategory;
-    private EditText inputPriceText;
-    private Float itemPrice;
-    private Button priceBtn, cancelBtn, submitBtn;
-    private Boolean titleCheck, categoryCheck, descriptionCheck, priceCheck;
-    private ImageView newImage1, newImage2, newImage3, newImage4;
-    private final String imageDirectory = "/Lend";
-    private int gallery = 1, camera = 2, currentPic = 0;
-    private String currentPhotoPath;
-    private Uri photoURI;
-    private int PERMISSION_ALL = 1;
-    private String[] PERMISSIONS = {
+    View view;
+    String itemTitle, itemDescription, itemCategory, currentPhotoPath, apiKey = BuildConfig.ApiKey;
+    EditText inputPriceText;
+    ProductDataItem newProduct = new ProductDataItem();
+    final String url = "https://api.imgur.com/3/image", imageDirectory = "/Lend";
+    Float itemPrice;
+    Button priceBtn, cancelBtn, submitBtn;
+    Boolean titleCheck, categoryCheck, descriptionCheck, priceCheck;
+    ImageView newImage1, newImage2, newImage3, newImage4;
+    int gallery = 1, camera = 2, currentPic = 0, PERMISSION_ALL = 1, i = 0;
+    ArrayList<String> convertedStrings = new ArrayList<String>();
+    ArrayList<String> imgurUrls = new ArrayList<String>();
+    Uri photoURI;
+    String[] PERMISSIONS = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA
@@ -155,7 +156,6 @@ public class HomeNewItemFragment extends Fragment {
     //Save New Product
     private void setNewProduct() {
         titleCheck = categoryCheck = descriptionCheck = priceCheck = false;
-        ProductDataItem newProduct = new ProductDataItem();
 
         newProduct.create();
 
@@ -163,7 +163,7 @@ public class HomeNewItemFragment extends Fragment {
         EditText inputTitle = view.findViewById(R.id.new_item_title);
         itemTitle = inputTitle.getText().toString();
         if (itemTitle.length() <= 0) {
-            Toast.makeText(getContext(), "Please select valid title", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Please enter valid title", Toast.LENGTH_SHORT).show();
         } else {
             titleCheck = true;
             newProduct.setName(itemTitle);
@@ -187,7 +187,7 @@ public class HomeNewItemFragment extends Fragment {
         itemDescription = inputDescription.getText().toString();
         if (categoryCheck) {
             if (itemDescription.length() <= 0) {
-                Toast.makeText(getContext(), "Please select valid description", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Please enter valid description", Toast.LENGTH_SHORT).show();
             } else {
                 descriptionCheck = true;
                 newProduct.setDescription(itemDescription);
@@ -205,8 +205,9 @@ public class HomeNewItemFragment extends Fragment {
         }
         //Confirm Final Check + Update Product
         if (priceCheck) {
-            Toast.makeText(getContext(), "Item Added", Toast.LENGTH_SHORT).show();
-            newProduct.update();
+            Toast.makeText(getContext(), "Saving...", Toast.LENGTH_LONG).show();
+            uploader(); /*Upload Any Images To Imgur*/
+//            newProduct.update();
         }
 
     }
@@ -259,7 +260,7 @@ public class HomeNewItemFragment extends Fragment {
 
                 photoFile = createImageFile();
 
-            } catch (IOException ex){
+            } catch (IOException ex) {
 
             }
             if (photoFile != null) {
@@ -336,26 +337,47 @@ public class HomeNewItemFragment extends Fragment {
         getContext().sendBroadcast(mediaScanIntent);
     }
 
+    //Convert Image To Binary String
+    public static String get64BaseImage(Bitmap bmp) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        return Base64.encodeToString(imageBytes, Base64.DEFAULT);
+    }
+
+
     //Save Bitmap Icon And Save To Relevant ImageView
     private void saveSelector(Bitmap bitmap) {
-        Matrix matrix = new Matrix();
-        matrix.postRotate(0);
-        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, 800, 600, true);
-        Bitmap rotatedBitmap = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
-
+//             Matrix matrix = new Matrix();
+//        matrix.postRotate(0);
+//        Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, 800, 600, true);
+//        Bitmap rotatedBitmap = Bitmap.createBitmap(scaledBitmap, 0, 0, scaledBitmap.getWidth(), scaledBitmap.getHeight(), matrix, true);
         switch (currentPic) {
             case 1:
-                newImage1.setImageBitmap(rotatedBitmap);
+                newImage1.setImageBitmap(bitmap);
                 break;
             case 2:
-                newImage2.setImageBitmap(rotatedBitmap);
+                newImage2.setImageBitmap(bitmap);
                 break;
             case 3:
-                newImage3.setImageBitmap(rotatedBitmap);
+                newImage3.setImageBitmap(bitmap);
                 break;
             case 4:
-                newImage4.setImageBitmap(rotatedBitmap);
+                newImage4.setImageBitmap(bitmap);
                 break;
+        }
+        //Convert Image Bitmap To Binary String For Upload
+        final String imageString = get64BaseImage(bitmap);
+
+        //Adding Binary String to Array
+        convertedStrings.add(imageString);
+    }
+
+    //Calls Image Uploader For Any Images + Adds To DB
+    private void uploader() {
+        for (i = 0; i < convertedStrings.size(); i++) {
+            ImgurUploader uploadImage = new ImgurUploader();
+            uploadImage.upload(convertedStrings.get(i), true, newProduct.getId(), getContext());
         }
     }
 
@@ -384,7 +406,6 @@ public class HomeNewItemFragment extends Fragment {
         priceSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 final String inputPriceTextString = inputPriceText.getText().toString();
                 if (inputPriceTextString.length() > 0 && parseFloat(inputPriceTextString) > 0) {
@@ -417,10 +438,7 @@ public class HomeNewItemFragment extends Fragment {
                     priceCalc.setText("");
                 }
             }
-
         });
-
     }
-
 
 }
