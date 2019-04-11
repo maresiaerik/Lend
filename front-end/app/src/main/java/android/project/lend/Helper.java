@@ -196,8 +196,18 @@ public class Helper {
         String category;
         Integer status;
 
+
         public ProductData(Integer id, Integer userId, String name, Float price, Integer rating, String description, String category, Integer status) {
             this.id = id;
+            this.userId = userId;
+            this.name = name;
+            this.price = price;
+            this.rating = rating;
+            this.description = description;
+            this.category = category;
+            this.status = status;
+        }
+        public ProductData(Integer userId, String name, Float price, Integer rating, String description, String category, Integer status) {
             this.userId = userId;
             this.name = name;
             this.price = price;
@@ -232,6 +242,10 @@ public class Helper {
 
         public ImageData(Integer id, Integer productId, String url) {
             this.id = id;
+            this.productId = productId;
+            this.url = url;
+        }
+        public ImageData(Integer productId, String url) {
             this.productId = productId;
             this.url = url;
         }

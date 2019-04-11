@@ -20,7 +20,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,9 +31,19 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -45,23 +55,23 @@ public class HomeNewItemFragment extends Fragment {
 
     DecimalFormat df = new DecimalFormat("#.00");
     View view;
-    String itemTitle, itemDescription, itemCategory, currentPhotoPath, apiKey = BuildConfig.ApiKey;
+    String itemTitle, itemDescription, itemCategory, currentPhotoPath;
     EditText inputPriceText;
-    ProductDataItem newProduct = new ProductDataItem();
-    final String url = "https://api.imgur.com/3/image", imageDirectory = "/Lend";
+    final String imageDirectory = "/Lend";
+    String newItemId;
     Float itemPrice;
     Button priceBtn, cancelBtn, submitBtn;
     Boolean titleCheck, categoryCheck, descriptionCheck, priceCheck;
     ImageView newImage1, newImage2, newImage3, newImage4;
     int gallery = 1, camera = 2, currentPic = 0, PERMISSION_ALL = 1, i = 0;
-    ArrayList<String> convertedStrings = new ArrayList<String>();
-    ArrayList<String> imgurUrls = new ArrayList<String>();
+    ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
     Uri photoURI;
     String[] PERMISSIONS = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA
     };
+    Helper.ProductData newItem;
 
     @SuppressLint("ClickableViewAccessibility")
     @Nullable
@@ -157,8 +167,6 @@ public class HomeNewItemFragment extends Fragment {
     private void setNewProduct() {
         titleCheck = categoryCheck = descriptionCheck = priceCheck = false;
 
-        newProduct.create();
-
         //Get Title
         EditText inputTitle = view.findViewById(R.id.new_item_title);
         itemTitle = inputTitle.getText().toString();
@@ -166,7 +174,6 @@ public class HomeNewItemFragment extends Fragment {
             Toast.makeText(getContext(), "Please enter valid title", Toast.LENGTH_SHORT).show();
         } else {
             titleCheck = true;
-            newProduct.setName(itemTitle);
         }
 
         //Get Category
@@ -178,7 +185,7 @@ public class HomeNewItemFragment extends Fragment {
                 Toast.makeText(getContext(), "Please select valid category", Toast.LENGTH_SHORT).show();
             } else {
                 categoryCheck = true;
-                newProduct.setCategory(itemCategory);
+                itemCategory = categorySpinner.getSelectedItemPosition() + "";
             }
         }
 
@@ -190,7 +197,6 @@ public class HomeNewItemFragment extends Fragment {
                 Toast.makeText(getContext(), "Please enter valid description", Toast.LENGTH_SHORT).show();
             } else {
                 descriptionCheck = true;
-                newProduct.setDescription(itemDescription);
             }
         }
         //Get Price
@@ -200,17 +206,64 @@ public class HomeNewItemFragment extends Fragment {
             } else {
                 itemPrice = parseFloat(inputPriceText.getText().toString());
                 priceCheck = true;
-                newProduct.setPrice(itemPrice);
             }
         }
         //Confirm Final Check + Update Product
         if (priceCheck) {
-            Toast.makeText(getContext(), "Saving...", Toast.LENGTH_LONG).show();
-            uploader(); /*Upload Any Images To Imgur*/
-//            newProduct.update();
-        }
+            Helper helper = new Helper();
+            newItem = helper.new ProductData(MainActivity.USER.getId(), itemTitle,
+                    itemPrice, 0, itemDescription, itemCategory, 0);
 
+            uploadItem();
+            Toast.makeText(getContext(), "Saving...", Toast.LENGTH_LONG).show();
+        }
     }
+
+    private void uploadItem() {
+        try {
+            String HTTP_REQUEST_BASE_URL = "https://lend-app.herokuapp.com/";
+            String LENDZ_PATH = "items";
+            final Gson gson = new Gson();
+            final String requestBody = gson.toJson(newItem);
+
+            RequestQueue req = Volley.newRequestQueue(getContext());
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, HTTP_REQUEST_BASE_URL + LENDZ_PATH, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.d("Volley", response);
+                    ItemResponse itemResponse = gson.fromJson(response, ItemResponse.class);
+                    newItemId = (itemResponse.getInsertId());
+                    uploadImages(newItemId); /*Upload Any Images To Imgur*/
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("Error", error + "");
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                @Override
+                public byte[] getBody() throws AuthFailureError {
+                    try {
+                        return requestBody == null ? null : requestBody.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                        return null;
+                    }
+                }
+            };
+            req.add(stringRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("JSONERROR", e + "");
+        }
+    }
+
 
     //Creating Add Picture Dialog Box And Checking Permissions
     private void showPictureDialog() {
@@ -327,7 +380,6 @@ public class HomeNewItemFragment extends Fragment {
         return image;
     }
 
-
     //Save Image To Gallery
     private void galleryAddPic() {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
@@ -336,15 +388,6 @@ public class HomeNewItemFragment extends Fragment {
         mediaScanIntent.setData(contentUri);
         getContext().sendBroadcast(mediaScanIntent);
     }
-
-    //Convert Image To Binary String
-    public static String get64BaseImage(Bitmap bmp) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] imageBytes = baos.toByteArray();
-        return Base64.encodeToString(imageBytes, Base64.DEFAULT);
-    }
-
 
     //Save Bitmap Icon And Save To Relevant ImageView
     private void saveSelector(Bitmap bitmap) {
@@ -366,18 +409,15 @@ public class HomeNewItemFragment extends Fragment {
                 newImage4.setImageBitmap(bitmap);
                 break;
         }
-        //Convert Image Bitmap To Binary String For Upload
-        final String imageString = get64BaseImage(bitmap);
-
-        //Adding Binary String to Array
-        convertedStrings.add(imageString);
+        //Adding Bitmap to Array
+        bitmaps.add(bitmap);
     }
 
     //Calls Image Uploader For Any Images + Adds To DB
-    private void uploader() {
-        for (i = 0; i < convertedStrings.size(); i++) {
+    private void uploadImages(String newItemId) {
+        for (i = 0; i < bitmaps.size(); i++) {
             ImgurUploader uploadImage = new ImgurUploader();
-            uploadImage.upload(convertedStrings.get(i), true, newProduct.getId(), getContext());
+            uploadImage.uploadImgur(bitmaps.get(i), true, newItemId, getContext());
         }
     }
 

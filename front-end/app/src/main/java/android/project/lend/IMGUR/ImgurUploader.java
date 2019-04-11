@@ -1,8 +1,13 @@
 package android.project.lend.IMGUR;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.project.lend.BuildConfig;
+import android.project.lend.Helper;
 import android.project.lend.IMGUR.Imgur_API_GSON;
+import android.project.lend.ItemResponse;
+import android.project.lend.MainActivity;
+import android.util.Base64;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -11,10 +16,13 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
+import java.io.ByteArrayOutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,9 +33,22 @@ public class ImgurUploader {
     final String url = "https://api.imgur.com/3/image";
     String imgurUrl;
     private Context context;
+    Helper.ImageData newImage;
+    RequestQueue reqQueue;
 
-    public void upload(final String imageString, final boolean product, int id, Context context) {
-        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+    public static String get64BaseImage(Bitmap bmp) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        return Base64.encodeToString(imageBytes, Base64.DEFAULT);
+    }
+
+    public void uploadImgur(final Bitmap bitmap, final boolean product, final String id, Context context) {
+        this.context = context;
+        reqQueue = Volley.newRequestQueue(context.getApplicationContext());
+        //Convert Image Bitmap To Binary String
+        final String imageString = get64BaseImage(bitmap);
+            StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
                 Gson gson = new Gson();
@@ -35,7 +56,9 @@ public class ImgurUploader {
                 imgurUrl = (imgur_gson.getData().getLink());
                 Log.d("IMGUR_TEST", imgurUrl);
                 if (product) {
-                    //Add To Image DB With ID
+                    Helper helper = new Helper();
+                    newImage = helper.new ImageData(Integer.parseInt(id),imgurUrl);
+                    uploadImageString(newImage);
                 } else {
                     //Update User DB With ID
                 }
@@ -61,9 +84,48 @@ public class ImgurUploader {
             }
         };
         request.setRetryPolicy(new DefaultRetryPolicy(50000, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        this.context = context;
-        RequestQueue reqQueue = Volley.newRequestQueue(context.getApplicationContext());
         reqQueue.add(request);
+    }
+
+    private void uploadImageString(Helper.ImageData newImage) {
+        try {
+            String HTTP_REQUEST_BASE_URL = "https://lend-app.herokuapp.com/";
+            String LENDZ_PATH = "images";
+            final Gson gson = new Gson();
+            final String requestBody = gson.toJson(newImage);
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, HTTP_REQUEST_BASE_URL + LENDZ_PATH, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.d("Volley", response);
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("Error", error + "");
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                @Override
+                public byte[] getBody() throws AuthFailureError {
+                    try {
+                        return requestBody == null ? null : requestBody.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                        return null;
+                    }
+                }
+            };
+            reqQueue.add(stringRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("JSONERROR", e + "");
+        }
     }
 
 }
