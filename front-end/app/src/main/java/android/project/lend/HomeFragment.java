@@ -43,10 +43,9 @@ public class HomeFragment extends Fragment implements IDataController {
 
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        DisplayMetrics dm = getResources().getDisplayMetrics();
-        REL_SWIPE_MIN_DISTANCE = (int)(100.0f * dm.densityDpi / 160.0f + 0.5);
-        REL_SWIPE_MAX_OFF_PATH = (int)(300.0f * dm.densityDpi / 160.0f + 0.5);
-        REL_SWIPE_THRESHOLD_VELOCITY = (int)(150.0f * dm.densityDpi / 130.0f + 0.5);
+        REL_SWIPE_MIN_DISTANCE =  120;
+        REL_SWIPE_MAX_OFF_PATH = 250;
+        REL_SWIPE_THRESHOLD_VELOCITY = 200;
 
         listView = view.findViewById(R.id.item_view);
 

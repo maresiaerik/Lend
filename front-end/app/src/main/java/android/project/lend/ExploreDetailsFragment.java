@@ -3,16 +3,19 @@ package android.project.lend;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.LinearGradient;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -27,19 +30,18 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 
-public class DetailedItemViewFragment extends Fragment implements DatePickerDialog.OnDateSetListener, IDataController {
+public class ExploreDetailsFragment extends Fragment implements DatePickerDialog.OnDateSetListener, IDataController {
 
     private LendzManager lendzManager;
     private ArrayList<LendzDataItem> lendzDataItemList;
+    private ArrayList<ProductDataItem> allItems = null;
 
     private View view = null;
-    private ProductDataItem productDataItem;
+    private ProductDataItem productDataItem, nextItem, previousItem;
     private DatePickerDialog startCalendar;
     private DatePickerDialog endCalendar;
-
     private Calendar now = Calendar.getInstance();
     private Button borrowBtn;
     private String startTag = "DatepickerdialogStart", endtag = "DatepickerdialogEnd", finalStartDate, finalEndDate;
@@ -50,14 +52,65 @@ public class DetailedItemViewFragment extends Fragment implements DatePickerDial
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.detailed_item_fragment, container, false);
+        view = inflater.inflate(R.layout.fragment_explore_details, container, false);
 
         TextView heading = view.findViewById(R.id.page_title);
         TextView categoryName = view.findViewById(R.id.detailed_category_name);
         TextView description = view.findViewById(R.id.detailed_item_description);
 
+        final GestureDetector gesture = new GestureDetector(getContext(),
+                new GestureDetector.SimpleOnGestureListener() {
+                    @Override
+                    public boolean onDown(MotionEvent e) {
+                        return true;
+                    }
+
+                    @Override
+                    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+                                           float velocityY) {
+                        final int SWIPE_MIN_DISTANCE = 120;
+                        final int SWIPE_MAX_OFF_PATH = 250;
+                        final int SWIPE_THRESHOLD_VELOCITY = 200;
+                        try {
+                            if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
+                                return false;
+                            if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
+                                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                                openNext();
+                            } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
+                                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                                openPrev();
+                            }
+                        } catch (Exception e) {
+                            // nothing
+                        }
+                        return super.onFling(e1, e2, velocityX, velocityY);
+                    }
+                });
+
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return gesture.onTouchEvent(event);
+            }
+        });
+
         Bundle args = getArguments();
         productDataItem = (ProductDataItem) args.getSerializable("selectedItem");
+        allItems = (ArrayList<ProductDataItem>) args.getSerializable("AllItems");
+
+        //Assigning Next + Previous Items
+        for (int i = 0; i < allItems.size(); i++) {
+            if (allItems.get(i).getId().equals(productDataItem.getId())) {
+                if (i < allItems.size() - 1) {
+                    nextItem = allItems.get(i + 1);
+                }
+                if (i != 0) {
+                    previousItem = allItems.get(i - 1);
+                }
+                break;
+            }
+        }
 
         heading.setText(productDataItem.getName());
         String[] category = getResources().getStringArray(R.array.category_items_dropdown);
@@ -143,10 +196,10 @@ public class DetailedItemViewFragment extends Fragment implements DatePickerDial
             Calendar startDay = Calendar.getInstance();
             Calendar endDay = Calendar.getInstance();
             try {
-                startDay.setTime( dateFormat.parse(lendzDataItemList.get(i).getStartDate()));
+                startDay.setTime(dateFormat.parse(lendzDataItemList.get(i).getStartDate()));
                 endDay.setTime(dateFormat.parse(lendzDataItemList.get(i).getDueDate()));
 
-                while(startDay.compareTo(endDay) < 1){
+                while (startDay.compareTo(endDay) < 1) {
                     Calendar betweenDay = Calendar.getInstance();
                     betweenDay.setTime(startDay.getTime());
                     dates.add(betweenDay);
@@ -159,9 +212,8 @@ public class DetailedItemViewFragment extends Fragment implements DatePickerDial
         Calendar[] disabled = new Calendar[dates.size()];
         for (int i = 0; i < dates.size(); i++) {
             Log.d("STARTDATE", dates.get(i).getTime() + "");
-            disabled[i]  = dates.get(i);
+            disabled[i] = dates.get(i);
         }
-
 
 
         return disabled;
@@ -307,6 +359,40 @@ public class DetailedItemViewFragment extends Fragment implements DatePickerDial
         lendzDataItemList = lendzManager.getLendzListByProduct(productDataItem.getId());
         datesBtn.setEnabled(true);
         datesBtn.setText("Select dates");
+    }
+
+    private void openNext() {
+        if (nextItem != null) {
+            ExploreDetailsFragment detailedItemView = new ExploreDetailsFragment();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("selectedItem", nextItem);
+            bundle.putSerializable("AllItems", allItems);
+            detailedItemView.setArguments(bundle);
+            FragmentManager manager = getActivity().getSupportFragmentManager();
+            manager.popBackStack();
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.setCustomAnimations(R.anim.in_right, R.anim.out_left);
+            ft.replace(R.id.fragment_container, detailedItemView);
+            ft.addToBackStack(null);
+            ft.commit();
+        }
+    }
+
+    private void openPrev() {
+        if (previousItem != null) {
+            ExploreDetailsFragment detailedItemView = new ExploreDetailsFragment();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("selectedItem", previousItem);
+            bundle.putSerializable("AllItems", allItems);
+            detailedItemView.setArguments(bundle);
+            FragmentManager manager = getActivity().getSupportFragmentManager();
+            manager.popBackStack();
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.setCustomAnimations(R.anim.in_left, R.anim.out_right);
+            ft.replace(R.id.fragment_container, detailedItemView);
+            ft.addToBackStack(null);
+            ft.commit();
+        }
     }
 }
 
