@@ -13,17 +13,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7bb37c2a-a3f4-4d7a-b31a-2bbc794062b7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/IMGUR/ImgurUploader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/IMGUR/Imgur_API_GSON.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/IMGUR/Imgur_Data_API_GSON.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__android_arch_core_runtime_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__android_arch_core_runtime_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__android_arch_lifecycle_livedata_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__android_arch_lifecycle_livedata_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__android_arch_lifecycle_livedata_core_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__android_arch_lifecycle_livedata_core_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__android_arch_lifecycle_runtime_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__android_arch_lifecycle_runtime_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__android_arch_lifecycle_viewmodel_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__android_arch_lifecycle_viewmodel_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_animated_vector_drawable_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_animated_vector_drawable_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_appcompat_v7_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_appcompat_v7_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_asynclayoutinflater_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_asynclayoutinflater_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_constraint_constraint_layout_1_1_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_constraint_constraint_layout_1_1_3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_coordinatorlayout_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_coordinatorlayout_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_cursoradapter_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_cursoradapter_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_customview_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_customview_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_documentfile_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_documentfile_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_drawerlayout_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_drawerlayout_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_interpolator_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_interpolator_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_loader_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_loader_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_localbroadcastmanager_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_localbroadcastmanager_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_print_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_print_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_slidingpanelayout_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_slidingpanelayout_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_support_compat_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_support_compat_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_support_core_ui_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_support_core_ui_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_support_core_utils_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_support_core_utils_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_support_fragment_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_support_fragment_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_support_vector_drawable_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_support_vector_drawable_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_swiperefreshlayout_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_swiperefreshlayout_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_test_espresso_espresso_core_3_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_test_espresso_espresso_core_3_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_test_espresso_espresso_idling_resource_3_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_test_espresso_espresso_idling_resource_3_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_test_monitor_1_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_test_monitor_1_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_test_runner_1_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_test_runner_1_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_versionedparcelable_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_versionedparcelable_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_viewpager_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Gradle__com_android_support_viewpager_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/DetailedItemView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/DetailedItemViewFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/ExploreAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/ExploreAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/ExploreConfirmActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/ExploreConfirmActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/ExploreFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/ExploreFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/ExploreReceiptActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/ExploreReceiptActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/Helper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/HomeAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/HomeAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/HomeFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/HomeNewItemFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/HomeNewItemFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_home_new_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_home_new_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/HomeUserEditFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/HomeUserEditFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/ImageCarousel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/ImageCarousel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/LendzAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/LendzAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/LendzFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/LendzFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/LendzManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/LendzManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/ProductManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/ProductManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/button_accent_action.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/drawable/button_accent_action.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/detailed_item_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/detailed_item_fragment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_explore.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_explore.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/colors.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -84,15 +127,16 @@
     <session id="16692470">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="13" />
+          <entry key="project.closed" value="15" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.5" value="2" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.open.time.8" value="2" />
+          <entry key="project.open.time.8" value="3" />
           <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="13" />
+          <entry key="project.opened" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -102,9 +146,9 @@
           <entry key="gradle" value="3" />
           <entry key="gradlew" value="2" />
           <entry key="iml" value="1" />
-          <entry key="java" value="37" />
+          <entry key="java" value="45" />
           <entry key="png" value="3" />
-          <entry key="properties" value="6" />
+          <entry key="properties" value="7" />
           <entry key="xml" value="31" />
         </counts>
       </usages-collector>
@@ -113,9 +157,9 @@
           <entry key="Groovy" value="3" />
           <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="3" />
-          <entry key="JAVA" value="37" />
+          <entry key="JAVA" value="45" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Properties" value="6" />
+          <entry key="Properties" value="7" />
           <entry key="XML" value="31" />
         </counts>
       </usages-collector>
@@ -123,14 +167,14 @@
         <counts>
           <entry key="dummy" value="8" />
           <entry key="gradle" value="3" />
-          <entry key="java" value="6493" />
+          <entry key="java" value="7433" />
           <entry key="xml" value="731" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="3" />
-          <entry key="JAVA" value="6493" />
+          <entry key="JAVA" value="7433" />
           <entry key="PLAIN_TEXT" value="8" />
           <entry key="XML" value="731" />
         </counts>
@@ -139,24 +183,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/HomeNewItemFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1335">
-              <caret line="409" column="16" selection-start-line="409" selection-start-column="16" selection-end-line="409" selection-end-column="16" />
-              <folding>
-                <element signature="e#3680#3843#0" expanded="true" />
-                <element signature="e#3842#3843#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="222">
+              <caret line="217" column="57" selection-start-line="217" selection-start-column="57" selection-end-line="217" selection-end-column="57" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/IMGUR/ImgurUploader.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/HomeAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+            <state relative-caret-position="153">
+              <caret line="46" selection-start-line="46" selection-end-line="46" />
             </state>
           </provider>
         </entry>
@@ -187,6 +227,10 @@
       <find>allItems</find>
       <find>convertedS</find>
       <find>uplo</find>
+      <find>64</find>
+      <find>cate</find>
+      <find>uploader</find>
+      <find>cancel</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -195,7 +239,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/ProductCore.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/fragment_lendz.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/page_title.xml" />
         <option value="$PROJECT_DIR$/src/main/res/values/strings.xml" />
@@ -232,7 +275,10 @@
         <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/main/java/android/project/lend/VolleySingleton.java" />
         <option value="$PROJECT_DIR$/src/main/java/android/project/lend/ImgurUploader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/ProductCore.java" />
+        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/ItemResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/android/project/lend/IMGUR/ImgurUploader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/Helper.java" />
         <option value="$PROJECT_DIR$/src/main/java/android/project/lend/HomeNewItemFragment.java" />
       </list>
     </option>
@@ -249,36 +295,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="front-end" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="front-end" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="front-end" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="lend" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="front-end" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="lend" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="IMGUR" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -326,6 +342,29 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="front-end" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="front-end" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="front-end" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="lend" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -336,12 +375,12 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Jamie\Documents\Lend\front-end\app\src\main\java\android\project\lend" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Jamie\Documents\Lend\front-end\app\src\main\res" />
       <recent name="C:\Users\Jamie\Documents\Uni\1. Lend\Lend\front-end\app\src\main\res\drawable\Icons" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Jamie\Documents\Lend\front-end\app\src\main\java\android\project\lend" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -441,9 +480,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1293" height="733" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" weight="0.15870446" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.15870446" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -451,7 +491,7 @@
       <window_info id="Designer" order="6" />
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="bottom" id="Run" order="0" weight="0.43023255" />
-      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49959514" weight="0.37375414" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49959514" weight="0.6096346" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.32890365" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.32890365" />
@@ -473,39 +513,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_explore_confirm.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_explore_receipt.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4221" />
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ExploreReceiptActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_lendz.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/values/dimens.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/message_icon.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="65" selection-start-column="65" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/drawable/phone_icon.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -626,13 +633,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ExploreConfirmActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="31" column="65" selection-start-line="31" selection-start-column="65" selection-end-line="31" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -722,12 +722,12 @@
       <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ImageDownloader.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -736,16 +736,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/VolleySingleton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-142">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/VolleySingleton.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/IMGUR/Imgur_Data_API_GSON.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -760,21 +751,118 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/HomeNewItemFragment.java">
+    <entry file="file://$PROJECT_DIR$/local.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1335">
-          <caret line="409" column="16" selection-start-line="409" selection-start-column="16" selection-end-line="409" selection-end-column="16" />
+        <state relative-caret-position="87">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ProductCore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="21" column="36" lean-forward="true" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ItemResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2226">
+          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
           <folding>
-            <element signature="e#3680#3843#0" expanded="true" />
-            <element signature="e#3842#3843#0" expanded="true" />
+            <element signature="e#433#434#0" expanded="true" />
+            <element signature="e#474#475#0" expanded="true" />
+            <element signature="e#539#540#0" expanded="true" />
+            <element signature="e#591#592#0" expanded="true" />
+            <element signature="e#643#644#0" expanded="true" />
+            <element signature="e#686#687#0" expanded="true" />
+            <element signature="e#755#756#0" expanded="true" />
+            <element signature="e#811#812#0" expanded="true" />
+            <element signature="e#861#862#0" expanded="true" />
+            <element signature="e#902#903#0" expanded="true" />
+            <element signature="e#967#968#0" expanded="true" />
+            <element signature="e#1019#1020#0" expanded="true" />
+            <element signature="e#1070#1071#0" expanded="true" />
+            <element signature="e#1112#1113#0" expanded="true" />
+            <element signature="e#1179#1180#0" expanded="true" />
+            <element signature="e#1233#1234#0" expanded="true" />
+            <element signature="e#1285#1286#0" expanded="true" />
+            <element signature="e#1328#1329#0" expanded="true" />
+            <element signature="e#1397#1398#0" expanded="true" />
+            <element signature="e#1453#1454#0" expanded="true" />
+            <element signature="e#1505#1506#0" expanded="true" />
+            <element signature="e#1548#1549#0" expanded="true" />
+            <element signature="e#1617#1618#0" expanded="true" />
+            <element signature="e#1673#1674#0" expanded="true" />
+            <element signature="e#1720#1721#0" expanded="true" />
+            <element signature="e#1758#1759#0" expanded="true" />
+            <element signature="e#1817#1818#0" expanded="true" />
+            <element signature="e#1863#1864#0" expanded="true" />
+            <element signature="e#1911#1912#0" expanded="true" />
+            <element signature="e#1950#1951#0" expanded="true" />
+            <element signature="e#2011#2012#0" expanded="true" />
+            <element signature="e#2059#2060#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ImageCore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ExploreConfirmActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="41" column="12" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/HomeAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/IMGUR/ImgurUploader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        <state relative-caret-position="-1339">
+          <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/Helper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5082">
+          <caret line="259" column="9" selection-start-line="259" selection-start-column="9" selection-end-line="259" selection-end-column="9" />
+          <folding>
+            <element signature="e#1032#1557#0" expanded="true" />
+            <element signature="e#1556#1557#0" expanded="true" />
+            <element signature="e#1559#1749#0" expanded="true" />
+            <element signature="e#1748#1749#0" expanded="true" />
+            <element signature="e#2739#3234#0" expanded="true" />
+            <element signature="e#3233#3234#0" expanded="true" />
+            <element signature="e#3248#3457#0" expanded="true" />
+            <element signature="e#3456#3457#0" expanded="true" />
+            <element signature="e#3840#4348#0" expanded="true" />
+            <element signature="e#4347#4348#0" expanded="true" />
+            <element signature="e#4362#4572#0" expanded="true" />
+            <element signature="e#4571#4572#0" expanded="true" />
+            <element signature="e#4962#5465#0" expanded="true" />
+            <element signature="e#5464#5465#0" expanded="true" />
+            <element signature="e#5479#5683#0" expanded="true" />
+            <element signature="e#5682#5683#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/HomeNewItemFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="217" column="57" selection-start-line="217" selection-start-column="57" selection-end-line="217" selection-end-column="57" />
         </state>
       </provider>
     </entry>

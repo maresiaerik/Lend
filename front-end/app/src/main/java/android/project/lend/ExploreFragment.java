@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -49,6 +50,16 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         pageTitle.setText("Explore");
 
         listView = (ListView) view.findViewById(R.id.item_view);
+
+        final SwipeRefreshLayout sw = view.findViewById(R.id.explore_swipe_refresh);
+        sw.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
+        sw.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new ExploreFragment()).commit();
+                sw.setRefreshing(false);
+            }
+        });
 
         productManager = new ProductManager(this,null);
 
@@ -123,6 +134,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         });
 
         sbar = view.findViewById(R.id.explore_search);
+
 
         TextWatcher txtWatch = new TextWatcher() {
             @Override

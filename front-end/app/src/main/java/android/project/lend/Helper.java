@@ -175,6 +175,7 @@ public class Helper {
         String category;
         Integer status;
 
+
         public ProductData(Integer id, Integer userId, String name, Float price, Integer rating, String description, String category, Integer status) {
             this.id = id;
             this.userId = userId;
@@ -259,6 +260,7 @@ public class Helper {
             this.productId = productId;
             this.url = url;
         }
+
         public ImageData( Integer productId, String url) {
             this.productId = productId;
             this.url = url;

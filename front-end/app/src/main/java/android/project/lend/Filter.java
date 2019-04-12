@@ -148,7 +148,7 @@ public class Filter{
             ) {
                 if(isCategorySelected) {
 
-                    if (( productDataItem.get(i).getRating().equals(categoryList.getSelectedItem()) )) {
+                    if ( new Integer(productDataItem.get(i).getCategory()) == categoryList.getSelectedItemPosition() ) {
 
                         filteredList.add(productDataItem.get(i));
                     }

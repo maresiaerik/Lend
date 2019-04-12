@@ -2,6 +2,7 @@ package android.project.lend;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.icu.text.SimpleDateFormat;
 import android.media.Image;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
@@ -30,7 +31,10 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class ExploreConfirmActivity extends AppCompatActivity {
 
@@ -106,17 +110,36 @@ public class ExploreConfirmActivity extends AppCompatActivity {
         //Image
         ImageView itemImage = findViewById(R.id.confirm_item_image);
         Glide.with(this).load(imageURL).into(itemImage);
-//        itemImage
+
         //Dates
         TextView itemDates = findViewById(R.id.confirm_date_date);
         itemDates.setText( startDate +" - "+ endDate );
         //Price
         TextView itemPrice = findViewById(R.id.confirm_price_price);
+        //Get Lendz length in days
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date start;
+        Date end;
+        long diff;
+        long noOfDays = 1;
+
+        try {
+            start = sdf.parse(startDate);
+            end =  sdf.parse(endDate);
+            diff = end.getTime() - start.getTime();
+            noOfDays = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         DecimalFormat df = new DecimalFormat("#.00");
-        itemPrice.setText("€" + df.format(itemData.getPrice()));
+        Log.d("price", noOfDays + "");
+        Float price = itemData.getPrice() * (noOfDays == 0 ? 1 : noOfDays);
+
+        itemPrice.setText("€" + df.format(price));
         //Total
         TextView itemTotal = findViewById(R.id.confirm_total_price);
-        itemTotal.setText("€" + df.format((itemData.getPrice() + 2)));
+        itemTotal.setText("€" + df.format((price + 2)));
 
         //Initialize new Instance of Lendz
         if(MainActivity.USER != null && MainActivity.USER.getId() != null) {

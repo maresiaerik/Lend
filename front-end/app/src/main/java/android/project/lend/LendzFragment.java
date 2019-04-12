@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,16 @@ public class LendzFragment extends Fragment implements IDataController {
         listView = (ListView) view.findViewById(R.id.item_view);
 
         lendzManager = new LendzManager(this, null);
+
+        final SwipeRefreshLayout sw = view.findViewById(R.id.lendz_swipe_refresh);
+        sw.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
+        sw.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new LendzFragment()).commit();
+                sw.setRefreshing(false);
+            }
+        });
 
         return view;
     }

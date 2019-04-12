@@ -103,7 +103,7 @@ public class HomeUserRegister extends AppCompatActivity {
 
             Helper helper = new Helper();
             String url = "placeholder_url"; //placeholder
-            Helper.UserData user = helper.new UserData(
+            final Helper.UserData user = helper.new UserData(
                     firstName.getText().toString(),
                     secondName.getText().toString(),
                     url,
@@ -115,7 +115,6 @@ public class HomeUserRegister extends AppCompatActivity {
                     cardCSV.getText().toString(),
                     password.getText().toString());
 
-
             Gson gson = new Gson();
             RequestQueue req = Volley.newRequestQueue(this);
 
@@ -126,9 +125,8 @@ public class HomeUserRegister extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
                     Gson g = new Gson();
-                    ResponseObject res = g.fromJson(response, ResponseObject.class);
-
-                    onBackPressed();
+                    ItemResponse res = g.fromJson(response, ItemResponse.class);
+                    //onBackPressed();
                 }
             }, new com.android.volley.Response.ErrorListener() {
                 @Override
