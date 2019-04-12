@@ -38,7 +38,6 @@ public class HomeUserRegister extends AppCompatActivity implements IDataControll
     EditText password;
     EditText passwordConfirm;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,6 +128,9 @@ public class HomeUserRegister extends AppCompatActivity implements IDataControll
                     UserManager userManager = new UserManager(null, null);
 
                     //onBackPressed();
+
+                    MainActivity.USER = new UserDataItem();
+                    MainActivity.USER.create(user);
                 }
             }, new com.android.volley.Response.ErrorListener() {
                 @Override
