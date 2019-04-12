@@ -144,7 +144,7 @@ public class ExploreConfirmActivity extends AppCompatActivity {
         //Initialize new Instance of Lendz
         if(MainActivity.USER != null && MainActivity.USER.getId() != null) {
             Helper helper = new Helper();
-            newLenzDataItem = helper.new LendzData(itemData.getId(), MainActivity.USER.getId(), startDate, endDate);
+            newLenzDataItem = helper.new LendzData(itemData.getId(), MainActivity.USER.getId(), startDate, endDate, null);
         }
 
 

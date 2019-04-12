@@ -25,7 +25,7 @@ import org.json.JSONException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 
-public class HomeUserRegister extends AppCompatActivity {
+public class HomeUserRegister extends AppCompatActivity implements IDataController {
 
     EditText firstName;
     EditText secondName;
@@ -126,6 +126,8 @@ public class HomeUserRegister extends AppCompatActivity {
                 public void onResponse(String response) {
                     Gson g = new Gson();
                     ItemResponse res = g.fromJson(response, ItemResponse.class);
+                    UserManager userManager = new UserManager(null, null);
+
                     //onBackPressed();
                 }
             }, new com.android.volley.Response.ErrorListener() {
@@ -156,5 +158,10 @@ public class HomeUserRegister extends AppCompatActivity {
             e.printStackTrace();
             Log.d("JSONERROR", e + "");
         }
+    }
+
+    @Override
+    public void setData() {
+
     }
 }

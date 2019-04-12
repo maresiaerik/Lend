@@ -5,6 +5,7 @@ public class LendzCore {
     private Integer id;
     private String startDate;
     private String dueDate;
+    private Integer rating;
 
     public Boolean changed;
     public Boolean changed_startDate;
@@ -67,5 +68,17 @@ public class LendzCore {
         changed = false;
         changed_startDate = false;
         changed_dueDate = false;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        if(this.rating == rating) return;
+
+        changed = true;
+        changed_dueDate = true;
+        this.rating = rating;
     }
 }

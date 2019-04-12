@@ -94,6 +94,7 @@ public class LendzManager extends Helper implements IManager {
 
         lendzDataItem.setStartDate(lendz.startDate);
         lendzDataItem.setDueDate(lendz.dueDate);
+        lendzDataItem.setRating(lendz.rating);
 
         lendzDataItem.clearChanges();
 
