@@ -14,6 +14,7 @@ public class UserCore {
     private String cardNumber;
     private String cardDate;
     private String cardSecurity;
+    private String password;
 
     public Boolean changed;
     public Boolean changedFirstName;
@@ -159,6 +160,18 @@ public class UserCore {
 
         this.cardSecurity = cardSecurity;
     }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        if(this.password == password) return;
+
+        changed = true;
+        changedCardSecurity = true;
+
+        this.password = password;
+    }
 
     public void create(Helper.UserData userData)
     {
@@ -172,6 +185,7 @@ public class UserCore {
         cardNumber = userData.cardNumber;
         cardDate = userData.cardDate;
         cardSecurity = userData.cardSecurity;
+        password = userData.password;
     }
 
     public void update()

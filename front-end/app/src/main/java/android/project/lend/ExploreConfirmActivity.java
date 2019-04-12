@@ -25,10 +25,6 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -90,6 +86,7 @@ public class ExploreConfirmActivity extends AppCompatActivity {
 
         if (itemData != null) {
             setItemData();
+            Log.d("HERE",imageURL+" ");
         }
 
 
@@ -110,12 +107,13 @@ public class ExploreConfirmActivity extends AppCompatActivity {
         //Image
         ImageView itemImage = findViewById(R.id.confirm_item_image);
         Glide.with(this).load(imageURL).into(itemImage);
-
         //Dates
         TextView itemDates = findViewById(R.id.confirm_date_date);
         itemDates.setText( startDate +" - "+ endDate );
         //Price
         TextView itemPrice = findViewById(R.id.confirm_price_price);
+        TextView servicePrice = findViewById(R.id.confirm_service_price);
+        TextView pricePerDay = findViewById(R.id.price_per_day);
         //Get Lendz length in days
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date start;
@@ -134,12 +132,18 @@ public class ExploreConfirmActivity extends AppCompatActivity {
 
         DecimalFormat df = new DecimalFormat("#.00");
         Log.d("price", noOfDays + "");
-        Float price = itemData.getPrice() * (noOfDays == 0 ? 1 : noOfDays);
+        Float multiplier = getMultiplier();
 
-        itemPrice.setText("€" + df.format(price));
+        Log.d("multiplier", multiplier  + "");
+        Float serviceFee = (multiplier - 1) * itemData.getPrice() + 1;
+
+        servicePrice.setText("€" + df.format(serviceFee));
+
         //Total
         TextView itemTotal = findViewById(R.id.confirm_total_price);
-        itemTotal.setText("€" + df.format((price + 2)));
+        pricePerDay.setText("€" + df.format(itemData.getPrice()) + "/day");
+        itemPrice.setText("€" + df.format(itemData.getPrice() * (noOfDays == 0 ? 1 : noOfDays)));
+        itemTotal.setText("€" + df.format((itemData.getPrice() *  (noOfDays == 0 ? 1 : noOfDays) + serviceFee)));
 
         //Initialize new Instance of Lendz
         if(MainActivity.USER != null && MainActivity.USER.getId() != null) {
@@ -148,6 +152,23 @@ public class ExploreConfirmActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    private Float getMultiplier() {
+        Float price = itemData.getPrice();
+        Double percentageMultiplier = 1.0;
+        if(price <= 10) {
+            percentageMultiplier = 1.0;
+        }
+        else if(price > 10 && price <= 50){
+            percentageMultiplier = 1.05;
+        }
+        else if (price > 50 ) {
+            percentageMultiplier = 1.1;
+
+        }
+
+        return new Float(percentageMultiplier);
     }
 
     //Complete Borrow And Start Receipt Activity

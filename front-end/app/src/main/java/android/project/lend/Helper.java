@@ -218,7 +218,7 @@ public class Helper {
         String cardSecurity;
         String password;
 
-        public UserData(Integer id, String firstName, String lastName, String imageUrl, String emailAddress, String homeAddress, String phoneNumber, String cardNumber, String cardDate, String cardSecurity) {
+        public UserData(Integer id, String firstName, String lastName, String imageUrl, String emailAddress, String homeAddress, String phoneNumber, String cardNumber, String cardDate, String cardSecurity, String password) {
             this.id = id;
             this.firstName = firstName;
             this.lastName = lastName;
@@ -229,6 +229,7 @@ public class Helper {
             this.cardNumber = cardNumber;
             this.cardDate = cardDate;
             this.cardSecurity = cardSecurity;
+            this.password = password;
         }
         public UserData( String firstName, String lastName, String imageUrl, String emailAddress, String homeAddress, String phoneNumber, String cardNumber, String cardDate, String cardSecurity, String password) {
             this.firstName = firstName;

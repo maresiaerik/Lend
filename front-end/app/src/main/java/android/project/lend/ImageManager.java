@@ -1,5 +1,7 @@
 package android.project.lend;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class ImageManager extends Helper implements IManager {
@@ -50,7 +52,7 @@ public class ImageManager extends Helper implements IManager {
 
         for(final ImageData image : imageList){
 
-            if(image.productId == productId) {
+            if(image.productId.equals(productId)) {
 
                 ImageDataItem imageDataItem = setImage(image);
 

@@ -126,7 +126,6 @@ public class HomeUserRegister extends AppCompatActivity implements IDataControll
                     Gson g = new Gson();
                     ItemResponse res = g.fromJson(response, ItemResponse.class);
                     UserManager userManager = new UserManager(null, null);
-
                     //onBackPressed();
 
                     MainActivity.USER = new UserDataItem();

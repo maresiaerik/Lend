@@ -16,7 +16,6 @@
             android:id="@+id/userEditBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TESTER"
             android:layout_marginTop="10dp"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="125dp"

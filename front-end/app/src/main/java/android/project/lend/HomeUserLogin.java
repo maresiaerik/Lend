@@ -3,12 +3,16 @@ package android.project.lend;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class HomeUserLogin extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +57,22 @@ public class HomeUserLogin extends AppCompatActivity {
         String password = passwordIn.getText().toString();
         if (email.length() > 0 && password.length() > 0) {
             /*TODO Login Process*/
+            /*
+            Log.d("IN_HERER", "I AM HERE");
 
+            UserManager userManager = new UserManager(null, null);
+            ArrayList<UserDataItem> userList = userManager.getUserList();
+            Boolean isUser = false;
+            for (UserDataItem userEmail : userList) {
 
-
-
-            if (/*success*/true) {
+                for (UserDataItem userPassword : userList) {
+                    if(userEmail.getEmailAddress().equals(email) && userPassword.getPassword().equals(password)) {
+                        isUser = true;
+                    }
+                }
+            }
+*/
+            if (true) {
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
                 finish();
             } else {
