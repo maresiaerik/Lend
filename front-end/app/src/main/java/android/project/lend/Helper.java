@@ -219,6 +219,7 @@ public class Helper {
         String cardDate;
         @SerializedName("card_sec")
         String cardSecurity;
+        String password;
 
         public UserData(Integer id, String firstName, String lastName, String imageUrl, String emailAddress, String homeAddress, String phoneNumber, String cardNumber, String cardDate, String cardSecurity) {
             this.id = id;
@@ -232,7 +233,7 @@ public class Helper {
             this.cardDate = cardDate;
             this.cardSecurity = cardSecurity;
         }
-        public UserData( String firstName, String lastName, String imageUrl, String emailAddress, String homeAddress, String phoneNumber, String cardNumber, String cardDate, String cardSecurity) {
+        public UserData( String firstName, String lastName, String imageUrl, String emailAddress, String homeAddress, String phoneNumber, String cardNumber, String cardDate, String cardSecurity, String password) {
             this.firstName = firstName;
             this.lastName = lastName;
             this.imageUrl = imageUrl;
@@ -242,6 +243,7 @@ public class Helper {
             this.cardNumber = cardNumber;
             this.cardDate = cardDate;
             this.cardSecurity = cardSecurity;
+            this.password = password;
         }
     }
 

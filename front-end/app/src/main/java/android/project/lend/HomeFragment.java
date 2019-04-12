@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,17 @@ public class HomeFragment extends Fragment implements IDataController {
         pageTitle.setText("Home");
 
         listView = (ListView) view.findViewById(R.id.item_view);
+
+        final SwipeRefreshLayout sw = view.findViewById(R.id.home_swipe_refresh);
+        sw.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
+        sw.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+                sw.setRefreshing(false);
+            }
+        });
+
 
         //Creating Home User Edit Fragment
         final Fragment editFragment = new HomeUserEditFragment();

@@ -53,6 +53,10 @@ public class HomeUserLogin extends AppCompatActivity {
         String password = passwordIn.getText().toString();
         if (email.length() > 0 && password.length() > 0) {
             /*TODO Login Process*/
+
+
+
+
             if (/*success*/true) {
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
                 finish();
