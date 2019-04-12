@@ -47,7 +47,7 @@ public class HomeAdapter extends ArrayAdapter<ProductDataItem> {
 
         TextView status = (TextView) listItem.findViewById(R.id.product_status);
 //        status.setText(MainActivity.PRODUCT_STATUS[currentProduct.getStatus()]);
-        
+
 
         ImageView img = listItem.findViewById(R.id.imageView);
 

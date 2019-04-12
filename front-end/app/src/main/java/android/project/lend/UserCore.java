@@ -160,9 +160,18 @@ public class UserCore {
         this.cardSecurity = cardSecurity;
     }
 
-    public void create()
+    public void create(Helper.UserData userData)
     {
-
+        id = userData.id;
+        firstName = userData.firstName;
+        lastName = userData.lastName;
+        imageUrl = userData.imageUrl;
+        emailAddress = userData.emailAddress;
+        homeAddress = userData.homeAddress;
+        phoneNumber = userData.phoneNumber;
+        cardNumber = userData.cardNumber;
+        cardDate = userData.cardDate;
+        cardSecurity = userData.cardSecurity;
     }
 
     public void update()

@@ -11,6 +11,8 @@ public class UserManager extends Helper implements IManager {
 
     private IManager parentManager;
 
+    public UserManager(){}
+
     public UserManager(IDataController dataController, IManager parentManager){
 
         this.dataController = dataController;
@@ -42,6 +44,10 @@ public class UserManager extends Helper implements IManager {
         }
 
         return null;
+    }
+
+    public void addUser(){
+
     }
 
     private UserDataItem setUser(UserData user)

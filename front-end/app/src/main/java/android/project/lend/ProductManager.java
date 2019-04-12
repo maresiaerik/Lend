@@ -79,7 +79,6 @@ public class ProductManager extends Helper implements IManager
 
         productDataItem.setId(product.id);
         productDataItem.owner = userManager.getUser(product.userId);
-        //productDataItem.setUserId(product.userId);
         productDataItem.setName(product.name);
         productDataItem.setPrice(product.price);
         productDataItem.setRating(product.rating);
