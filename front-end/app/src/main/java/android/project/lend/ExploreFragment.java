@@ -3,12 +3,16 @@ package android.project.lend;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.internal.BottomNavigationItemView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -17,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -24,16 +29,16 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
 
     private ProductManager productManager = null;
     private ArrayList<ProductDataItem> productDataItemList;
-
     private View view = null;
     private ListView listView = null;
     private ExploreAdapter exploreAdapter;
-
     private ArrayList<ProductDataItem> allItems = null;
     private ArrayList<ProductDataItem> filteredList = null;
     private Integer minPrice, maxPrice, minRating, maxRating, categoryPosition, sortByPosition;
     private Filter filter;
-
+    private int REL_SWIPE_MIN_DISTANCE;
+    private int REL_SWIPE_MAX_OFF_PATH;
+    private int REL_SWIPE_THRESHOLD_VELOCITY;
     private ProductDataItem selectedItem = null;
 
     Button filterBtn;
@@ -49,7 +54,19 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         TextView pageTitle = view.findViewById(R.id.page_title);
         pageTitle.setText("Explore");
 
-        listView = (ListView) view.findViewById(R.id.item_view);
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        REL_SWIPE_MIN_DISTANCE = (int)(100.0f * dm.densityDpi / 160.0f + 0.5);
+        REL_SWIPE_MAX_OFF_PATH = (int)(300.0f * dm.densityDpi / 160.0f + 0.5);
+        REL_SWIPE_THRESHOLD_VELOCITY = (int)(200.0f * dm.densityDpi / 130.0f + 0.5);
+
+        listView = view.findViewById(R.id.item_view);
+
+        final GestureDetector gestureDetector = new GestureDetector(new MyGestureDetector());
+        View.OnTouchListener gestureListener = new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetector.onTouchEvent(event);
+            }};
+        listView.setOnTouchListener(gestureListener);
 
         final SwipeRefreshLayout sw = view.findViewById(R.id.explore_swipe_refresh);
         sw.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
@@ -62,14 +79,6 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         });
 
         productManager = new ProductManager(this,null);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                openDetailedView(view.getId());
-            }
-        });
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             private int mLastFirstVisibleItem;
@@ -158,6 +167,29 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
 
     }
 
+    private void myOnItemClick(View view) {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                openDetailedView(view.getId());
+            }
+        });
+        Log.d("HERE", "Item Clicked "+view.getId());
+    }
+
+    private void onLTRFling() {
+
+    }
+
+    private void onRTLFling() {
+        BottomNavigationItemView lendzBtn = getActivity().findViewById(R.id.navbar_lendz);
+        lendzBtn.performClick();
+        lendzBtn.setPressed(true);
+        lendzBtn.invalidate();
+        lendzBtn.setPressed(false);
+        lendzBtn.invalidate();
+    }
+
 
     private void search(CharSequence word) {
 
@@ -170,24 +202,6 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
 
         updateView();
 
-    }
-
-
-    private void playground() {
-        /*
-            ArrayList<ProductDataItem> productDataItemList = new ArrayList<>();
-        */
-/*
-        productDataItemList.get(0).setName("New name");
-        productDataItemList.get(0).update();
-
-        productDataItemList.get(2).setName("John");
-        productDataItemList.get(2).update();
-
-        productDataItemList.get(3).setRating(5);
-        productDataItemList.get(3).setName("Just name");
-        productDataItemList.get(3).update();
-        */
     }
 
     @Override
@@ -239,5 +253,33 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         ArrayList<ProductDataItem> items = filteredList == null ? productDataItemList : filteredList;
         exploreAdapter = new ExploreAdapter(view.getContext(), items);
         listView.setAdapter(exploreAdapter);
+    }
+    class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        //Item Clicked Listener
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+           listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    openDetailedView(view.getId());
+                }
+            });
+            return false;
+        }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            if (Math.abs(e1.getY() - e2.getY()) > REL_SWIPE_MAX_OFF_PATH)
+                return false;
+            if(e1.getX() - e2.getX() > REL_SWIPE_MIN_DISTANCE &&
+                    Math.abs(velocityX) > REL_SWIPE_THRESHOLD_VELOCITY) {
+                onRTLFling();
+            }  else if (e2.getX() - e1.getX() > REL_SWIPE_MIN_DISTANCE &&
+                    Math.abs(velocityX) > REL_SWIPE_THRESHOLD_VELOCITY) {
+                onLTRFling();
+            }
+            return false;
+        }
+
     }
 }

@@ -94,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements IDataController {
 
     @Override
     public void setData() {
-
         USER = userManager.getUser(2);
     }
 }
