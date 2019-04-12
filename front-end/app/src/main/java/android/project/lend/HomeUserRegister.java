@@ -38,7 +38,6 @@ public class HomeUserRegister extends AppCompatActivity {
     EditText password;
     EditText passwordConfirm;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,6 +126,9 @@ public class HomeUserRegister extends AppCompatActivity {
                     Gson g = new Gson();
                     ItemResponse res = g.fromJson(response, ItemResponse.class);
                     //onBackPressed();
+
+                    MainActivity.USER = new UserDataItem();
+                    MainActivity.USER.create(user);
                 }
             }, new com.android.volley.Response.ErrorListener() {
                 @Override
