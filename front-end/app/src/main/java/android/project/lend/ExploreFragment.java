@@ -116,7 +116,6 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
                 if (sortByPosition != null) {
                     filter.setSortBy(sortByPosition);
                 }
-                Log.d("HERE", ""+allItems.size());
                 filter.show();
                 filter.setFilterCallback(ExploreFragment.this);
             }
@@ -200,11 +199,9 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
     }
 
     private void openDetailedView(Integer itemId) {
-
         ProductDataItem selectedItem = null;
-
         for (int i = 0; i < allItems.size(); i++) {
-            if (allItems.get(i).getId() == itemId) {
+            if (allItems.get(i).getId().equals(itemId)) {
                 selectedItem = allItems.get(i);
                 break;
             }

@@ -222,12 +222,12 @@ public class HomeNewItemFragment extends Fragment {
     private void uploadItem() {
         try {
             String HTTP_REQUEST_BASE_URL = "https://lend-app.herokuapp.com/";
-            String LENDZ_PATH = "items";
+            String ITEM_PATH = "items";
             final Gson gson = new Gson();
             final String requestBody = gson.toJson(newItem);
 
             RequestQueue req = Volley.newRequestQueue(getContext());
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, HTTP_REQUEST_BASE_URL + LENDZ_PATH, new Response.Listener<String>() {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, HTTP_REQUEST_BASE_URL + ITEM_PATH, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     Log.d("Volley", response);

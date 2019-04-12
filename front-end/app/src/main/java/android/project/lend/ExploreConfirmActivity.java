@@ -86,6 +86,7 @@ public class ExploreConfirmActivity extends AppCompatActivity {
 
         if (itemData != null) {
             setItemData();
+            Log.d("HERE",imageURL+" ");
         }
 
 
@@ -106,7 +107,6 @@ public class ExploreConfirmActivity extends AppCompatActivity {
         //Image
         ImageView itemImage = findViewById(R.id.confirm_item_image);
         Glide.with(this).load(imageURL).into(itemImage);
-//        itemImage
         //Dates
         TextView itemDates = findViewById(R.id.confirm_date_date);
         itemDates.setText( startDate +" - "+ endDate );
