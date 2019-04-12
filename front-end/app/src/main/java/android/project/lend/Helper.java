@@ -173,10 +173,9 @@ public class Helper {
         String imageUrl;
         String description;
         String category;
-        Integer status;
 
 
-        public ProductData(Integer id, Integer userId, String name, Float price, Integer rating, String description, String category, Integer status) {
+        public ProductData(Integer id, Integer userId, String name, Float price, Integer rating, String description, String category) {
             this.id = id;
             this.userId = userId;
             this.name = name;
@@ -184,16 +183,14 @@ public class Helper {
             this.rating = rating;
             this.description = description;
             this.category = category;
-            this.status = status;
         }
-        public ProductData(Integer userId, String name, Float price, Integer rating, String description, String category, Integer status) {
+        public ProductData(Integer userId, String name, Float price, Integer rating, String description, String category) {
             this.userId = userId;
             this.name = name;
             this.price = price;
             this.rating = rating;
             this.description = description;
             this.category = category;
-            this.status = status;
         }
     }
 

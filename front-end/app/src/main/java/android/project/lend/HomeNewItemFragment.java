@@ -212,7 +212,7 @@ public class HomeNewItemFragment extends Fragment {
         if (priceCheck) {
             Helper helper = new Helper();
             newItem = helper.new ProductData(MainActivity.USER.getId(), itemTitle,
-                    itemPrice, 0, itemDescription, itemCategory, 0);
+                    itemPrice, 0, itemDescription, itemCategory);
 
             uploadItem();
             Toast.makeText(getContext(), "Adding new item...", Toast.LENGTH_LONG).show();

@@ -61,10 +61,12 @@ public class LendzAdapter extends ArrayAdapter<LendzDataItem> {
         name.setText(currentLendz.product.getName());
 
 
-        TextView dueDate = (TextView) listItem.findViewById(R.id.product_status);
+        final TextView dueDate = (TextView) listItem.findViewById(R.id.product_status);
 
         ImageView img = listItem.findViewById(R.id.imageView);
-        RatingBar userRating = listItem.findViewById(R.id.user_product_rating);
+        final RatingBar userRating = listItem.findViewById(R.id.user_product_rating);
+        img.setAlpha((float)1.0);
+        userRating.setVisibility(View.GONE);
 
         if(hasDueDatePassed(currentLendz)) {
             dueDate.setText("Rate product");
@@ -75,7 +77,9 @@ public class LendzAdapter extends ArrayAdapter<LendzDataItem> {
                 userRating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
                     @Override
                     public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                        uploadRating(rating, listItem, currentLendz);
+                        currentLendz.uploadRating(rating, listItem);
+                        userRating.setIsIndicator(true);
+                        dueDate.setText("Returned");
                     }
                 });
             }
@@ -116,54 +120,5 @@ public class LendzAdapter extends ArrayAdapter<LendzDataItem> {
         }
         //if duedate is in the future or already gone
         return endDate.after(now) ? false : true ;
-    }
-
-    private void uploadRating(Float r, View listItem, LendzDataItem lendzDataItem) {
-        RequestQueue req = Volley.newRequestQueue(listItem.getContext());
-        Integer rating = Math.round(r);
-
-        Gson gson = new Gson();
-        UploadRating item = new UploadRating(lendzDataItem.getId(), rating);
-        final String requestBody = gson.toJson(item);
-
-        StringRequest stringRequest = new StringRequest(Request.Method.PUT, MainActivity.BASE_URL + "borrowed", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d("response", response + "");
-            }
-        },
-        new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("ERROR", error + "");
-            }
-        }){
-            @Override
-            public String getBodyContentType() {
-                return "application/json; charset=utf-8";
-            }
-
-            @Override
-            public byte[] getBody() throws AuthFailureError {
-                try {
-                    return requestBody == null ? null : requestBody.getBytes("utf-8");
-                } catch (UnsupportedEncodingException uee) {
-                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
-                    return null;
-                }
-            }
-        };
-        req.add(stringRequest);
-
-    }
-    private class UploadRating {
-        @SerializedName("id_borrowed")
-        Integer id;
-        Integer rating;
-
-        public UploadRating(Integer id, Integer rating) {
-            this.id = id;
-            this.rating = rating;
-        }
     }
 }
