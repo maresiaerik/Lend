@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.DisplayMetrics;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -22,7 +21,6 @@ public class LendzFragment extends Fragment implements IDataController {
 
     private LendzManager lendzManager;
     private ArrayList<LendzDataItem> lendzDataItemList;
-    static public ArrayList<LendzDataItem> allLendzDataItemList;
 
     private View view = null;
     private ListView listView = null;
@@ -93,8 +91,17 @@ public class LendzFragment extends Fragment implements IDataController {
 
     @Override
     public void setData() {
-        lendzDataItemList = lendzManager.getLendzListByUser(MainActivity.USER.getId());
+
+        lendzDataItemList = new ArrayList<>();
+
+        ArrayList<LendzDataItem> unratedLendzDataItems = lendzManager.getLendzListByUser(MainActivity.USER.getId());
+        ArrayList<LendzDataItem> ratedLendzDataItems = lendzManager.getLendzListByRating(MainActivity.USER.getId());
+
+        lendzDataItemList.addAll(unratedLendzDataItems);
+        lendzDataItemList.addAll(ratedLendzDataItems);
+
         lendzAdapter = new LendzAdapter(view.getContext(), lendzDataItemList);
+
         listView.setAdapter(lendzAdapter);
     }
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {

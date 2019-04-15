@@ -279,19 +279,24 @@ public class Helper {
         String startDate;
         @SerializedName("end_date")
         String dueDate;
+        Integer rating;
 
-        public LendzData(Integer id, Integer productId, Integer lenderUserId, String startDate, String dueDate) {
+        public LendzData(Integer id, Integer productId, Integer lenderUserId, String startDate, String dueDate, Integer rating) {
+
             this.id = id;
             this.productId = productId;
             this.lenderUserId = lenderUserId;
             this.startDate = startDate;
             this.dueDate = dueDate;
+            this.rating = rating;
         }
-        public LendzData(Integer productId, Integer lenderUserId, String startDate, String dueDate) {
+        public LendzData(Integer productId, Integer lenderUserId, String startDate, String dueDate, Integer rating) {
+
             this.productId = productId;
             this.lenderUserId = lenderUserId;
             this.startDate = startDate;
             this.dueDate = dueDate;
+            this.rating = rating;
         }
     }
 }

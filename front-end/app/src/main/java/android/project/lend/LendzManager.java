@@ -1,8 +1,13 @@
 package android.project.lend;
 
+import android.icu.text.SimpleDateFormat;
 import android.util.Log;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 public class LendzManager extends Helper implements IManager {
 
@@ -58,7 +63,26 @@ public class LendzManager extends Helper implements IManager {
 
         for (final LendzData lendz : lendzList) {
 
-            if(lendz.lenderUserId == userId) {
+            if(lendz.lenderUserId == userId && lendz.rating == null) {
+
+                LendzDataItem lendzDataItem = setLendz(lendz);
+
+                lendzDataItemList.add(lendzDataItem);
+            }
+        }
+
+        sortListByDueDate(lendzDataItemList);
+
+        return lendzDataItemList;
+    }
+
+    public ArrayList<LendzDataItem> getLendzListByRating(Integer userId){
+
+        ArrayList<LendzDataItem> lendzDataItemList = new ArrayList<>();
+
+        for (final LendzData lendz : lendzList) {
+
+            if(lendz.lenderUserId == userId && lendz.rating != null) {
 
                 LendzDataItem lendzDataItem = setLendz(lendz);
 
@@ -94,6 +118,7 @@ public class LendzManager extends Helper implements IManager {
 
         lendzDataItem.setStartDate(lendz.startDate);
         lendzDataItem.setDueDate(lendz.dueDate);
+        lendzDataItem.setRating(lendz.rating);
 
         lendzDataItem.clearChanges();
 
@@ -119,5 +144,27 @@ public class LendzManager extends Helper implements IManager {
         if(userManager != null && !userManager.loaded) return;
 
         dataController.setData();
+    }
+
+    private void sortListByDueDate(ArrayList<LendzDataItem> list){
+
+        Collections.sort(list, new Comparator<LendzDataItem>() {
+            @Override
+            public int compare(LendzDataItem o1, LendzDataItem o2) {
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                Date d1 = null;
+                Date d2 = null;
+
+                try {
+                    d1 = sdf.parse(o1.getDueDate());
+                    d2 = sdf.parse(o2.getDueDate());
+                } catch (ParseException e){
+
+                }
+
+                return d1.compareTo(d2);
+            }
+        });
     }
 }
