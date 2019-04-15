@@ -201,10 +201,10 @@ public class HomeFragment extends Fragment implements IDataController {
         TextView calendarText = itemDialog.findViewById(R.id.textView2);
 
         editText.setText("Edit product");
-        calendarText.setText("See Calendar");
+        calendarText.setText("See statistics");
 
         calendarIcon.setImageResource(R.drawable.edit_icon);
-        editIcon.setImageResource(R.drawable.calendar_icon);
+        editIcon.setImageResource(R.drawable.chart_icon);
         itemDialog.show();
         //Open Edit item view
         itemDialog.findViewById(R.id.contact_message).setOnClickListener(new View.OnClickListener() {
