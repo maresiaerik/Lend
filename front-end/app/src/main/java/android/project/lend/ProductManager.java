@@ -85,7 +85,7 @@ public class ProductManager extends Helper implements IManager
         productDataItem.imageDataItems = imageManager.getProductImages(product.id);
         productDataItem.setDescription(product.description);
         productDataItem.setCategory(product.category);
-        productDataItem.setStatus(product.status);
+        //productDataItem.setStatus(product.status);
 
         productDataItem.clearChanges();
 

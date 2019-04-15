@@ -1,7 +1,5 @@
 package android.project.lend;
 
-import android.media.Image;
-import android.service.autofill.UserData;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -16,8 +14,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class Helper {
     private String HTTP_BASE_URL = "https://lend-app.herokuapp.com/";
@@ -173,10 +169,9 @@ public class Helper {
         String imageUrl;
         String description;
         String category;
-        Integer status;
 
 
-        public ProductData(Integer id, Integer userId, String name, Float price, Integer rating, String description, String category, Integer status) {
+        public ProductData(Integer id, Integer userId, String name, Float price, Integer rating, String description, String category) {
             this.id = id;
             this.userId = userId;
             this.name = name;
@@ -184,16 +179,14 @@ public class Helper {
             this.rating = rating;
             this.description = description;
             this.category = category;
-            this.status = status;
         }
-        public ProductData(Integer userId, String name, Float price, Integer rating, String description, String category, Integer status) {
+        public ProductData(Integer userId, String name, Float price, Integer rating, String description, String category) {
             this.userId = userId;
             this.name = name;
             this.price = price;
             this.rating = rating;
             this.description = description;
             this.category = category;
-            this.status = status;
         }
     }
 
@@ -221,7 +214,7 @@ public class Helper {
         String cardSecurity;
         String password;
 
-        public UserData(Integer id, String firstName, String lastName, String imageUrl, String emailAddress, String homeAddress, String phoneNumber, String cardNumber, String cardDate, String cardSecurity) {
+        public UserData(Integer id, String firstName, String lastName, String imageUrl, String emailAddress, String homeAddress, String phoneNumber, String cardNumber, String cardDate, String cardSecurity, String password) {
             this.id = id;
             this.firstName = firstName;
             this.lastName = lastName;
@@ -232,6 +225,7 @@ public class Helper {
             this.cardNumber = cardNumber;
             this.cardDate = cardDate;
             this.cardSecurity = cardSecurity;
+            this.password = password;
         }
         public UserData( String firstName, String lastName, String imageUrl, String emailAddress, String homeAddress, String phoneNumber, String cardNumber, String cardDate, String cardSecurity, String password) {
             this.firstName = firstName;

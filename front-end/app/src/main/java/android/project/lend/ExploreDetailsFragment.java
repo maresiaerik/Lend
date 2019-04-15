@@ -147,6 +147,9 @@ public class ExploreDetailsFragment extends Fragment implements DatePickerDialog
                 confirmIntent.putExtra("datesBtn", finalStartDate);
                 confirmIntent.putExtra("ImageURL", productDataItem.imageDataItems.get(0).getUrl());
                 confirmIntent.putExtra("endDate", finalEndDate);
+                confirmIntent.putExtra("userEmail", productDataItem.owner.getEmailAddress());
+                confirmIntent.putExtra("userAddress", productDataItem.owner.getHomeAddress());
+                confirmIntent.putExtra("userPhone", productDataItem.owner.getPhoneNumber());
                 startActivity(confirmIntent);
             }
         });

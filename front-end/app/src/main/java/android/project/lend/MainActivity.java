@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements IDataController {
     BottomNavigationView bottom_nav;
     int endFrag =-1;
     static public String[] PRODUCT_STATUS = new String[] {"Available","Lendzed","Returned"};
+    static public String BASE_URL = "https://lend-app.herokuapp.com/";
 
     public static Context mainActivityContext;
 

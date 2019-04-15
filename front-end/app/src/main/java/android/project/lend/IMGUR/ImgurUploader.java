@@ -57,7 +57,8 @@ public class ImgurUploader {
                 Log.d("IMGUR_TEST", imgurUrl);
                 if (product) {
                     Helper helper = new Helper();
-                    newImage = helper.new ImageData(Integer.parseInt(id),imgurUrl);
+                    Integer parsedId = Integer.valueOf(id);
+                    newImage = helper.new ImageData(parsedId, imgurUrl);
                     uploadImageString(newImage);
                 } else {
                     //Update User DB With ID

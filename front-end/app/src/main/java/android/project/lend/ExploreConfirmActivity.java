@@ -25,10 +25,6 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -40,7 +36,7 @@ public class ExploreConfirmActivity extends AppCompatActivity {
 
     ProductCore itemData;
     ProductDataItem productDataItem;
-    String startDate, endDate;
+    String startDate, endDate, userEmail, userAddress, userPhone;
     String imageURL;
 
     Helper.LendzData newLenzDataItem;
@@ -87,6 +83,9 @@ public class ExploreConfirmActivity extends AppCompatActivity {
         startDate = intent.getStringExtra("datesBtn");
         endDate = intent.getStringExtra("endDate");
         imageURL = intent.getStringExtra("ImageURL");
+        userAddress = intent.getStringExtra("userAddress");
+        userEmail = intent.getStringExtra("userEmail");
+        userPhone = intent.getStringExtra("userPhone");
 
         if (itemData != null) {
             setItemData();
@@ -116,6 +115,8 @@ public class ExploreConfirmActivity extends AppCompatActivity {
         itemDates.setText( startDate +" - "+ endDate );
         //Price
         TextView itemPrice = findViewById(R.id.confirm_price_price);
+        TextView servicePrice = findViewById(R.id.confirm_service_price);
+        TextView pricePerDay = findViewById(R.id.price_per_day);
         //Get Lendz length in days
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date start;
@@ -134,18 +135,46 @@ public class ExploreConfirmActivity extends AppCompatActivity {
 
         DecimalFormat df = new DecimalFormat("#.00");
         Log.d("price", noOfDays + "");
-        Float price = itemData.getPrice() * (noOfDays == 0 ? 1 : noOfDays);
+        Float multiplier = getMultiplier();
 
-        itemPrice.setText("€" + df.format(price));
+        Log.d("multiplier", multiplier  + "");
+        Float serviceFee = (multiplier - 1) * itemData.getPrice() + 1;
+
+        servicePrice.setText("€" + df.format(serviceFee));
+
         //Total
         TextView itemTotal = findViewById(R.id.confirm_total_price);
-        itemTotal.setText("€" + df.format((price + 2)));
+        pricePerDay.setText("€" + df.format(itemData.getPrice()) + "/day");
+        itemPrice.setText("€" + df.format(itemData.getPrice() * (noOfDays == 0 ? 1 : noOfDays)));
+        itemTotal.setText("€" + df.format((itemData.getPrice() *  (noOfDays == 0 ? 1 : noOfDays) + serviceFee)));
 
         //Initialize new Instance of Lendz
         if(MainActivity.USER != null && MainActivity.USER.getId() != null) {
             Helper helper = new Helper();
             newLenzDataItem = helper.new LendzData(itemData.getId(), MainActivity.USER.getId(), startDate, endDate, null);
         }
+    }
+
+    private Float getMultiplier() {
+
+        Float price = itemData.getPrice();
+
+        Double percentageMultiplier = 1.0;
+
+        if(price <= 10) {
+
+            percentageMultiplier = 1.0;
+        }
+        else if(price > 10 && price <= 50){
+
+            percentageMultiplier = 1.05;
+        }
+        else if (price > 50 ) {
+
+            percentageMultiplier = 1.1;
+        }
+
+        return new Float(percentageMultiplier);
     }
 
     //Complete Borrow And Start Receipt Activity
@@ -166,6 +195,9 @@ public class ExploreConfirmActivity extends AppCompatActivity {
                     receiptIntent.putExtra("datesBtn", startDate);
                     receiptIntent.putExtra("endDate", endDate);
                     receiptIntent.putExtra("imageURL", imageURL);
+                    receiptIntent.putExtra("userEmail", userEmail);
+                    receiptIntent.putExtra("userPhone", userPhone);
+                    receiptIntent.putExtra("userAddress", userAddress);
                     startActivity(receiptIntent);
                 }
             }, new Response.ErrorListener() {

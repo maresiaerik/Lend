@@ -5,22 +5,32 @@
     android:layout_width="match_parent"
     android:id="@+id/product_item_list_item"
     android:layout_height="match_parent">
-
-    <ImageView
-        android:layout_marginTop="0dp"
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:scaleType="centerCrop"
-        android:minHeight="200dp"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-
-        />
+        android:id="@+id/imageView_container">
+        <ImageView
+            android:layout_marginTop="0dp"
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:scaleType="centerCrop"
+            android:minHeight="200dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            />
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_centerInParent="true"
+            android:id="@+id/user_product_rating"
+            />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/product_name"
         android:layout_width="wrap_content"
-        android:layout_below="@id/imageView"
+        android:layout_below="@id/imageView_container"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -33,7 +43,7 @@
         android:id="@+id/product_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageView"
+        android:layout_below="@id/imageView_container"
         android:layout_centerHorizontal="true"
         android:textSize="20sp"
         android:layout_weight="1"
@@ -43,7 +53,7 @@
         android:id="@+id/product_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageView"
+        android:layout_below="@id/imageView_container"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:textSize="20sp"
@@ -53,7 +63,7 @@
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageView"
+        android:layout_below="@id/imageView_container"
         android:layout_weight="1"
         android:theme="@style/RatingBar"
         android:id="@+id/product_rating"
