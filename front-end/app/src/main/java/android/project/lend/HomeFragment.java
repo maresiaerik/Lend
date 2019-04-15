@@ -1,14 +1,14 @@
 package android.project.lend;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -16,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -43,7 +44,7 @@ public class HomeFragment extends Fragment implements IDataController {
 
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        REL_SWIPE_MIN_DISTANCE =  120;
+        REL_SWIPE_MIN_DISTANCE = 120;
         REL_SWIPE_MAX_OFF_PATH = 250;
         REL_SWIPE_THRESHOLD_VELOCITY = 200;
 
@@ -120,7 +121,7 @@ public class HomeFragment extends Fragment implements IDataController {
         }
 
         //Creating New Item Fragment
-        final Fragment newItemFragment = new HomeNewItemFragment();
+        final Fragment newItemFragment = new HomeNewEditItemFragment();
 
         //Add Item Button Action
         addNewItemBtn = view.findViewById(R.id.addNewItemBtn);
@@ -133,13 +134,7 @@ public class HomeFragment extends Fragment implements IDataController {
 
         productManager = new ProductManager(this, null);
 
-
         return view;
-    }
-
-    private void myOnItemClick(int position) {
-        String str = ("Item clicked = " + position);
-        Toast.makeText(getContext(), str, Toast.LENGTH_SHORT).show();
     }
 
     private void onLTRFling() {
@@ -162,9 +157,12 @@ public class HomeFragment extends Fragment implements IDataController {
         //Item Clicked Listener
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
-            ListView lv = listView;
-            int pos = lv.pointToPosition((int) e.getX(), (int) e.getY());
-            myOnItemClick(pos);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    openEditItem(view.getId());
+                }
+            });
             return false;
         }
 
@@ -181,7 +179,31 @@ public class HomeFragment extends Fragment implements IDataController {
 
     }
 
+    private void openEditItem(int id) {
+        ProductDataItem selectedItem = new ProductDataItem();
+        for (int i = 0; i < productDataItemList.size(); i++) {
+            if (productDataItemList.get(i).getId().equals(id)) {
+                selectedItem = productDataItemList.get(i);
+                break;
+            }
+        }
+        if (selectedItem != null) {
+            HomeNewEditItemFragment editItemFragment = new HomeNewEditItemFragment();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("selectedItem", selectedItem);
+            editItemFragment.setArguments(bundle);
+            FragmentManager manager = getActivity().getSupportFragmentManager();
+            manager.popBackStack();
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.setCustomAnimations(R.anim.in_right, R.anim.out_left);
+            ft.replace(R.id.fragment_container, editItemFragment);
+            ft.addToBackStack(null);
+            ft.commit();
+        }
+    }
+
 }
+
 
 
 

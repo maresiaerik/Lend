@@ -1,7 +1,5 @@
 package android.project.lend;
 
-import android.media.Image;
-import android.service.autofill.UserData;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -16,8 +14,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class Helper {
     private String HTTP_BASE_URL = "https://lend-app.herokuapp.com/";
