@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -21,7 +23,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -40,6 +41,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
     private int REL_SWIPE_MAX_OFF_PATH;
     private int REL_SWIPE_THRESHOLD_VELOCITY;
     private ProductDataItem selectedItem = null;
+    private TextWatcher txtWatch;
 
     Button filterBtn;
     EditText sbar;
@@ -54,10 +56,9 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         TextView pageTitle = view.findViewById(R.id.page_title);
         pageTitle.setText("Explore");
 
-        DisplayMetrics dm = getResources().getDisplayMetrics();
-        REL_SWIPE_MIN_DISTANCE = (int)(100.0f * dm.densityDpi / 160.0f + 0.5);
-        REL_SWIPE_MAX_OFF_PATH = (int)(300.0f * dm.densityDpi / 160.0f + 0.5);
-        REL_SWIPE_THRESHOLD_VELOCITY = (int)(200.0f * dm.densityDpi / 130.0f + 0.5);
+        REL_SWIPE_MIN_DISTANCE =  120;
+        REL_SWIPE_MAX_OFF_PATH = 250;
+        REL_SWIPE_THRESHOLD_VELOCITY = 200;
 
         listView = view.findViewById(R.id.item_view);
 
@@ -65,7 +66,8 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         View.OnTouchListener gestureListener = new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 return gestureDetector.onTouchEvent(event);
-            }};
+            }
+        };
         listView.setOnTouchListener(gestureListener);
 
         final SwipeRefreshLayout sw = view.findViewById(R.id.explore_swipe_refresh);
@@ -78,7 +80,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
             }
         });
 
-        productManager = new ProductManager(this,null);
+        productManager = new ProductManager(this, null);
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             private int mLastFirstVisibleItem;
@@ -118,10 +120,6 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
             @Override
             public void onClick(View v) {
 
-                Log.d("AllItems_LEngthg", allItems.size() + "");
-                Log.d("ProductDATA_Length", productDataItemList.size() + "");
-                //Log.d("FilterListLength", filteredList.size() + "");
-
                 filter = new Filter(allItems, view, listView, getContext());
 
                 if (minRating != null && maxRating != null) {
@@ -142,43 +140,22 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         });
 
         sbar = view.findViewById(R.id.explore_search);
-
-
-        TextWatcher txtWatch = new TextWatcher() {
+        sbar.addTextChangedListener(txtWatch);
+        txtWatch = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                Log.d("CHARS", s.length() + "");
                 search(s);
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         };
-
-        sbar.addTextChangedListener(txtWatch);
         return view;
-
-    }
-
-    private void myOnItemClick(View view) {
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                openDetailedView(view.getId());
-            }
-        });
-        Log.d("HERE", "Item Clicked "+view.getId());
-    }
-
-    private void onLTRFling() {
-
     }
 
     private void onRTLFling() {
@@ -218,12 +195,12 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
     }
 
     public void updateView() {
-
         ArrayList<ProductDataItem> items = filteredList == null ? productDataItemList : filteredList;
         exploreAdapter = new ExploreAdapter(view.getContext(), items);
         listView.setAdapter(exploreAdapter);
     }
 
+    //Open Details Fragment
     private void openDetailedView(Integer itemId) {
         ProductDataItem selectedItem = null;
         for (int i = 0; i < allItems.size(); i++) {
@@ -233,14 +210,18 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
             }
         }
         if (selectedItem != null) {
-
-            DetailedItemViewFragment detailedItemView = new DetailedItemViewFragment();
-
+            ExploreDetailsFragment detailedItemView = new ExploreDetailsFragment();
             Bundle bundle = new Bundle();
-
             bundle.putSerializable("selectedItem", selectedItem);
+            bundle.putSerializable("AllItems", allItems);
             detailedItemView.setArguments(bundle);
-            getFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, detailedItemView).commit();
+            FragmentManager manager = getActivity().getSupportFragmentManager();
+            manager.popBackStack();
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.setCustomAnimations(R.anim.in_right, R.anim.out_left);
+            ft.replace(R.id.fragment_container, detailedItemView);
+            ft.addToBackStack(null);
+            ft.commit();
         }
     }
 
@@ -254,11 +235,12 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         exploreAdapter = new ExploreAdapter(view.getContext(), items);
         listView.setAdapter(exploreAdapter);
     }
+
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
         //Item Clicked Listener
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
-           listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     openDetailedView(view.getId());
@@ -271,12 +253,9 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             if (Math.abs(e1.getY() - e2.getY()) > REL_SWIPE_MAX_OFF_PATH)
                 return false;
-            if(e1.getX() - e2.getX() > REL_SWIPE_MIN_DISTANCE &&
+            if (e1.getX() - e2.getX() > REL_SWIPE_MIN_DISTANCE &&
                     Math.abs(velocityX) > REL_SWIPE_THRESHOLD_VELOCITY) {
                 onRTLFling();
-            }  else if (e2.getX() - e1.getX() > REL_SWIPE_MIN_DISTANCE &&
-                    Math.abs(velocityX) > REL_SWIPE_THRESHOLD_VELOCITY) {
-                onLTRFling();
             }
             return false;
         }

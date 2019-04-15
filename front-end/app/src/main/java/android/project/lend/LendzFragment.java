@@ -1,18 +1,24 @@
 package android.project.lend;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -53,11 +59,9 @@ public class LendzFragment extends Fragment implements IDataController {
         listView.setOnTouchListener(gestureListener);
 
         lendzManager = new LendzManager(this, null);
-
-        DisplayMetrics dm = getResources().getDisplayMetrics();
-        REL_SWIPE_MIN_DISTANCE = (int)(100.0f * dm.densityDpi / 160.0f + 0.5);
-        REL_SWIPE_MAX_OFF_PATH = (int)(300.0f * dm.densityDpi / 160.0f + 0.5);
-        REL_SWIPE_THRESHOLD_VELOCITY = (int)(150.0f * dm.densityDpi / 130.0f + 0.5);
+        REL_SWIPE_MIN_DISTANCE =  120;
+        REL_SWIPE_MAX_OFF_PATH = 250;
+        REL_SWIPE_THRESHOLD_VELOCITY = 200;
 
         final SwipeRefreshLayout sw = view.findViewById(R.id.lendz_swipe_refresh);
         sw.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
@@ -70,11 +74,6 @@ public class LendzFragment extends Fragment implements IDataController {
         });
 
         return view;
-    }
-
-    private void myOnItemClick(int position) {
-        String str = ("Item clicked = "+position);
-        Toast.makeText(getContext(), str, Toast.LENGTH_SHORT).show();
     }
 
     private void onLTRFling() {
@@ -94,6 +93,30 @@ public class LendzFragment extends Fragment implements IDataController {
         homeBtn.setPressed(false);
         homeBtn.invalidate();
     }
+    private void openReceipt(Integer id) {
+        LendzDataItem lendItem = null;
+        for (int i = 0; i < lendzDataItemList.size(); i++) {
+
+            if(lendzDataItemList.get(i).getId() == id) {
+                lendItem = lendzDataItemList.get(i);
+                break;
+            }
+        }
+        if(lendItem != null) {
+
+            Intent receiptIntent = new Intent(getContext(), ExploreReceiptActivity.class);
+            receiptIntent.putExtra("itemData", (Parcelable) lendItem.product);
+            receiptIntent.putExtra("userEmail", lendItem.lender.getEmailAddress());
+            receiptIntent.putExtra("userAddress", lendItem.lender.getHomeAddress());
+            receiptIntent.putExtra("userPhone", lendItem.lender.getPhoneNumber());
+            receiptIntent.putExtra("datesBtn", lendItem.getStartDate());
+            receiptIntent.putExtra("endDate", lendItem.getDueDate());
+            receiptIntent.putExtra("imageURL", lendItem.product.imageDataItems.get(0).getUrl());
+            ActivityOptions options = ActivityOptions.makeCustomAnimation(getContext(), R.anim.in_bottom, R.anim.out_top);
+            startActivity(receiptIntent, options.toBundle());
+
+        }
+    }
 
     @Override
     public void setData() {
@@ -107,7 +130,12 @@ public class LendzFragment extends Fragment implements IDataController {
         public boolean onSingleTapUp(MotionEvent e) {
             ListView lv = listView;
             int pos = lv.pointToPosition((int)e.getX(), (int)e.getY());
-            myOnItemClick(pos);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    openReceipt(view.getId());
+                }
+            });
             return false;
         }
 

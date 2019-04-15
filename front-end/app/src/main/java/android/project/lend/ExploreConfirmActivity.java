@@ -36,7 +36,7 @@ public class ExploreConfirmActivity extends AppCompatActivity {
 
     ProductCore itemData;
     ProductDataItem productDataItem;
-    String startDate, endDate;
+    String startDate, endDate, userEmail, userAddress, userPhone;
     String imageURL;
 
     Helper.LendzData newLenzDataItem;
@@ -83,6 +83,9 @@ public class ExploreConfirmActivity extends AppCompatActivity {
         startDate = intent.getStringExtra("datesBtn");
         endDate = intent.getStringExtra("endDate");
         imageURL = intent.getStringExtra("ImageURL");
+        userAddress = intent.getStringExtra("userAddress");
+        userEmail = intent.getStringExtra("userEmail");
+        userPhone = intent.getStringExtra("userPhone");
 
         if (itemData != null) {
             setItemData();
@@ -189,6 +192,9 @@ public class ExploreConfirmActivity extends AppCompatActivity {
                     receiptIntent.putExtra("datesBtn", startDate);
                     receiptIntent.putExtra("endDate", endDate);
                     receiptIntent.putExtra("imageURL", imageURL);
+                    receiptIntent.putExtra("userEmail", userEmail);
+                    receiptIntent.putExtra("userPhone", userPhone);
+                    receiptIntent.putExtra("userAddress", userAddress);
                     startActivity(receiptIntent);
                 }
             }, new Response.ErrorListener() {

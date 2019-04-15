@@ -9,7 +9,7 @@
         android:text="@string/page_title_string"
         android:textColor="#515151"
         android:textSize="40sp"
-        android:padding="10dp"
+        android:paddingLeft="6dp"
         />
 
 </FrameLayout>
