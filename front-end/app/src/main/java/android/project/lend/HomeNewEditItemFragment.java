@@ -39,6 +39,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -50,19 +51,24 @@ import java.util.Calendar;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static java.lang.Float.parseFloat;
+import static java.lang.Integer.parseInt;
 
-public class HomeNewItemFragment extends Fragment {
+public class HomeNewEditItemFragment extends Fragment {
 
     DecimalFormat df = new DecimalFormat("#.00");
     View view;
-    String itemTitle, itemDescription, itemCategory, currentPhotoPath;
-    EditText inputPriceText;
+    EditText inputDescription, inputTitle, inputPriceText;
+    String itemTitle, itemDescription, itemCategory, currentPhotoPath, inputPriceTextString;
     final String imageDirectory = "/Lend";
     String newItemId;
+    String[] catDrop;
+    ImageView newImage1, newImage2, newImage3, newImage4;
+    ArrayList<ImageView> imageViews;
+    Spinner categorySpinner;
     Float itemPrice;
     Button priceBtn, cancelBtn, submitBtn;
     Boolean titleCheck, categoryCheck, descriptionCheck, priceCheck;
-    ImageView newImage1, newImage2, newImage3, newImage4;
+
     int gallery = 1, camera = 2, currentPic = 0, PERMISSION_ALL = 1, i = 0;
     ArrayList<Bitmap> bitmaps = new ArrayList<Bitmap>();
     Uri photoURI;
@@ -72,12 +78,19 @@ public class HomeNewItemFragment extends Fragment {
             Manifest.permission.CAMERA
     };
     Helper.ProductData newItem;
+    private ProductDataItem editDataItem;
+    private boolean editProduct, priceUpdated = false;
 
     @SuppressLint("ClickableViewAccessibility")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home_new_item, container, false);
+
+        inputTitle = view.findViewById(R.id.new_item_title);
+        categorySpinner = view.findViewById(R.id.category_spinner);
+        catDrop = getResources().getStringArray(R.array.category_items_dropdown);
+        inputDescription = view.findViewById(R.id.new_item_description);
 
         //Set Price Button For Dialog
         priceBtn = view.findViewById(R.id.price_btn);
@@ -111,6 +124,12 @@ public class HomeNewItemFragment extends Fragment {
         newImage2 = view.findViewById(R.id.new_image_2);
         newImage3 = view.findViewById(R.id.new_image_3);
         newImage4 = view.findViewById(R.id.new_image_4);
+
+        imageViews = new ArrayList<ImageView>();
+        imageViews.add(newImage1);
+        imageViews.add(newImage2);
+        imageViews.add(newImage3);
+        imageViews.add(newImage4);
 
         //Setting OnClick Listeners To Image Views
         newImage1.setOnClickListener(new View.OnClickListener() {
@@ -147,38 +166,37 @@ public class HomeNewItemFragment extends Fragment {
                                      }
         );
 
-
+        Bundle args = getArguments();
+        if (args != null && args.containsKey("selectedItem")) {
+            editDataItem = (ProductDataItem) args.getSerializable("selectedItem");
+            editProduct = true;
+            setEditProduct();
+        }
         return view;
     }
 
-    //Checking Permissions
-    public static boolean hasPermissions(Context context, String... permissions) {
-        if (context != null && permissions != null) {
-            for (String permission : permissions) {
-                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-                    return false;
-                }
-            }
+    //Set Product Info To Edit
+    private void setEditProduct() {
+        inputTitle.setText(editDataItem.getName());
+        inputDescription.setText(editDataItem.getDescription());
+        priceBtn.setText("€ " + editDataItem.getPrice() + "/day");
+        categorySpinner.setSelection(parseInt(editDataItem.getCategory()));
+        for (int i = 0; i < editDataItem.imageDataItems.size(); i++) {
+            Glide.with(view).load(editDataItem.imageDataItems.get(i).getUrl()).into(imageViews.get(i));
         }
-        return true;
     }
 
     //Save New Product
     private void setNewProduct() {
         titleCheck = categoryCheck = descriptionCheck = priceCheck = false;
-
         //Get Title
-        EditText inputTitle = view.findViewById(R.id.new_item_title);
         itemTitle = inputTitle.getText().toString();
         if (itemTitle.length() <= 0) {
             Toast.makeText(getContext(), "Please enter valid title", Toast.LENGTH_SHORT).show();
         } else {
             titleCheck = true;
         }
-
         //Get Category
-        Spinner categorySpinner = view.findViewById(R.id.category_spinner);
-        String[] catDrop = getResources().getStringArray(R.array.category_items_dropdown);
         itemCategory = categorySpinner.getSelectedItem().toString();
         if (titleCheck) {
             if (itemCategory.equals(catDrop[0])) {
@@ -188,9 +206,7 @@ public class HomeNewItemFragment extends Fragment {
                 itemCategory = categorySpinner.getSelectedItemPosition() + "";
             }
         }
-
         //Get Description
-        EditText inputDescription = view.findViewById(R.id.new_item_description);
         itemDescription = inputDescription.getText().toString();
         if (categoryCheck) {
             if (itemDescription.length() <= 0) {
@@ -201,40 +217,62 @@ public class HomeNewItemFragment extends Fragment {
         }
         //Get Price
         if (descriptionCheck) {
-            if (inputPriceText == null || inputPriceText.length() < 0) {
-                Toast.makeText(getContext(), "Please select valid price", Toast.LENGTH_SHORT).show();
+            if (priceUpdated) {
+                if (inputPriceText == null || inputPriceText.length() < 0) {
+                    Toast.makeText(getContext(), "Please select valid price", Toast.LENGTH_SHORT).show();
+                } else {
+                    itemPrice = parseFloat(inputPriceText.getText().toString());
+                    priceCheck = true;
+                }
             } else {
-                itemPrice = parseFloat(inputPriceText.getText().toString());
+                itemPrice = editDataItem.getPrice();
                 priceCheck = true;
             }
         }
         //Confirm Final Check + Update Product
         if (priceCheck) {
             Helper helper = new Helper();
-            newItem = helper.new ProductData(MainActivity.USER.getId(), itemTitle,
-                    itemPrice, 0, itemDescription, itemCategory);
+
+            if (editProduct) {
+                newItem = helper.new ProductData(editDataItem.getId(), MainActivity.USER.getId(), itemTitle,
+                        itemPrice, 0, itemDescription, itemCategory);
+            } else {
+                newItem = helper.new ProductData(MainActivity.USER.getId(), itemTitle,
+                        itemPrice, 0, itemDescription, itemCategory);
+            }
 
             uploadItem();
-            Toast.makeText(getContext(), "Adding new item...", Toast.LENGTH_LONG).show();
+            if (editProduct)
+                Toast.makeText(getContext(), "Updating item...", Toast.LENGTH_LONG).show();
+            else Toast.makeText(getContext(), "Adding new item...", Toast.LENGTH_LONG).show();
         }
     }
 
+    //Upload Item To DB
     private void uploadItem() {
         try {
             String HTTP_REQUEST_BASE_URL = "https://lend-app.herokuapp.com/";
             String ITEM_PATH = "items";
             final Gson gson = new Gson();
             final String requestBody = gson.toJson(newItem);
-
+            int requestType = Request.Method.POST;
+            if (editProduct) requestType = Request.Method.PUT;
             RequestQueue req = Volley.newRequestQueue(getContext());
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, HTTP_REQUEST_BASE_URL + ITEM_PATH, new Response.Listener<String>() {
+            StringRequest stringRequest = new StringRequest(requestType, HTTP_REQUEST_BASE_URL + ITEM_PATH, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     Log.d("Volley", response);
                     ItemResponse itemResponse = gson.fromJson(response, ItemResponse.class);
-                    newItemId = (itemResponse.getInsertId());
-                    uploadImages(newItemId); /*Upload Any Images To Imgur*/
-                    getActivity().onBackPressed();
+                    if (editProduct) {
+                        newItemId = (editDataItem.getId().toString());
+                        uploadImages(newItemId); /*Upload Any New Images To Imgur*/
+                        getActivity().onBackPressed();
+                    } else {
+                        newItemId = (itemResponse.getInsertId());
+                        uploadImages(newItemId); /*Upload Any Images To Imgur*/
+                        getActivity().onBackPressed();
+                    }
+
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -264,6 +302,17 @@ public class HomeNewItemFragment extends Fragment {
         }
     }
 
+    //Checking Permissions
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     //Creating Add Picture Dialog Box And Checking Permissions
     private void showPictureDialog() {
@@ -426,6 +475,7 @@ public class HomeNewItemFragment extends Fragment {
 
         //Get Input Price Text
         inputPriceText = priceDialog.findViewById(R.id.price_input);
+        priceUpdated = true;
 
         //Get Dialog Cancel Button
         final Button priceCancel = priceDialog.findViewById(R.id.new_item_price_cancel);
@@ -443,7 +493,7 @@ public class HomeNewItemFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                final String inputPriceTextString = inputPriceText.getText().toString();
+                inputPriceTextString = inputPriceText.getText().toString();
                 if (inputPriceTextString.length() > 0 && parseFloat(inputPriceTextString) > 0) {
                     priceBtn.setText("€ " + inputPriceTextString + "/day");
                     priceDialog.dismiss();
