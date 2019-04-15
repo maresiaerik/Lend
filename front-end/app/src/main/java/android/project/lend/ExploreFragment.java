@@ -99,6 +99,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
                             filterBtn.setVisibility(View.GONE);
                         }
                     });
+
                     sbar.animate().translationY(-100).alpha(0).setDuration(200).withEndAction(new Runnable() {
                         @Override
                         public void run() {
@@ -140,8 +141,9 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         });
 
         sbar = view.findViewById(R.id.explore_search);
-        sbar.addTextChangedListener(txtWatch);
-        txtWatch = new TextWatcher() {
+        Log.d("SBAR", sbar + "");
+
+        sbar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -154,7 +156,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
             @Override
             public void afterTextChanged(Editable s) {
             }
-        };
+        });
         return view;
     }
 
@@ -174,7 +176,6 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
 
         SearchBar searchBar = new SearchBar(items);
         ArrayList<ProductDataItem> searchedItems = searchBar.search(word);
-
         filteredList = word.length() == 0 ? productDataItemList : searchedItems;
 
         updateView();

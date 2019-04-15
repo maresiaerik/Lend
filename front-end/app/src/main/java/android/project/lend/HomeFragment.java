@@ -1,12 +1,15 @@
 package android.project.lend;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -16,7 +19,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +31,9 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment implements IDataController {
 
     private ProductManager productManager;
+    private  LendzManager lendzManager;
     private ArrayList<ProductDataItem> productDataItemList;
+    private ArrayList<LendzDataItem> lendzDataItemList;
     Button addNewItemBtn;
     int scrolling;
     private View view = null;
@@ -42,7 +49,7 @@ public class HomeFragment extends Fragment implements IDataController {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_home, container, false);
-
+        lendzManager = new LendzManager(this);
         REL_SWIPE_MIN_DISTANCE =  120;
         REL_SWIPE_MAX_OFF_PATH = 250;
         REL_SWIPE_THRESHOLD_VELOCITY = 200;
@@ -164,7 +171,14 @@ public class HomeFragment extends Fragment implements IDataController {
         public boolean onSingleTapUp(MotionEvent e) {
             ListView lv = listView;
             int pos = lv.pointToPosition((int) e.getX(), (int) e.getY());
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    openDialog(view.getId());
+                }
+            });
             myOnItemClick(pos);
+
             return false;
         }
 
@@ -180,6 +194,70 @@ public class HomeFragment extends Fragment implements IDataController {
         }
 
     }
+
+    private void openDialog(final Integer id) {
+        final Dialog itemDialog = new Dialog(getContext());
+        itemDialog.setContentView(R.layout.picture_input_layout);
+        ImageView calendarIcon = itemDialog.findViewById(R.id.imageView2);
+        ImageView editIcon = itemDialog.findViewById(R.id.message_icon);
+        TextView editText = itemDialog.findViewById(R.id.textView);
+        TextView calendarText = itemDialog.findViewById(R.id.textView2);
+
+        editText.setText("Edit product");
+        calendarText.setText("See Calendar");
+
+        calendarIcon.setImageResource(R.drawable.edit_icon);
+        editIcon.setImageResource(R.drawable.calendar_icon);
+        itemDialog.show();
+        //Open Edit item view
+        itemDialog.findViewById(R.id.contact_message).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemDialog.dismiss();
+            }
+
+        });
+        //Open Calendar
+        itemDialog.findViewById(R.id.message).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCalendar(id);
+                itemDialog.dismiss();
+            }
+        });
+    }
+
+    private void openCalendar(Integer id) {
+        HomeStatisticsFragment homeStatisticsFragment = new HomeStatisticsFragment();
+
+        lendzDataItemList = lendzManager.getLendzListByProduct(id);
+
+        ProductDataItem selectedItem = null;
+        for (int i = 0; i < productDataItemList.size(); i++) {
+
+            if(productDataItemList.get(i).getId().equals(id)) {
+                selectedItem = productDataItemList.get(i);
+                break;
+            }
+        }
+
+        if(selectedItem != null ) {
+
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("selectedItem", selectedItem);
+            bundle.putSerializable("selectedItemLendz", lendzDataItemList);
+            homeStatisticsFragment.setArguments(bundle);
+            FragmentManager manager = getActivity().getSupportFragmentManager();
+            manager.popBackStack();
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.setCustomAnimations(R.anim.in_right, R.anim.out_left);
+            ft.replace(R.id.fragment_container, homeStatisticsFragment);
+            ft.addToBackStack(null);
+            ft.commit();
+
+        }
+    }
+
 
 }
 
