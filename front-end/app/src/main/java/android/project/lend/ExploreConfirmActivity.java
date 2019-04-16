@@ -153,22 +153,25 @@ public class ExploreConfirmActivity extends AppCompatActivity {
             Helper helper = new Helper();
             newLenzDataItem = helper.new LendzData(itemData.getId(), MainActivity.USER.getId(), startDate, endDate, null);
         }
-
-
     }
 
     private Float getMultiplier() {
+
         Float price = itemData.getPrice();
+
         Double percentageMultiplier = 1.0;
+
         if(price <= 10) {
+
             percentageMultiplier = 1.0;
         }
         else if(price > 10 && price <= 50){
+
             percentageMultiplier = 1.05;
         }
         else if (price > 50 ) {
-            percentageMultiplier = 1.1;
 
+            percentageMultiplier = 1.1;
         }
 
         return new Float(percentageMultiplier);

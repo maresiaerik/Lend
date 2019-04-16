@@ -11,6 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="268d994a-07c3-43c0-9b05-4516e17d93cc" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeStatisticsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeStatisticsFragment.java" afterDir="false" />
@@ -18,6 +19,28 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzDataItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzDataItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/android/project/lend/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/android/project/lend/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_home_statistics_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_home_statistics_fragment.xml" afterDir="false" />
+=======
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreConfirmActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreConfirmActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/android/project/lend/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/android/project/lend/Helper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/app/src/main/ic_launcher-web.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/lend_icon-web.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/android/project/lend/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/android/project/lend/Helper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeNewEditItemFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeNewEditItemFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeNewItemFragment.java" beforeDir="false" />
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -97,41 +120,41 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gradle" value="1" />
-          <entry key="java" value="70" />
-          <entry key="xml" value="9" />
+          <entry key="java" value="80" />
+          <entry key="xml" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="1" />
-          <entry key="JAVA" value="70" />
-          <entry key="XML" value="9" />
+          <entry key="JAVA" value="80" />
+          <entry key="XML" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
+          <entry key="project.closed" value="10" />
           <entry key="project.open.time.10" value="2" />
           <entry key="project.open.time.13" value="1" />
-          <entry key="project.open.time.8" value="2" />
+          <entry key="project.open.time.8" value="4" />
           <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="8" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="41" />
           <entry key="gradle" value="1" />
-          <entry key="java" value="5675" />
-          <entry key="xml" value="407" />
+          <entry key="java" value="6935" />
+          <entry key="xml" value="555" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="1" />
-          <entry key="JAVA" value="5675" />
+          <entry key="JAVA" value="6935" />
           <entry key="PLAIN_TEXT" value="41" />
-          <entry key="XML" value="407" />
+          <entry key="XML" value="555" />
         </counts>
       </usages-collector>
     </session>
@@ -141,13 +164,24 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeUserRegister.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="122">
               <caret line="127" column="74" selection-start-line="127" selection-start-column="74" selection-end-line="127" selection-end-column="74" />
+=======
+<<<<<<< HEAD
+            <state relative-caret-position="133">
+              <caret line="269" column="22" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
+=======
+            <state relative-caret-position="255">
+              <caret line="17" column="49" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeUserLogin.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="142">
@@ -170,19 +204,88 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
               <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+=======
+<<<<<<< HEAD
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/ProductManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeStatisticsFragment.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/UserManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1024">
-              <caret line="58" column="99" selection-start-line="58" selection-start-column="99" selection-end-line="58" selection-end-column="99" />
+            <state relative-caret-position="-57">
+              <caret line="49" selection-start-line="49" selection-end-line="49" />
+=======
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-934">
+              <caret line="187" column="32" selection-start-line="187" selection-start-column="20" selection-end-line="187" selection-end-column="32" />
+              <folding>
+                <element signature="e#2320#2496#0" expanded="true" />
+                <element signature="e#2495#2496#0" expanded="true" />
+                <element signature="e#2878#3166#0" expanded="true" />
+                <element signature="e#3165#3166#0" expanded="true" />
+                <element signature="e#3776#3986#0" expanded="true" />
+                <element signature="e#3985#3986#0" expanded="true" />
+                <element signature="e#4764#5055#0" expanded="true" />
+                <element signature="e#5054#5055#0" expanded="true" />
+                <element signature="e#5335#5609#0" expanded="true" />
+                <element signature="e#5608#5609#0" expanded="true" />
+                <element signature="e#6606#6848#0" expanded="true" />
+                <element signature="e#6847#6848#0" expanded="true" />
+                <element signature="e#6936#7180#0" expanded="true" />
+                <element signature="e#7179#7180#0" expanded="true" />
+                <element signature="e#8536#8691#0" expanded="true" />
+                <element signature="e#8690#8691#0" expanded="true" />
+                <element signature="e#8783#8971#0" expanded="true" />
+                <element signature="e#8970#8971#0" expanded="true" />
+              </folding>
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
             </state>
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_lendz.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+=======
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeStatisticsFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="-1024">
+              <caret line="58" column="99" selection-start-line="58" selection-start-column="99" selection-end-line="58" selection-end-column="99" />
+=======
+            <state relative-caret-position="270">
+              <caret line="29" column="12" lean-forward="true" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< HEAD
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreConfirmActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="149" selection-start-line="149" selection-end-line="149" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzFragment.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -191,20 +294,63 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="94" column="46" selection-start-line="94" selection-start-column="46" selection-end-line="94" selection-end-column="46" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1613">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3915#4437#0" expanded="true" />
+                <element signature="e#4436#4437#0" expanded="true" />
+              </folding>
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeNewEditItemFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="427">
+              <caret line="246" column="126" lean-forward="true" selection-start-line="246" selection-start-column="126" selection-end-line="246" selection-end-column="126" />
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_home_statistics_fragment.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
               <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
             </state>
+=======
+<<<<<<< HEAD
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzDataItem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+=======
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/set_up_calendar_view.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-44" />
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
           </provider>
           <provider editor-type-id="android-designer2" />
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -215,12 +361,39 @@
                 <element signature="e#1855#3834#0" expanded="true" />
                 <element signature="e#3833#3834#0" expanded="true" />
               </folding>
+=======
+      <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/ProductCore.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+=======
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreDetailsFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="93">
+              <caret line="36" column="37" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="37" />
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeFragment.java">
+=======
+<<<<<<< HEAD
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzCore.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="986">
+              <caret line="72" column="27" selection-start-line="72" selection-start-column="27" selection-end-line="72" selection-end-column="27" />
+=======
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreFragment.java">
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="353">
               <caret line="168" column="10" selection-start-line="168" selection-start-column="10" selection-end-line="168" selection-end-column="10" />
@@ -235,6 +408,7 @@
                 <element signature="e#8492#8680#0" expanded="true" />
                 <element signature="e#8679#8680#0" expanded="true" />
               </folding>
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
             </state>
           </provider>
         </entry>
@@ -256,8 +430,8 @@
         <option value="AnnotationType" />
         <option value="resourceFile" />
         <option value="layoutResourceFile" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -267,6 +441,9 @@
       <find>Log.d</find>
       <find>getR</find>
       <find>setProduct</find>
+<<<<<<< HEAD
+      <find>item_view</find>
+=======
       <find>Toas</find>
       <find>set</find>
       <find>setOnCl</find>
@@ -286,6 +463,7 @@
       <find>HomeNew</find>
       <find>lendzManager</find>
       <find>lendzDataItemList</find>
+<<<<<<< HEAD
       <find>startCalendar</find>
       <find>You</find>
       <find>setData</find>
@@ -293,6 +471,9 @@
       <find>dataController</find>
       <find>noOf</find>
       <find>setDa</find>
+=======
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -301,6 +482,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/searchbar.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/button.xml" />
+=======
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+        <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/FilterDialog.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/filter_dialog.xml" />
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_explore.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/build/generated/source/apt/debug/androidx/annotation/NonNull.java" />
@@ -325,8 +518,13 @@
         <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/IDataController.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/ImageManager.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/ProductCore.java" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreAdapter.java" />
+=======
         <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzManager.java" />
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
         <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/DetailedItemViewFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/ProductManager.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/UserManager.java" />
@@ -337,6 +535,24 @@
         <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeUserRegister.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_explore_confirm.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/UserCore.java" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/IMGUR/ListUtils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/ListUtils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_lendz.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzCore.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/Helper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreConfirmActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzManager.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzFragment.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="900" />
+    <option name="y" value="47" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
+=======
         <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreReceiptActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreDetailsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreConfirmActivity.java" />
@@ -358,6 +574,7 @@
   <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -367,7 +584,11 @@
     <panes>
       <pane id="PackagesPane" />
       <pane id="ProjectPane" />
+<<<<<<< HEAD
+      <pane id="PackagesPane" />
+=======
       <pane id="Scope" />
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -397,14 +618,21 @@
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
               <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
+<<<<<<< HEAD
+=======
             <path>
               <item name="front-end" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
           </expand>
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
+      <pane id="Scope" />
+=======
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -417,7 +645,11 @@
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
+<<<<<<< HEAD
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+=======
     <key name="android.template.packageName">
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
       <recent name="android.project.lend" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
@@ -524,7 +756,15 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.24964234" />
+<<<<<<< HEAD
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.23104435" />
+=======
+<<<<<<< HEAD
+      <window_info content_ui="combo" id="Project" order="1" weight="0.18053691" />
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.18311875" />
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -538,8 +778,17 @@
       <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.49932885" weight="0.1" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.19127516" side_tool="true" weight="0.2851064" />
       <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.67785233" weight="0.46385542" />
       <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.32650602" />
+=======
+<<<<<<< HEAD
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.67785233" weight="0.2" />
+=======
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.67785233" weight="0.24457832" />
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+      <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.32765958" />
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
       <window_info anchor="bottom" id="Find" order="9" sideWeight="0.49932885" weight="0.23687944" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" weight="0.3295302" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
@@ -581,9 +830,29 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+=======
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/set_up_calendar_view.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/filter_dialog.xml">
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/Axios.java" />
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+        </state>
+      </provider>
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+      <provider editor-type-id="android-designer2" />
+    </entry>
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
     <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/ProductDataItem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -599,11 +868,19 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+=======
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/contact_layout.xml">
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-714" />
       </provider>
+<<<<<<< HEAD
+      <provider editor-type-id="android-manifest" />
+=======
       <provider editor-type-id="android-designer2" />
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/detailed_item_fragment.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/page_title_layout.xml">
@@ -635,6 +912,10 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_explore.xml">
+      <provider editor-type-id="android-designer2" />
+=======
     <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/ImageManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-153">
@@ -643,6 +924,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/IDataController.java">
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
@@ -825,7 +1107,14 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreConfirmActivity.java">
+=======
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/DetailedItemViewFragment.java">
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/SearchBar.java">
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="146" column="75" selection-start-line="146" selection-start-column="75" selection-end-line="146" selection-end-column="75" />
@@ -835,17 +1124,39 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreAdapter.java">
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/button_submit_action.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeNewItemFragment.java">
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="780">
           <caret line="69" selection-start-line="69" selection-end-line="69" />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreReceiptActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="457">
           <caret line="200" column="51" selection-start-line="200" selection-start-column="51" selection-end-line="200" selection-end-column="51" />
+=======
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/picture_input_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="25" column="37" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="37" />
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
         </state>
       </provider>
     </entry>
@@ -865,34 +1176,143 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/UserCore.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="335">
           <caret line="185" column="37" selection-start-line="185" selection-start-column="37" selection-end-line="185" selection-end-column="37" />
+=======
+<<<<<<< HEAD
+        <state relative-caret-position="2873">
+          <caret line="191" selection-start-line="191" selection-end-line="191" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="30" column="49" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
+=======
+        <state relative-caret-position="209">
+          <caret line="80" column="55" selection-start-line="80" selection-start-column="55" selection-end-line="80" selection-end-column="55" />
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/UserDataItem.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="30">
           <caret line="2" selection-start-line="2" selection-end-line="4" selection-end-column="1" />
+=======
+        <state relative-caret-position="-532">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeUserLogin.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="142">
           <caret line="62" column="59" selection-start-line="62" selection-start-column="59" selection-end-line="62" selection-end-column="59" />
         </state>
+=======
+<<<<<<< HEAD
+        <state relative-caret-position="867">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
+        </state>
+=======
+        <state relative-caret-position="-44" />
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreDetailsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="169" column="34" selection-start-line="169" selection-start-column="16" selection-end-line="169" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeUserRegister.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-382">
+          <caret line="99" selection-start-line="99" selection-end-line="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="49" column="32" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/UserManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-57">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/ListUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-112">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzDataItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/ProductCore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+=======
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_home_statistics_fragment.xml">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="285">
           <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+=======
+        <state relative-caret-position="255">
+          <caret line="17" column="49" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
         </state>
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzManager.java">
+=======
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzCore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="986">
+          <caret line="72" column="27" selection-start-line="72" selection-start-column="27" selection-end-line="72" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/Helper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="269" column="22" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreConfirmActivity.java">
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
           <caret line="18" column="54" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="54" />
@@ -906,13 +1326,52 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="177">
           <caret line="79" column="36" selection-start-line="79" selection-start-column="24" selection-end-line="79" selection-end-column="36" />
+=======
+<<<<<<< HEAD
+        <state relative-caret-position="153">
+          <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_lendz.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/ExploreConfirmActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="149" selection-start-line="149" selection-end-line="149" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1613">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3915#4437#0" expanded="true" />
+            <element signature="e#4436#4437#0" expanded="true" />
+=======
+        <state relative-caret-position="93">
+          <caret line="36" column="37" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="37" />
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
         </state>
       </provider>
     </entry>
@@ -935,6 +1394,7 @@
         <state relative-caret-position="353">
           <caret line="168" column="10" selection-start-line="168" selection-start-column="10" selection-end-line="168" selection-end-column="10" />
           <folding>
+<<<<<<< HEAD
             <element signature="imports" expanded="true" />
             <element signature="method#onLTRFling#0;class#HomeFragment#0" />
             <element signature="e#6675#6917#0" expanded="true" />
@@ -944,10 +1404,32 @@
             <element signature="e#8399#8400#0" expanded="true" />
             <element signature="e#8492#8680#0" expanded="true" />
             <element signature="e#8679#8680#0" expanded="true" />
+=======
+            <element signature="e#2320#2496#0" expanded="true" />
+            <element signature="e#2495#2496#0" expanded="true" />
+            <element signature="e#2878#3166#0" expanded="true" />
+            <element signature="e#3165#3166#0" expanded="true" />
+            <element signature="e#3776#3986#0" expanded="true" />
+            <element signature="e#3985#3986#0" expanded="true" />
+            <element signature="e#4764#5055#0" expanded="true" />
+            <element signature="e#5054#5055#0" expanded="true" />
+            <element signature="e#5335#5609#0" expanded="true" />
+            <element signature="e#5608#5609#0" expanded="true" />
+            <element signature="e#6606#6848#0" expanded="true" />
+            <element signature="e#6847#6848#0" expanded="true" />
+            <element signature="e#6936#7180#0" expanded="true" />
+            <element signature="e#7179#7180#0" expanded="true" />
+            <element signature="e#8536#8691#0" expanded="true" />
+            <element signature="e#8690#8691#0" expanded="true" />
+            <element signature="e#8783#8971#0" expanded="true" />
+            <element signature="e#8970#8971#0" expanded="true" />
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="638">
@@ -957,6 +1439,19 @@
             <element signature="e#1855#3834#0" expanded="true" />
             <element signature="e#3833#3834#0" expanded="true" />
           </folding>
+=======
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/LendzFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="94" column="46" selection-start-line="94" selection-start-column="46" selection-end-line="94" selection-end-column="46" />
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/project/lend/HomeNewEditItemFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="246" column="126" lean-forward="true" selection-start-line="246" selection-start-column="126" selection-end-line="246" selection-end-column="126" />
+>>>>>>> f62bee53b2ac9d85ced8c86d8563724bd0102b85
+>>>>>>> 3c322b08a1ef5e159994185eb31e94e67dd6432b
         </state>
       </provider>
     </entry>

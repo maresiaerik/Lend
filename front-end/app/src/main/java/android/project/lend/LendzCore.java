@@ -8,8 +8,9 @@ public class LendzCore {
     private Integer rating;
 
     public Boolean changed;
-    public Boolean changed_startDate;
-    public Boolean changed_dueDate;
+    public Boolean changedStartDate;
+    public Boolean changedDueDate;
+    public Boolean changedRating;
 
     public Integer getId() {
         return id;
@@ -28,7 +29,7 @@ public class LendzCore {
         if(this.startDate == startDate) return;
 
         changed = true;
-        changed_startDate = true;
+        changedStartDate = true;
 
         this.startDate = startDate;
     }
@@ -42,9 +43,21 @@ public class LendzCore {
         if(this.dueDate == dueDate) return;
 
         changed = true;
-        changed_dueDate = true;
+        changedDueDate = true;
 
         this.dueDate = dueDate;
+    }
+
+    public Integer getRating() { return rating; }
+
+    public void setRating(Integer rating) {
+
+        if(this.rating == rating) return;
+
+        changed = true;
+        changedRating = true;
+
+        this.rating = rating;
     }
 
     public void create(){
@@ -55,8 +68,9 @@ public class LendzCore {
 
         if(!changed) return;
 
-        if(changed_startDate){}
-        if(changed_dueDate){}
+        if(changedStartDate){}
+        if(changedDueDate){}
+        if(changedRating){}
     }
 
     public void delete(){
@@ -66,19 +80,8 @@ public class LendzCore {
     public void clearChanges(){
 
         changed = false;
-        changed_startDate = false;
-        changed_dueDate = false;
-    }
-
-    public Integer getRating() {
-        return rating;
-    }
-
-    public void setRating(Integer rating) {
-        if(this.rating == rating) return;
-
-        changed = true;
-        changed_dueDate = true;
-        this.rating = rating;
+        changedStartDate = false;
+        changedDueDate = false;
+        changedRating = false;
     }
 }
