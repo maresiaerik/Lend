@@ -32,7 +32,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment implements IDataController {
 
     private ProductManager productManager;
-    private  LendzManager lendzManager;
+    private LendzManager lendzManager;
     private ArrayList<ProductDataItem> productDataItemList;
     private ArrayList<LendzDataItem> lendzDataItemList;
     Button addNewItemBtn;
@@ -52,7 +52,7 @@ public class HomeFragment extends Fragment implements IDataController {
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
         lendzManager = new LendzManager(this);
-        REL_SWIPE_MIN_DISTANCE =  120;
+        REL_SWIPE_MIN_DISTANCE = 120;
         REL_SWIPE_MAX_OFF_PATH = 250;
         REL_SWIPE_THRESHOLD_VELOCITY = 200;
 
@@ -156,17 +156,9 @@ public class HomeFragment extends Fragment implements IDataController {
 
     @Override
     public void setData() {
-
-        if(MainActivity.USER == null || MainActivity.USER.getId() == null) {
-            Intent login = new Intent(getActivity(), HomeUserLogin.class);
-            startActivity(login);
-        }
-        else {
-
-            productDataItemList = productManager.getHomeProductList(MainActivity.USER.getId());
-            homeAdapter = new HomeAdapter(view.getContext(), productDataItemList);
-            listView.setAdapter(homeAdapter);
-        }
+        productDataItemList = productManager.getHomeProductList(MainActivity.USER.getId());
+        homeAdapter = new HomeAdapter(view.getContext(), productDataItemList);
+        listView.setAdapter(homeAdapter);
     }
 
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
@@ -243,11 +235,11 @@ public class HomeFragment extends Fragment implements IDataController {
         for (int i = 0; i < productDataItemList.size(); i++) {
 
             if (productDataItemList.get(i).getId().equals(id)) {
-                    selectedItem = productDataItemList.get(i);
+                selectedItem = productDataItemList.get(i);
 
             }
         }
-        if(selectedItem != null ) {
+        if (selectedItem != null) {
 
             Bundle bundle = new Bundle();
             bundle.putSerializable("selectedItem", selectedItem);
@@ -263,7 +255,6 @@ public class HomeFragment extends Fragment implements IDataController {
             ft.commit();
         }
     }
-
 
 
     private void openEditItem(int id) {

@@ -45,24 +45,6 @@ public class Helper {
         req.add(stringRequest);
     }
 
-    public UserData getUserData(Integer id){
-/*
-        UserData userData = new UserData();
-
-        userData.id = 1;
-        userData.firstName = "Florian";
-        userData.lastName = "Brandsma";
-        userData.imageUrl = "https://secure.i.telegraph.co.uk/multimedia/archive/03597/POTD_chick_3597497k.jpg";
-        userData.emailAddress = "t7brfl00@students.oamk.fi";
-        userData.homeAddress = "Kotkantie 1";
-        userData.phoneNumber = "+3581234567890";
-        userData.cardNumber = "1234 4567 8910";
-        userData.cardDate = "01/20";
-        userData.cardSecurity = "123";
-*/
-        return null;
-    }
-
     public void getUserData(final IManager manager, final ArrayList<UserData> userList){
 
         final RequestQueue req = Volley.newRequestQueue(MainActivity.mainActivityContext);
@@ -137,11 +119,9 @@ public class Helper {
                 Gson gson = new Gson();
                 Type listType = new TypeToken<ArrayList<LendzData>>(){}.getType();
                 ArrayList<LendzData> responseLendz = gson.fromJson(response, listType);
-
                 for (LendzData lendz: responseLendz) {
                     lendzList.add(lendz);
                 }
-
                 manager.setLoaded(true);
             }
         },

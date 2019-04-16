@@ -66,7 +66,7 @@ public class ProductManager extends Helper implements IManager
 
         for (final ProductData product : productList) {
 
-            if(product.id == id)
+            if(product.id.equals(id))
                 return setProduct(product);
         }
 

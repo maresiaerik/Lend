@@ -10,6 +10,7 @@ import android.support.design.internal.BottomNavigationItemView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -51,11 +52,12 @@ public class LendzFragment extends Fragment implements IDataController {
         View.OnTouchListener gestureListener = new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 return gestureDetector.onTouchEvent(event);
-            }};
+            }
+        };
         listView.setOnTouchListener(gestureListener);
 
         lendzManager = new LendzManager(this, null);
-        REL_SWIPE_MIN_DISTANCE =  120;
+        REL_SWIPE_MIN_DISTANCE = 120;
         REL_SWIPE_MAX_OFF_PATH = 250;
         REL_SWIPE_THRESHOLD_VELOCITY = 200;
 
@@ -89,16 +91,17 @@ public class LendzFragment extends Fragment implements IDataController {
         homeBtn.setPressed(false);
         homeBtn.invalidate();
     }
+
     private void openReceipt(Integer id) {
         LendzDataItem lendItem = null;
         for (int i = 0; i < lendzDataItemList.size(); i++) {
 
-            if(lendzDataItemList.get(i).getId() == id) {
+            if (lendzDataItemList.get(i).getId() == id) {
                 lendItem = lendzDataItemList.get(i);
                 break;
             }
         }
-        if(lendItem != null) {
+        if (lendItem != null) {
 
             Intent receiptIntent = new Intent(getContext(), ExploreReceiptActivity.class);
             receiptIntent.putExtra("itemData", (Parcelable) lendItem.product);
@@ -118,7 +121,6 @@ public class LendzFragment extends Fragment implements IDataController {
     public void setData() {
 
         lendzDataItemList = new ArrayList<>();
-
         ArrayList<LendzDataItem> unratedLendzDataItems = lendzManager.getLendzListByUser(MainActivity.USER.getId());
         ArrayList<LendzDataItem> ratedLendzDataItems = lendzManager.getLendzListByRating(MainActivity.USER.getId());
 
@@ -126,15 +128,15 @@ public class LendzFragment extends Fragment implements IDataController {
         lendzDataItemList.addAll(ratedLendzDataItems);
 
         lendzAdapter = new LendzAdapter(view.getContext(), lendzDataItemList);
-
         listView.setAdapter(lendzAdapter);
     }
+
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
         //Item Clicked Listener
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
             ListView lv = listView;
-            int pos = lv.pointToPosition((int)e.getX(), (int)e.getY());
+            int pos = lv.pointToPosition((int) e.getX(), (int) e.getY());
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -148,10 +150,10 @@ public class LendzFragment extends Fragment implements IDataController {
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             if (Math.abs(e1.getY() - e2.getY()) > REL_SWIPE_MAX_OFF_PATH)
                 return false;
-            if(e1.getX() - e2.getX() > REL_SWIPE_MIN_DISTANCE &&
+            if (e1.getX() - e2.getX() > REL_SWIPE_MIN_DISTANCE &&
                     Math.abs(velocityX) > REL_SWIPE_THRESHOLD_VELOCITY) {
                 onRTLFling();
-            }  else if (e2.getX() - e1.getX() > REL_SWIPE_MIN_DISTANCE &&
+            } else if (e2.getX() - e1.getX() > REL_SWIPE_MIN_DISTANCE &&
                     Math.abs(velocityX) > REL_SWIPE_THRESHOLD_VELOCITY) {
                 onLTRFling();
             }

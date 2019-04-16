@@ -13,12 +13,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7bb37c2a-a3f4-4d7a-b31a-2bbc794062b7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/ExploreAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/ExploreAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/ExploreFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/ExploreFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/Helper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/HomeFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/HomeNewItemFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/HomeNewEditItemFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/LendzAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/LendzAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/LendzFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/LendzFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/LendzManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/LendzManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/android/project/lend/ProductManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/android/project/lend/ProductManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../local.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -79,7 +86,7 @@
     <session id="16692470">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="18" />
+          <entry key="project.closed" value="19" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.10" value="2" />
@@ -99,10 +106,10 @@
           <entry key="gradle" value="4" />
           <entry key="gradlew" value="2" />
           <entry key="iml" value="1" />
-          <entry key="java" value="88" />
+          <entry key="java" value="112" />
           <entry key="png" value="3" />
           <entry key="properties" value="7" />
-          <entry key="xml" value="41" />
+          <entry key="xml" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -110,24 +117,24 @@
           <entry key="Groovy" value="4" />
           <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="3" />
-          <entry key="JAVA" value="88" />
+          <entry key="JAVA" value="112" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="Properties" value="7" />
-          <entry key="XML" value="41" />
+          <entry key="XML" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="30" />
           <entry key="gradle" value="3" />
-          <entry key="java" value="10538" />
+          <entry key="java" value="11952" />
           <entry key="xml" value="1035" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="3" />
-          <entry key="JAVA" value="10538" />
+          <entry key="JAVA" value="11952" />
           <entry key="PLAIN_TEXT" value="30" />
           <entry key="XML" value="1035" />
         </counts>
@@ -149,32 +156,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>falase</find>
-      <find>exp</find>
-      <find>enddate</find>
-      <find>detector</find>
-      <find>ont</find>
-      <find>onfilter</find>
-      <find>filter</find>
-      <find>add</find>
-      <find>itemca</find>
-      <find>convertedS</find>
-      <find>uplo</find>
-      <find>64</find>
-      <find>cate</find>
-      <find>uploader</find>
-      <find>cancel</find>
-      <find>open</find>
-      <find>log.d</find>
-      <find>setda</find>
-      <find>set</find>
       <find>REL_SWIPE_THRESHOLD_VELOCITY</find>
       <find>allItems</find>
-      <find>product</find>
       <find>get</find>
       <find>getS</find>
       <find>openDetailedView</find>
       <find>inputPriceText</find>
+      <find>productDataItem</find>
+      <find>==</find>
+      <find>pro</find>
+      <find>product.</find>
+      <find>product</find>
+      <find>productmana</find>
+      <find>lendzlis</find>
+      <find>listType</find>
+      <find>manage</find>
+      <find>currentLendz</find>
+      <find>list</find>
+      <find>a</find>
+      <find>lendzList</find>
+      <find>lendzList</find>
+      <find>getLendzData</find>
+      <find>byratin</find>
+      <find>product</find>
+      <find>.product</find>
+      <find>.product</find>
+      <find>produc</find>
+      <find>Log.</find>
+      <find>getProd</find>
+      <find>list;</find>
+      <find>Log</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -183,7 +194,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/res/layout/fragment_lendz.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/page_title.xml" />
         <option value="$PROJECT_DIR$/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/main/java/android/project/lend/HomeUserEdit.java" />
@@ -213,31 +223,35 @@
         <option value="$PROJECT_DIR$/src/main/java/android/project/lend/ProductCore.java" />
         <option value="$PROJECT_DIR$/src/main/java/android/project/lend/ItemResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/android/project/lend/IMGUR/ImgurUploader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/Helper.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/java/android/project/lend/ImageManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/android/project/lend/ExploreConfirmActivity.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/fragment_home.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/android/project/lend/HomeAdapter.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/page_title_layout.xml" />
         <option value="$PROJECT_DIR$/src/main/java/android/project/lend/ExploreDetailsFragment.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/fragment_explore_details.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/LendzFragment.java" />
         <option value="$PROJECT_DIR$/src/main/res/drawable/splash_screen.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/fragment_explore.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/HomeNewItemFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/HomeNewEditItemFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/HomeFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/LendzDataItem.java" />
         <option value="$PROJECT_DIR$/src/main/java/android/project/lend/ExploreFragment.java" />
         <option value="$PROJECT_DIR$/src/main/java/android/project/lend/ExploreAdapter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/HomeNewItemFragment.java" />
-        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/HomeFragment.java" />
-        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/HomeNewEditItemFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/Helper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/LendzFragment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/ProductManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/LendzManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/LendzAdapter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/android/project/lend/MainActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="width" value="973" />
-    <option name="height" value="1088" />
+    <option name="x" value="-15" />
+    <option name="width" value="1630" />
+    <option name="height" value="1815" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -255,11 +269,6 @@
             <path>
               <item name="front-end" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
-            </path>
-            <path>
-              <item name="front-end" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
             </path>
             <path>
@@ -267,29 +276,6 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="lend" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="front-end" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="front-end" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="drawable" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="front-end" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="front-end" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
           </expand>
           <select />
@@ -346,22 +332,23 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="Log.d&#9;null&#9;null&#10;getLendzData&#9;PSI&#9;JAVA://android.project.lend.Helper#getLendzData" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="device.picker.selection" value="98867838534c575335" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/lend3/Lend-0.3/front-end" />
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Jamie\Documents\Lend\front-end\app\src\main\res" />
-      <recent name="C:\Users\Jamie\Documents\Uni\1. Lend\Lend\front-end\app\src\main\res\drawable\Icons" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="android.project.lend" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Jamie\Documents\Lend\front-end\app\src\main\java\android\project\lend" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Jamie\Documents\Lend\front-end\app\src\main\res" />
+      <recent name="C:\Users\Jamie\Documents\Uni\1. Lend\Lend\front-end\app\src\main\res\drawable\Icons" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -470,8 +457,35 @@
       <window_info id="Image Layers" order="5" />
       <window_info id="Designer" order="6" />
       <window_info id="Capture Tool" order="7" />
+      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.4979757" weight="0.4152824" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49716598" visible="true" weight="0.36212623" />
+      <window_info anchor="bottom" id="TODO" order="2" weight="0.32890365" />
+      <window_info anchor="bottom" id="Debug" order="3" />
+      <window_info anchor="bottom" id="Terminal" order="4" weight="0.32890365" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5020243" side_tool="true" weight="0.4152824" />
+      <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49878544" weight="0.24086379" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" />
+      <window_info anchor="bottom" id="Find" order="9" weight="0.32724252" />
+      <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Gradle" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info anchor="right" id="Preview" order="4" weight="0.32712552" />
+      <window_info anchor="right" id="Android WiFi ADB" order="5" weight="0.32955465" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="1" weight="0.23157895" />
+      <window_info id="Structure" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Build Variants" order="4" side_tool="true" />
+      <window_info id="Image Layers" order="5" />
+      <window_info id="Designer" order="6" />
+      <window_info id="Capture Tool" order="7" />
       <window_info anchor="bottom" id="Run" order="0" weight="0.4152824" />
-      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.4979757" weight="0.45182723" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="1" sideWeight="0.4979757" visible="true" weight="0.52657807" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.32890365" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.32890365" />
@@ -484,36 +498,15 @@
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="right" id="Preview" order="4" weight="0.32782516" />
+      <window_info anchor="right" id="Preview" order="4" weight="0.32712552" />
       <window_info anchor="right" id="Android WiFi ADB" order="5" weight="0.32955465" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../local.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../settings.gradle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/lend_icon-web.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/seekbar_tumb_normal-web.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/seekbar_tumb_pressed-web.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../.gradle/4.10.1/gc.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../gradle.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$USER_HOME$/.gradle/gradle.properties">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -525,12 +518,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_home_new_item.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="39" column="37" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/VolleySingleton.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/IMGUR/Imgur_Data_API_GSON.java">
@@ -582,13 +575,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ImageManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="54" column="51" selection-start-line="54" selection-start-column="51" selection-end-line="54" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ImageDownloader.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ImageDataItem.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -599,18 +585,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ExploreConfirmActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1458">
-          <caret line="113" selection-start-line="113" selection-end-line="113" />
+        <state relative-caret-position="1113">
+          <caret line="78" selection-start-line="78" selection-end-line="78" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_home.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3">
           <caret line="40" selection-start-line="40" selection-end-line="40" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ImageCarousel.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -619,95 +605,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="74" column="19" selection-start-line="74" selection-start-column="19" selection-end-line="83" selection-end-column="36" />
-          <folding>
-            <element signature="e#3646#3647#0" expanded="true" />
-            <element signature="e#3691#3692#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_explore_confirm.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_explore_details.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="2" column="55" selection-start-line="2" selection-start-column="55" selection-end-line="2" selection-end-column="55" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/page_title_layout.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/LendzFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="8" />
-        </state>
-      </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/fragment_explore.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
           <caret line="51" column="25" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="25" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/splash_screen.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/SplashActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/splash_screen.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/SplashActivity.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/IMGUR/ImgurUploader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1168">
           <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/IDataController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/IManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/Helper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3087">
-          <caret line="58" column="43" selection-start-line="58" selection-start-column="43" selection-end-line="58" selection-end-column="43" />
-          <folding>
-            <element signature="e#2739#3234#0" expanded="true" />
-            <element signature="e#3233#3234#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -753,31 +684,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ExploreAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="42" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ExploreDetailsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="97" column="6" selection-start-line="97" selection-start-column="6" selection-end-line="98" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ExploreFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1013">
-          <caret line="244" column="36" selection-start-line="244" selection-start-column="20" selection-end-line="244" selection-end-column="36" />
-          <folding>
-            <element signature="e#9498#9746#0" expanded="true" />
-            <element signature="e#9745#9746#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/HomeAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -803,26 +709,6 @@
             <element signature="e#14763#15096#0" />
             <element signature="e#15102#15977#0" />
             <element signature="e#15983#16291#0" />
-            <marker date="1555325194250" expanded="true" signature="1779:2708" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ExploreReceiptActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="47" column="42" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/HomeFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="150" selection-start-line="150" selection-end-line="150" />
-          <folding>
-            <element signature="class#2733:3912" />
-            <element signature="e#6057#6301#0" expanded="true" />
-            <element signature="e#6300#6301#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -839,6 +725,140 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ImageManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/edit_icon.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/drawable/chart_icon.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/HomeFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="160" column="41" selection-start-line="160" selection-start-column="41" selection-end-line="160" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/IDataController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ExploreDetailsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6904">
+          <caret line="38" selection-start-line="38" selection-end-line="38" selection-end-column="55" />
+          <folding>
+            <element signature="e#2515#2516#0" expanded="true" />
+            <element signature="e#2574#2575#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ExploreFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="80" column="56" selection-start-line="80" selection-start-column="7" selection-end-line="80" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/IManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ExploreAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="38" column="67" selection-start-line="38" selection-start-column="67" selection-end-line="38" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/LendzDataItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/Helper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="123" column="17" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ExploreReceiptActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="36" column="53" selection-start-line="36" selection-start-column="53" selection-end-line="36" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/LendzCore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/LendzFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/ProductManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="68" column="36" selection-start-line="68" selection-start-column="36" selection-end-line="68" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/LendzManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="111" column="8" selection-start-line="111" selection-start-column="8" selection-end-line="111" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/LendzAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="6" column="23" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/android/project/lend/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="105" column="36" selection-start-line="105" selection-start-column="36" selection-end-line="105" selection-end-column="36" />
+          <folding>
+            <element signature="e#1859#4231#0" expanded="true" />
+            <element signature="e#4230#4231#0" expanded="true" />
+            <element signature="e#4096#4097#0" expanded="true" />
+            <element signature="e#4141#4142#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
