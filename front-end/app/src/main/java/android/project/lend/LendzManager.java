@@ -13,15 +13,12 @@ public class LendzManager extends Helper implements IManager {
 
     private IDataController dataController;
     public Boolean loaded = false;
-
     private ArrayList<LendzData> lendzList = new ArrayList<>();
-
     private ProductManager productManager;
     private UserManager userManager;
-
     private IManager parentManager;
 
-    public LendzManager(IDataController dataController, IManager parentManager){
+    public LendzManager(IDataController dataController, IManager parentManager) {
 
         this.dataController = dataController;
         this.parentManager = parentManager;
@@ -32,20 +29,20 @@ public class LendzManager extends Helper implements IManager {
         getLendzData(this, lendzList);
     }
 
-    public LendzManager(IDataController dataController){
+    public LendzManager(IDataController dataController) {
 
         this.dataController = dataController;
 
         getLendzData(this, lendzList);
     }
 
-    public ArrayList<LendzDataItem> getLendzListByProduct(Integer productId){
+    public ArrayList<LendzDataItem> getLendzListByProduct(Integer productId) {
 
         ArrayList<LendzDataItem> lendzDataItemList = new ArrayList<>();
 
         for (final LendzData lendz : lendzList) {
 
-            if(lendz.productId == productId) {
+            if (lendz.productId == productId) {
 
                 LendzDataItem lendzDataItem = setLendz(lendz);
 
@@ -63,7 +60,7 @@ public class LendzManager extends Helper implements IManager {
 
         for (final LendzData lendz : lendzList) {
 
-            if(lendz.lenderUserId == userId && lendz.rating == null) {
+            if (lendz.lenderUserId == userId && lendz.rating == null) {
 
                 LendzDataItem lendzDataItem = setLendz(lendz);
 
@@ -76,13 +73,13 @@ public class LendzManager extends Helper implements IManager {
         return lendzDataItemList;
     }
 
-    public ArrayList<LendzDataItem> getLendzListByRating(Integer userId){
+    public ArrayList<LendzDataItem> getLendzListByRating(Integer userId) {
 
         ArrayList<LendzDataItem> lendzDataItemList = new ArrayList<>();
 
         for (final LendzData lendz : lendzList) {
 
-            if(lendz.lenderUserId == userId && lendz.rating != null) {
+            if (lendz.lenderUserId == userId && lendz.rating != null) {
 
                 LendzDataItem lendzDataItem = setLendz(lendz);
 
@@ -95,9 +92,9 @@ public class LendzManager extends Helper implements IManager {
 
     public LendzDataItem getLendzById(Integer id) {
 
-        for(final LendzData lendz : lendzList){
+        for (final LendzData lendz : lendzList) {
 
-            if(lendz.id == id)
+            if (lendz.id == id)
                 return setLendz(lendz);
         }
 
@@ -110,10 +107,10 @@ public class LendzManager extends Helper implements IManager {
 
         lendzDataItem.setId(lendz.id);
 
-        if(productManager != null)
-            lendzDataItem.product = productManager.getProduct(lendz.productId);
+        if (productManager != null)
+           lendzDataItem.product = productManager.getProduct(lendz.productId);
 
-        if(userManager != null)
+        if (userManager != null)
             lendzDataItem.lender = userManager.getUser(lendz.lenderUserId);
 
         lendzDataItem.setStartDate(lendz.startDate);
@@ -130,7 +127,7 @@ public class LendzManager extends Helper implements IManager {
 
         this.loaded = loaded;
 
-        if(parentManager != null)
+        if (parentManager != null)
             parentManager.checkStatus();
         else
             checkStatus();
@@ -139,14 +136,14 @@ public class LendzManager extends Helper implements IManager {
     @Override
     public void checkStatus() {
 
-        if(!loaded) return;
-        if(productManager != null && !productManager.loaded) return;
-        if(userManager != null && !userManager.loaded) return;
+        if (!loaded) return;
+        if (productManager != null && !productManager.loaded) return;
+        if (userManager != null && !userManager.loaded) return;
 
         dataController.setData();
     }
 
-    private void sortListByDueDate(ArrayList<LendzDataItem> list){
+    private void sortListByDueDate(ArrayList<LendzDataItem> list) {
 
         Collections.sort(list, new Comparator<LendzDataItem>() {
             @Override
@@ -159,7 +156,7 @@ public class LendzManager extends Helper implements IManager {
                 try {
                     d1 = sdf.parse(o1.getDueDate());
                     d2 = sdf.parse(o2.getDueDate());
-                } catch (ParseException e){
+                } catch (ParseException e) {
 
                 }
 

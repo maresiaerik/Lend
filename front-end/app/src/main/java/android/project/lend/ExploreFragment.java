@@ -78,7 +78,6 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
                 sw.setRefreshing(false);
             }
         });
-
         productManager = new ProductManager(this, null);
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {

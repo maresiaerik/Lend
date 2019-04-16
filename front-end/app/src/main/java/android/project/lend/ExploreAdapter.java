@@ -38,7 +38,6 @@ public class ExploreAdapter extends ArrayAdapter<ProductDataItem> {
 
         ProductDataItem currentProduct = productList.get(position);
 
-
         listItem.setId(currentProduct.getId());
 
 
