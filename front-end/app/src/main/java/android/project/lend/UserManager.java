@@ -66,6 +66,7 @@ public class UserManager extends Helper implements IManager {
         userDataItem.setCardNumber(user.cardNumber);
         userDataItem.setCardDate(user.cardDate);
         userDataItem.setCardSecurity(user.cardSecurity);
+        userDataItem.setPassword(user.password);
 
         userDataItem.clearChanges();
 

@@ -20,7 +20,7 @@ public class HomeUserLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_user_login);
         userManager = new UserManager();
-        userDataItem = userManager.getUserList();
+        //userDataItem = userManager.getUserList();
         //Set Cancel Button To Go Back
         Button cancelBtn = findViewById(R.id.login_cancel_btn);
         cancelBtn.setOnClickListener(new View.OnClickListener() {
