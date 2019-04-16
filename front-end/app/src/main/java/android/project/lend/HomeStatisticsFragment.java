@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -46,6 +47,7 @@ public class HomeStatisticsFragment extends Fragment implements DatePickerDialog
 
 
 
+
         TextView lendzAverage = view.findViewById(R.id.lendz_average);
         String average = lendzDataItem.size() > 0 ? countLendzTimeAverage() : "0";
         lendzAverage.setText(average);
@@ -54,9 +56,12 @@ public class HomeStatisticsFragment extends Fragment implements DatePickerDialog
         String total = countTotalRevenue();
         totalRevenue.setText(total);
 
-        TextView rating = view.findViewById(R.id.lendz_rating);
+        RatingBar rating = view.findViewById(R.id.lendz_rating);
 
-        rating.setText(productDataItem.getRating() == null? "0" : productDataItem.getRating() + "");
+        rating.setRating(productDataItem.getRating() == null? 0 : productDataItem.getRating());
+
+        TextView totalDays = view.findViewById(R.id.lendz_total_borrow);
+        totalDays.setText(noOfDays + "");
 
         view.findViewById(R.id.home_calendar).setOnClickListener(new View.OnClickListener() {
             @Override

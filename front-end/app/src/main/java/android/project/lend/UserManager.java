@@ -1,5 +1,7 @@
 package android.project.lend;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class UserManager extends Helper implements IManager {
@@ -24,7 +26,7 @@ public class UserManager extends Helper implements IManager {
     public ArrayList<UserDataItem> getUserList(){
 
         ArrayList<UserDataItem> userDataItemList = new ArrayList<>();
-
+        Log.d("USERLIST", userList.size() + "");
         for (UserData user : userList) {
 
             UserDataItem userDataItem = setUser(user);

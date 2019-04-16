@@ -101,6 +101,7 @@ public class LendzFragment extends Fragment implements IDataController {
                 break;
             }
         }
+        Log.d("lendItem", lendItem +"");
         if (lendItem != null) {
 
             Intent receiptIntent = new Intent(getContext(), ExploreReceiptActivity.class);
