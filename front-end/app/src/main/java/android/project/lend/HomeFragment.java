@@ -156,9 +156,17 @@ public class HomeFragment extends Fragment implements IDataController {
 
     @Override
     public void setData() {
-        productDataItemList = productManager.getHomeProductList(MainActivity.USER.getId());
-        homeAdapter = new HomeAdapter(view.getContext(), productDataItemList);
-        listView.setAdapter(homeAdapter);
+
+        if(MainActivity.USER == null || MainActivity.USER.getId() == null) {
+            Intent login = new Intent(getActivity(), HomeUserLogin.class);
+            startActivity(login);
+        }
+        else {
+
+            productDataItemList = productManager.getHomeProductList(MainActivity.USER.getId());
+            homeAdapter = new HomeAdapter(view.getContext(), productDataItemList);
+            listView.setAdapter(homeAdapter);
+        }
     }
 
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {

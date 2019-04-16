@@ -35,14 +35,15 @@ public class HomeStatisticsFragment extends Fragment implements DatePickerDialog
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_home_statistics_fragment, container, false);
         TextView pageTitle = view.findViewById(R.id.page_title);
-        pageTitle.setText("Statistics");
+
 
         Bundle args = getArguments();
         productDataItem = (ProductDataItem) args.getSerializable("selectedItem");
         lendzDataItem = (ArrayList<LendzDataItem>) args.getSerializable("selectedItemLendz");
-
+        pageTitle.setText(productDataItem.getName());
         TextView lendzCount = view.findViewById(R.id.lendz_count);
         lendzCount.setText(lendzDataItem.size() + "");
+
 
 
         TextView lendzAverage = view.findViewById(R.id.lendz_average);
@@ -53,6 +54,10 @@ public class HomeStatisticsFragment extends Fragment implements DatePickerDialog
         String total = countTotalRevenue();
         totalRevenue.setText(total);
 
+        TextView rating = view.findViewById(R.id.lendz_rating);
+
+        rating.setText(productDataItem.getRating() == null? "0" : productDataItem.getRating() + "");
+
         view.findViewById(R.id.home_calendar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +66,25 @@ public class HomeStatisticsFragment extends Fragment implements DatePickerDialog
         });
 
         return view;
+    }
+
+    private String getAverageRating() {
+        Integer total = 0 ;
+        Integer count = 0;
+        for (int i = 0; i < lendzDataItem.size(); i++) {
+            if(lendzDataItem.get(i).getRating() != null) {
+                total += lendzDataItem.get(i).getRating();
+                count ++;
+            }
+        }
+        DecimalFormat df = new DecimalFormat("#.0");
+        if(total == 0 ) {
+            return "0";
+        }
+        else {
+            return df.format(total / count);
+        }
+
     }
 
     private void openCalendar() {

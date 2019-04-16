@@ -12,13 +12,15 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class HomeUserLogin extends AppCompatActivity {
-
+    UserManager userManager;
+    ArrayList<UserDataItem> userDataItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_user_login);
-
+        userManager = new UserManager();
+        userDataItem = userManager.getUserList();
         //Set Cancel Button To Go Back
         Button cancelBtn = findViewById(R.id.login_cancel_btn);
         cancelBtn.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +58,12 @@ public class HomeUserLogin extends AppCompatActivity {
         EditText passwordIn = findViewById(R.id.login_password);
         String password = passwordIn.getText().toString();
         if (email.length() > 0 && password.length() > 0) {
+            for (int i = 0; i < userDataItem.size(); i++) {
+                if (email.equals(userDataItem.get(i).getEmailAddress()) && password.equals(userDataItem.get(i).getPassword())) {
+                    MainActivity.USER = new UserDataItem();
+
+                }
+            }
             /*TODO Login Process*/
             /*
             Log.d("IN_HERER", "I AM HERE");
