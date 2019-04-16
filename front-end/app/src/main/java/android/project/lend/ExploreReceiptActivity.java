@@ -42,6 +42,10 @@ public class ExploreReceiptActivity extends AppCompatActivity {
             setReceiptDetails();
         }
 
+        //Setting Page Title
+        TextView pageTitle = findViewById(R.id.page_title);
+        pageTitle.setText("Receipt");
+
         //Setting Fragment To Lendz For Main Activity
         FragmentHandler.setCurrentFragment(1);
 

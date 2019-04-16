@@ -7,12 +7,14 @@
     android:padding="20dp"
     tools:context=".ExploreConfirmActivity">
 
+    <include layout="@layout/page_title_layout"/>
+
     <TextView
         android:id="@+id/confirm_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="18dp"
         android:text="Itemname"
         android:textColor="#000"
         android:textSize="25sp"

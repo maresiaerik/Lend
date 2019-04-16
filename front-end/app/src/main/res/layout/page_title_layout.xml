@@ -6,10 +6,9 @@
         android:id="@+id/page_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingLeft="6dp"
         android:text="@string/page_title_string"
         android:textColor="#515151"
-        android:textSize="40sp"
-        android:paddingLeft="6dp"
-        />
+        android:textSize="40sp" />
 
 </FrameLayout>
