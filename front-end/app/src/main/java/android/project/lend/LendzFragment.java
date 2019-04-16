@@ -96,11 +96,12 @@ public class LendzFragment extends Fragment implements IDataController {
         LendzDataItem lendItem = null;
         for (int i = 0; i < lendzDataItemList.size(); i++) {
 
-            if (lendzDataItemList.get(i).getId() == id) {
+            if (lendzDataItemList.get(i).getId().equals(id)) {
                 lendItem = lendzDataItemList.get(i);
                 break;
             }
         }
+        Log.d("lendItem", lendItem +"");
         if (lendItem != null) {
 
             Intent receiptIntent = new Intent(getContext(), ExploreReceiptActivity.class);

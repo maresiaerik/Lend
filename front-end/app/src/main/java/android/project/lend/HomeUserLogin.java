@@ -58,9 +58,32 @@ public class HomeUserLogin extends AppCompatActivity {
         EditText passwordIn = findViewById(R.id.login_password);
         String password = passwordIn.getText().toString();
         if (email.length() > 0 && password.length() > 0) {
+            Boolean userFound = false;
+
+
             for (int i = 0; i < userDataItem.size(); i++) {
-                if (email.equals(userDataItem.get(i).getEmailAddress()) && password.equals(userDataItem.get(i).getPassword())) {
+
+
+                if (userDataItem.get(i).getEmailAddress().equals(email) && userDataItem.get(i).getPassword().equals(password)) {
                     MainActivity.USER = new UserDataItem();
+                    UserDataItem userData = userDataItem.get(i);
+                    Helper helper = new Helper();
+                    Helper.UserData user = helper.new UserData(
+                            userData.getId(),
+                            userData.getFirstName(),
+                            userData.getLastName(),
+                            userData.getImageUrl(),
+                            userData.getEmailAddress(),
+                            userData.getHomeAddress(),
+                            userData.getPhoneNumber(),
+                            userData.getCardNumber(),
+                            userData.getCardDate(),
+                            userData.getCardSecurity(),
+                            userData.getPassword()
+                    );
+
+                    MainActivity.USER.create(user);
+                    userFound = true;
 
                 }
             }
@@ -80,7 +103,7 @@ public class HomeUserLogin extends AppCompatActivity {
                 }
             }
 */
-            if (true) {
+            if (userFound) {
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
                 finish();
             } else {
