@@ -42,7 +42,7 @@ public class LendzManager extends Helper implements IManager {
 
         for (final LendzData lendz : lendzList) {
 
-            if (lendz.productId == productId) {
+            if (lendz.productId.equals(productId)) {
 
                 LendzDataItem lendzDataItem = setLendz(lendz);
 
@@ -60,7 +60,7 @@ public class LendzManager extends Helper implements IManager {
 
         for (final LendzData lendz : lendzList) {
 
-            if (lendz.lenderUserId == userId && lendz.rating == null) {
+            if (lendz.lenderUserId.equals(userId) && lendz.rating == null) {
 
                 LendzDataItem lendzDataItem = setLendz(lendz);
 
@@ -79,7 +79,7 @@ public class LendzManager extends Helper implements IManager {
 
         for (final LendzData lendz : lendzList) {
 
-            if (lendz.lenderUserId == userId && lendz.rating != null) {
+            if (lendz.lenderUserId.equals(userId) && lendz.rating != null) {
 
                 LendzDataItem lendzDataItem = setLendz(lendz);
 
@@ -94,7 +94,7 @@ public class LendzManager extends Helper implements IManager {
 
         for (final LendzData lendz : lendzList) {
 
-            if (lendz.id == id)
+            if (lendz.id.equals(id))
                 return setLendz(lendz);
         }
 

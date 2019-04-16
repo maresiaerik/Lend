@@ -46,6 +46,9 @@ public class ExploreConfirmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explore_confirm);
 
+        //Setting Title
+        TextView pageTitle = findViewById(R.id.page_title);
+        pageTitle.setText("Confirm");
 
         //Setting Cancel Button To Go Back
         Button cancelBtn = findViewById(R.id.confirm_cancel_btn);
@@ -58,7 +61,7 @@ public class ExploreConfirmActivity extends AppCompatActivity {
 
         //Checking For User + Setting Button Text + Listener
         Button borrowBtn = findViewById(R.id.confirm_borrow_btn);
-        if (MainActivity.USER != null && MainActivity.USER.getId() != null/*false*/ ) {
+        if (MainActivity.USER != null && MainActivity.USER.getId() != null/*false*/) {
             borrowBtn.setText("Borrow");
             borrowBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -66,7 +69,7 @@ public class ExploreConfirmActivity extends AppCompatActivity {
                     borrow();
                 }
             });
-        }else{
+        } else {
             borrowBtn.setText("Login");
             borrowBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -89,7 +92,7 @@ public class ExploreConfirmActivity extends AppCompatActivity {
 
         if (itemData != null) {
             setItemData();
-            Log.d("HERE",imageURL+" ");
+            Log.d("HERE", imageURL + " ");
         }
 
 
@@ -112,7 +115,7 @@ public class ExploreConfirmActivity extends AppCompatActivity {
         Glide.with(this).load(imageURL).into(itemImage);
         //Dates
         TextView itemDates = findViewById(R.id.confirm_date_date);
-        itemDates.setText( startDate +" - "+ endDate );
+        itemDates.setText(startDate + " - " + endDate);
         //Price
         TextView itemPrice = findViewById(R.id.confirm_price_price);
         TextView servicePrice = findViewById(R.id.confirm_service_price);
@@ -126,7 +129,7 @@ public class ExploreConfirmActivity extends AppCompatActivity {
 
         try {
             start = sdf.parse(startDate);
-            end =  sdf.parse(endDate);
+            end = sdf.parse(endDate);
             diff = end.getTime() - start.getTime();
             noOfDays = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
         } catch (ParseException e) {
@@ -137,7 +140,7 @@ public class ExploreConfirmActivity extends AppCompatActivity {
         Log.d("price", noOfDays + "");
         Float multiplier = getMultiplier();
 
-        Log.d("multiplier", multiplier  + "");
+        Log.d("multiplier", multiplier + "");
         Float serviceFee = (multiplier - 1) * itemData.getPrice() + 1;
 
         servicePrice.setText("€" + df.format(serviceFee));
@@ -146,10 +149,10 @@ public class ExploreConfirmActivity extends AppCompatActivity {
         TextView itemTotal = findViewById(R.id.confirm_total_price);
         pricePerDay.setText("€" + df.format(itemData.getPrice()) + "/day");
         itemPrice.setText("€" + df.format(itemData.getPrice() * (noOfDays == 0 ? 1 : noOfDays)));
-        itemTotal.setText("€" + df.format((itemData.getPrice() *  (noOfDays == 0 ? 1 : noOfDays) + serviceFee)));
+        itemTotal.setText("€" + df.format((itemData.getPrice() * (noOfDays == 0 ? 1 : noOfDays) + serviceFee)));
 
         //Initialize new Instance of Lendz
-        if(MainActivity.USER != null && MainActivity.USER.getId() != null) {
+        if (MainActivity.USER != null && MainActivity.USER.getId() != null) {
             Helper helper = new Helper();
             newLenzDataItem = helper.new LendzData(itemData.getId(), MainActivity.USER.getId(), startDate, endDate, null);
         }
@@ -161,16 +164,11 @@ public class ExploreConfirmActivity extends AppCompatActivity {
 
         Double percentageMultiplier = 1.0;
 
-        if(price <= 10) {
-
+        if (price <= 10) {
             percentageMultiplier = 1.0;
-        }
-        else if(price > 10 && price <= 50){
-
+        } else if (price <= 50) {
             percentageMultiplier = 1.05;
-        }
-        else if (price > 50 ) {
-
+        } else {
             percentageMultiplier = 1.1;
         }
 
@@ -205,8 +203,7 @@ public class ExploreConfirmActivity extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     Log.d("Error", error + "");
                 }
-            })
-            {
+            }) {
                 @Override
                 public String getBodyContentType() {
                     return "application/json; charset=utf-8";
@@ -223,8 +220,7 @@ public class ExploreConfirmActivity extends AppCompatActivity {
                 }
             };
             req.add(stringRequest);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Log.d("JSONERROR", e + "");
         }
