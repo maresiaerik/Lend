@@ -17,18 +17,21 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".HomeStatisticsFragment"></activity>
-        <activity android:name=".HomeUserLogin" />
-        <activity android:name=".HomeUserRegister" />
-        <activity android:name=".ExploreReceiptActivity" />
-        <activity android:name=".ExploreConfirmActivity" />
+        <activity android:name=".HomeUserLogin"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".HomeUserRegister"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ExploreReceiptActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ExploreConfirmActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

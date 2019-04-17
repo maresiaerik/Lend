@@ -41,7 +41,7 @@ public class UserManager extends Helper implements IManager {
 
         for(UserData user : userList){
 
-            if(user.id == id)
+            if(user.id.equals(id))
                 return setUser(user);
         }
 

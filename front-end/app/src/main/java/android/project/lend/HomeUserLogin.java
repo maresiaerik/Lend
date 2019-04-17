@@ -63,7 +63,6 @@ public class HomeUserLogin extends AppCompatActivity {
 
             for (int i = 0; i < userDataItem.size(); i++) {
 
-
                 if (userDataItem.get(i).getEmailAddress().equals(email) && userDataItem.get(i).getPassword().equals(password)) {
                     MainActivity.USER = new UserDataItem();
                     UserDataItem userData = userDataItem.get(i);

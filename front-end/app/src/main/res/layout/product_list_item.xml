@@ -1,43 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/product_item_list_item"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <RelativeLayout
+        android:id="@+id/imageView_container"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView_container">
+        android:layout_height="wrap_content">
+
         <ImageView
-            android:layout_marginTop="0dp"
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:scaleType="centerCrop"
-            android:minHeight="200dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            />
+            android:layout_marginTop="0dp"
+            android:minHeight="200dp"
+            android:scaleType="centerCrop" />
+
         <RatingBar
+            android:id="@+id/user_product_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
             android:layout_centerInParent="true"
-            android:id="@+id/user_product_rating"
-            />
+            android:visibility="invisible" />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/product_name"
         android:layout_width="wrap_content"
-        android:layout_below="@id/imageView_container"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginLeft="10dp"
+        android:layout_below="@id/imageView_container"
         android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
         android:layout_marginBottom="20dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/product_price"
@@ -45,9 +44,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView_container"
         android:layout_centerHorizontal="true"
-        android:textSize="20sp"
         android:layout_weight="1"
-        />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/product_status"
@@ -56,24 +54,22 @@
         android:layout_below="@id/imageView_container"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
-        android:textSize="20sp"
         android:layout_weight="1"
-        />
+        android:textSize="20sp" />
 
     <RatingBar
+        android:id="@+id/product_rating"
+        style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView_container"
-        android:layout_weight="1"
-        android:theme="@style/RatingBar"
-        android:id="@+id/product_rating"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="7dp"
-        android:stepSize="1"
-        android:numStars="5"
-        android:isIndicator="true"
         android:layout_alignParentRight="true"
-        style="?android:attr/ratingBarStyleSmall"
-        />
+        android:layout_marginTop="7dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:stepSize="1"
+        android:theme="@style/RatingBar" />
 
 </RelativeLayout>
