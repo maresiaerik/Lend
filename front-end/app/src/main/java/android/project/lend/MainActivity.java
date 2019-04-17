@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements IDataController {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         dialog = new ProgressDialog(this);
         dialog.setMessage("Lend is loading");
         dialog.setCancelable(false);

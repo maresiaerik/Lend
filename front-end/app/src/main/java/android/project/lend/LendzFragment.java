@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -124,10 +125,8 @@ public class LendzFragment extends Fragment implements IDataController {
         lendzDataItemList = new ArrayList<>();
         ArrayList<LendzDataItem> unratedLendzDataItems = lendzManager.getLendzListByUser(MainActivity.USER.getId());
         ArrayList<LendzDataItem> ratedLendzDataItems = lendzManager.getLendzListByRating(MainActivity.USER.getId());
-
         lendzDataItemList.addAll(unratedLendzDataItems);
         lendzDataItemList.addAll(ratedLendzDataItems);
-
         lendzAdapter = new LendzAdapter(view.getContext(), lendzDataItemList);
         listView.setAdapter(lendzAdapter);
     }
