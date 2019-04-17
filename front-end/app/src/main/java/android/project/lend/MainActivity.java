@@ -1,8 +1,11 @@
 package android.project.lend;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.service.autofill.UserData;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -17,12 +20,13 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity implements IDataController {
 
     //ProductManager productManager = new ProductManager();
-    UserManager userManager;
+    static UserManager userManager;
     static public UserDataItem USER;
     BottomNavigationView bottom_nav;
     int endFrag = -1;
     static public String[] PRODUCT_STATUS = new String[]{"Available", "Lendzed", "Returned"};
     static public String BASE_URL = "https://lend-app.herokuapp.com/";
+    ProgressDialog dialog;
 
     public static Context mainActivityContext;
 
@@ -30,6 +34,13 @@ public class MainActivity extends AppCompatActivity implements IDataController {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("Lend is loading");
+        dialog.setCancelable(false);
+        dialog.setInverseBackgroundForced(false);
+        dialog.show();
 
         MainActivity.mainActivityContext = getApplicationContext();
 
@@ -103,7 +114,29 @@ public class MainActivity extends AppCompatActivity implements IDataController {
 
     @Override
     public void setData() {
-        USER = userManager.getUser(2);
+        SharedPreferences data = getSharedPreferences("USER", 0);
+
+        if(data.contains("id")) {
+            Helper helper = new Helper();
+            Helper.UserData user = helper.new UserData(
+                    data.getInt("id", 0),
+                    data.getString("firstname",""),
+                    data.getString("lastname",""),
+                    data.getString("email",""),
+                    data.getString("address",""),
+                    data.getString("url",""),
+                    data.getString("phone",""),
+                    data.getString("card_num",""),
+                    data.getString("card_date",""),
+                    data.getString("card_sec",""),
+                    data.getString("password","")
+            );
+
+            MainActivity.USER = new UserDataItem();
+            MainActivity.USER.create(user);
+        }
+        dialog.dismiss();
     }
+
 }
 

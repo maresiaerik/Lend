@@ -1,6 +1,7 @@
 package android.project.lend;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -127,6 +128,22 @@ public class HomeUserRegister extends AppCompatActivity implements IDataControll
                     ItemResponse res = g.fromJson(response, ItemResponse.class);
                     UserManager userManager = new UserManager(null, null);
                     //onBackPressed();
+
+                    SharedPreferences settings = getSharedPreferences("USER", 0);
+                    SharedPreferences.Editor editor = settings.edit();
+                    editor.putInt("id", Integer.valueOf(res.getInsertId()));
+                    editor.putString("firstname",user.firstName);
+                    editor.putString("lastname",user.lastName);
+                    editor.putString("email",user.emailAddress);
+                    editor.putString("address",user.homeAddress);
+                    editor.putString("url",user.imageUrl);
+                    editor.putString("phone",user.phoneNumber);
+                    editor.putString("card_num",user.cardNumber);
+                    editor.putString("card_date",user.cardDate);
+                    editor.putString("card_sec",user.cardSecurity);
+                    editor.putString("card_sec",user.cardSecurity);
+                    editor.putString("password",user.password);
+                    editor.commit();
 
                     MainActivity.USER = new UserDataItem();
                     MainActivity.USER.create(user);

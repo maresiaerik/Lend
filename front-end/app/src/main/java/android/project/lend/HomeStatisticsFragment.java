@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,10 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -37,11 +41,11 @@ public class HomeStatisticsFragment extends Fragment implements DatePickerDialog
         Bundle args = getArguments();
         productDataItem = (ProductDataItem) args.getSerializable("selectedItem");
         lendzDataItem = (ArrayList<LendzDataItem>) args.getSerializable("selectedItemLendz");
-        pageTitle.setText(productDataItem.getName());
+        pageTitle.setText(productDataItem.getName().length() > 10 ? productDataItem.getName().substring(0, 10) + "..." : productDataItem.getName());
         TextView lendzCount = view.findViewById(R.id.lendz_count);
         lendzCount.setText(lendzDataItem.size() + "");
-
-
+//        TextView popularMonth = view.findViewById(R.id.lendz_month);
+//        popularMonth.setText(getMostPopularMonth());
 
 
         TextView lendzAverage = view.findViewById(R.id.lendz_average);
@@ -153,10 +157,75 @@ public class HomeStatisticsFragment extends Fragment implements DatePickerDialog
         return lendzTimeAverage;
     }
 
+    private String getMostPopularMonth() {
+        Month jan = new Month(1,0, "January"), feb = new Month(2,0, "February"), mar = new Month(3, 0, "March"), apr = new Month(4,0, "April"), may = new Month(5, 0, "May"), jun = new Month(6, 0, "June"), jul = new Month(7, 0, "July"), aug = new Month(8, 0, "August"), sep = new Month(9, 0, "September"), oct = new Month(10, 0, "October"), nov = new Month(11, 0, "November"), dec = new Month(12,0, "December");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        for (int i = 0; i < lendzDataItem.size(); i++) {
+            try {
+                Date date = sdf.parse(lendzDataItem.get(i).getStartDate());
+                Calendar current = Calendar.getInstance();
+                current.setTime(date);
+
+                if(current.get(Calendar.MONTH) == (Calendar.JANUARY)) jan.count++;
+                else if(current.get(Calendar.MONTH) == Calendar.FEBRUARY) feb.count++;
+                else if(current.get(Calendar.MONTH) == Calendar.MARCH) mar.count++;
+                else if(current.get(Calendar.MONTH) == Calendar.APRIL) apr.count++;
+                else if(current.get(Calendar.MONTH) == Calendar.MAY) may.count++;
+                else if(current.get(Calendar.MONTH) == Calendar.JUNE) jun.count++;
+                else if(current.get(Calendar.MONTH) == Calendar.JULY) jul.count++;
+                else if(current.get(Calendar.MONTH) == Calendar.AUGUST) aug.count++;
+                else if(current.get(Calendar.MONTH) == Calendar.SEPTEMBER) sep.count++;
+                else if(current.get(Calendar.MONTH) == Calendar.OCTOBER) oct.count++;
+                else if(current.get(Calendar.MONTH) == Calendar.NOVEMBER) nov.count++;
+                else if(current.get(Calendar.MONTH) == Calendar.DECEMBER) dec.count++;
+            }
+            catch(Exception e) {
+                Log.d("Exception", e + "");
+            }
+        }
+        ArrayList<Month> monthArray = new ArrayList<>();
+        monthArray.add(jan);
+        monthArray.add(feb);
+        monthArray.add(mar);
+        monthArray.add(apr);
+        monthArray.add(may);
+        monthArray.add(jun);
+        monthArray.add(jul);
+        monthArray.add(aug);
+        monthArray.add(sep);
+        monthArray.add(oct);
+        monthArray.add(nov);
+        monthArray.add(dec);
+
+        Collections.sort(monthArray, new Comparator<Month>() {
+            @Override
+            public int compare(Month o1, Month o2) {
+                return o1.getCount() - o2.getCount();
+            }
+        });
+
+        for (int i = 0; i < monthArray.size(); i++) {
+            Log.d("monthArrayList", monthArray.get(i).name + " : " + monthArray.get(i).count);
+        }
+        return monthArray.get(monthArray.size() - 1).name;
+    }
+
     private String countTotalRevenue() {
         Double total;
         DecimalFormat df = new DecimalFormat("#.00");
         total = productDataItem.getPrice() * noOfDays * 0.95;
         return total == 0 ? "0" : df.format(total);
+    }
+
+    private class Month {
+        Integer monthIndex, count;
+        String name;
+        public Month(Integer monthIndex, Integer count, String name) {
+            this.monthIndex = monthIndex;
+            this.count = count;
+            this.name = name;
+        }
+        Integer getMonthIndex() {return this.monthIndex;}
+        Integer getCount() {return this.count;}
     }
 }
