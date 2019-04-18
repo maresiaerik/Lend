@@ -1,10 +1,14 @@
 package android.project.lend;
 
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.service.autofill.UserData;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -26,20 +30,19 @@ public class MainActivity extends AppCompatActivity implements IDataController {
     int endFrag = -1;
     static public String[] PRODUCT_STATUS = new String[]{"Available", "Lendzed", "Returned"};
     static public String BASE_URL = "https://lend-app.herokuapp.com/";
-    ProgressDialog dialog;
+    Dialog dialog;
 
     public static Context mainActivityContext;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        dialog = new ProgressDialog(this);
-        dialog.setMessage("Lend is loading");
+        dialog = new Dialog(this, R.style.LoadingDialog);
+        dialog.setContentView(R.layout.loading);
         dialog.setCancelable(false);
-        dialog.setInverseBackgroundForced(false);
         dialog.show();
 
         MainActivity.mainActivityContext = getApplicationContext();
