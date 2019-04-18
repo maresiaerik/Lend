@@ -120,13 +120,13 @@ public class MainActivity extends AppCompatActivity implements IDataController {
                     data.getString("firstname",""),
                     data.getString("lastname",""),
                     data.getString("email",""),
-                    data.getString("address",""),
+                    data.getString("addressET",""),
                     data.getString("url",""),
                     data.getString("phone",""),
                     data.getString("card_num",""),
                     data.getString("card_date",""),
                     data.getString("card_sec",""),
-                    data.getString("password","")
+                    data.getString("passwordET","")
             );
 
             MainActivity.USER = new UserDataItem();

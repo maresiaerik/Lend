@@ -93,14 +93,14 @@ public class HomeUserLogin extends AppCompatActivity {
                     editor.putString("firstname",user.firstName);
                     editor.putString("lastname",user.lastName);
                     editor.putString("email",user.emailAddress);
-                    editor.putString("address",user.homeAddress);
+                    editor.putString("addressET",user.homeAddress);
                     editor.putString("url",user.imageUrl);
                     editor.putString("phone",user.phoneNumber);
                     editor.putString("card_num",user.cardNumber);
                     editor.putString("card_date",user.cardDate);
                     editor.putString("card_sec",user.cardSecurity);
                     editor.putString("card_sec",user.cardSecurity);
-                    editor.putString("password",user.password);
+                    editor.putString("passwordET",user.password);
                     editor.commit();
 
                 }
@@ -115,7 +115,7 @@ public class HomeUserLogin extends AppCompatActivity {
             for (UserDataItem userEmail : userList) {
 
                 for (UserDataItem userPassword : userList) {
-                    if(userEmail.getEmailAddress().equals(email) && userPassword.getPassword().equals(password)) {
+                    if(userEmail.getEmailAddress().equals(email) && userPassword.getPassword().equals(passwordET)) {
                         isUser = true;
                     }
                 }
