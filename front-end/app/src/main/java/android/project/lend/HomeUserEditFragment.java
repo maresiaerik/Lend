@@ -1,5 +1,7 @@
 package android.project.lend;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -85,6 +87,27 @@ public class HomeUserEditFragment extends Fragment {
         cancelBtn.setVisibility(View.INVISIBLE);
         registerBtn.setVisibility(View.INVISIBLE);
 
+        final Button logoutBtn = view.findViewById(R.id.edit_logout_btn);
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                logout();
+            }
+        });
+
         return view;
+    }
+
+    private void logout(){
+
+        Intent exploreIntent = new Intent(getContext(), MainActivity.class);
+        getActivity().finish();
+
+        MainActivity.USER = null;
+        getContext().deleteSharedPreferences("USER");
+
+        startActivity(exploreIntent);
     }
 }
