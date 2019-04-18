@@ -89,6 +89,7 @@ public class UserManager extends Helper implements IManager {
 
         if(!loaded) return;
 
-        dataController.setData();
+        if(dataController != null)
+            dataController.setData();
     }
 }

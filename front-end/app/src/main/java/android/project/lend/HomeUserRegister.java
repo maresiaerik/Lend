@@ -127,11 +127,12 @@ public class HomeUserRegister extends AppCompatActivity implements IDataControll
                     Gson g = new Gson();
                     ItemResponse res = g.fromJson(response, ItemResponse.class);
                     UserManager userManager = new UserManager(null, null);
-                    //onBackPressed();
 
                     SharedPreferences settings = getSharedPreferences("USER", 0);
                     SharedPreferences.Editor editor = settings.edit();
-                    editor.putInt("id", Integer.valueOf(res.getInsertId()));
+                    user.id = Integer.valueOf(res.getInsertId());
+
+                    editor.putInt("id", user.id);
                     editor.putString("firstname",user.firstName);
                     editor.putString("lastname",user.lastName);
                     editor.putString("email",user.emailAddress);
@@ -147,6 +148,8 @@ public class HomeUserRegister extends AppCompatActivity implements IDataControll
 
                     MainActivity.USER = new UserDataItem();
                     MainActivity.USER.create(user);
+
+                    onBackPressed();
                 }
             }, new com.android.volley.Response.ErrorListener() {
                 @Override
