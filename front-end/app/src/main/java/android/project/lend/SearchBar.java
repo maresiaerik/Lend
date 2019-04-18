@@ -23,12 +23,13 @@ public class SearchBar {
     public ArrayList<ProductDataItem> search(CharSequence c) {
 
         String word = c.toString();
-        for (int i = 0; i < productDataItemList.size(); i++) {
-            if(productDataItemList.get(i).getName().toLowerCase().contains(word.toLowerCase())) {
-                searchItems.add(productDataItemList.get(i));
+        if(productDataItemList != null) {
+            for (int i = 0; i < productDataItemList.size(); i++) {
+                if (productDataItemList.get(i).getName().toLowerCase().contains(word.toLowerCase())) {
+                    searchItems.add(productDataItemList.get(i));
+                }
             }
         }
-
         return searchItems;
     }
 }

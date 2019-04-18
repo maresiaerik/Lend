@@ -1,43 +1,33 @@
 package android.project.lend;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
-import org.json.JSONException;
-
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Method;
 
 public class HomeUserRegister extends AppCompatActivity implements IDataController {
 
-    EditText firstName;
-    EditText secondName;
-    EditText emailAddress;
-    EditText phoneNumber;
-    EditText address;
-    EditText cardNumber;
-    EditText cardExpiry;
-    EditText cardCSV;
-    EditText password;
-    EditText passwordConfirm;
+    EditText firstNameET, secondNameET, emailAddressET, phoneNumberET, addressET, cardNumberET,
+            cardExpiryET, cardCSVET, passwordET, passwordConfirmET;
+    String firstName, secondName, emailAddress, phoneNumber, address, cardNumber, cardExpiry,
+            cardCSV, password, passwordConfirm;
+    Boolean firstNameCheck, secondNameCheck, emailAddressCheck, phoneNumberCheck, addressCheck, cardNumberCheck,
+            cardExpiryCheck, cardCSVCheck, passwordCheck, passwordConfirmCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,41 +35,9 @@ public class HomeUserRegister extends AppCompatActivity implements IDataControll
 
         setContentView(R.layout.fragment_home_user_edit);
 
-        //Get First Name
-        firstName = findViewById(R.id.user_first_name_edit);
-
-        //Get Second Name
-        secondName = findViewById(R.id.user_second_name_edit);
-
-        //Get Pic
-
-        //Get Email Address
-        emailAddress = findViewById(R.id.user_email_edit);
-
-        //Get Phone Number
-        phoneNumber = findViewById(R.id.user_phone_edit);
-
-        //Get Address
-        address = findViewById(R.id.user_address_edit);
-
-        //Get Credit Card Number
-        cardNumber = findViewById(R.id.user_card_edit);
-
-        //Get Credit Card Expiry
-        cardExpiry = findViewById(R.id.register_card_expiry);
-
-        //Get Credit Card CSV
-        cardCSV = findViewById(R.id.register_card_csv);
-
-        //Get Password
-        password = findViewById(R.id.register_password);
-
-        //Get Confirm Password
-        passwordConfirm = findViewById(R.id.register_password_confirm);
-
         //Disable logout button
         Button logoutBtn = findViewById(R.id.edit_logout_btn);
-        logoutBtn.setVisibility(View.INVISIBLE);
+        logoutBtn.setVisibility(View.GONE);
 
         //Set Cancel Button Listener
         Button cancelBtn = findViewById(R.id.register_cancel_btn);
@@ -95,9 +53,81 @@ public class HomeUserRegister extends AppCompatActivity implements IDataControll
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register();
+                check();
             }
         });
+    }
+
+    private void check() {
+        firstNameCheck = secondNameCheck = emailAddressCheck = phoneNumberCheck = addressCheck = cardNumberCheck
+                = cardExpiryCheck = cardCSVCheck = passwordCheck = passwordConfirmCheck = false;
+
+        //Get First Name
+        firstNameET = findViewById(R.id.user_first_name_edit);
+        firstName = firstNameET.getText().toString();
+        if (firstName.length() > 0)
+            firstNameCheck = true;
+
+        //Get Second Name
+        secondNameET = findViewById(R.id.user_second_name_edit);
+        secondName = secondNameET.getText().toString();
+        if (firstNameCheck && secondName.length() > 0)
+            secondNameCheck = true;
+
+        //Get Email Address
+        emailAddressET = findViewById(R.id.user_email_edit);
+        emailAddress = emailAddressET.getText().toString();
+        if (secondNameCheck && emailAddress.length() > 0)
+            emailAddressCheck = true;
+
+        //Get Phone Number
+        phoneNumberET = findViewById(R.id.user_phone_edit);
+        phoneNumber = phoneNumberET.getText().toString();
+        if (emailAddressCheck && phoneNumber.length() > 0)
+            phoneNumberCheck = true;
+
+        //Get Address
+        addressET = findViewById(R.id.user_address_edit);
+        address = addressET.getText().toString();
+        if (phoneNumberCheck && address.length() > 0)
+            addressCheck = true;
+
+        //Get Credit Card Number
+        cardNumberET = findViewById(R.id.user_card_edit);
+        cardNumber = cardNumberET.getText().toString();
+        if (addressCheck && cardNumber.length() > 0)
+            cardNumberCheck = true;
+
+        //Get Credit Card Expiry
+        cardExpiryET = findViewById(R.id.register_card_expiry);
+        cardExpiry = cardExpiryET.getText().toString();
+        if (cardNumberCheck && cardExpiry.length() > 0)
+            cardExpiryCheck = true;
+
+        //Get Credit Card CSV
+        cardCSVET = findViewById(R.id.register_card_csv);
+        cardCSV = cardCSVET.getText().toString();
+        if (cardExpiryCheck && cardCSV.length() > 0)
+            cardCSVCheck = true;
+
+        //Get Password
+        passwordET = findViewById(R.id.register_password);
+        password = passwordET.getText().toString();
+        if (cardCSVCheck && password.length() > 0)
+            passwordCheck = true;
+
+        //Get Confirm Password
+
+        passwordConfirmET = findViewById(R.id.register_password_confirm);
+        passwordConfirm = passwordConfirmET.getText().toString();
+        if (passwordCheck && passwordConfirm.length() > 0) {
+            passwordConfirmCheck = true;
+            if (password.equals(passwordConfirm)) {
+                register();
+            } else
+                Toast.makeText(getBaseContext(), "Passwords do not match", Toast.LENGTH_LONG).show();
+        } else
+            Toast.makeText(getBaseContext(), "Please complete all fields", Toast.LENGTH_LONG).show();
     }
 
     private void register() {
@@ -107,17 +137,8 @@ public class HomeUserRegister extends AppCompatActivity implements IDataControll
             Helper helper = new Helper();
             String url = "placeholder_url"; //placeholder
             final Helper.UserData user = helper.new UserData(
-                    firstName.getText().toString(),
-                    secondName.getText().toString(),
-                    url,
-                    emailAddress.getText().toString(),
-                    address.getText().toString(),
-                    phoneNumber.getText().toString(),
-                    cardNumber.getText().toString(),
-                    cardExpiry.getText().toString(),
-                    cardCSV.getText().toString(),
-                    password.getText().toString());
-
+                    firstName, secondName, url, emailAddress, address, phoneNumber, cardNumber,
+                    cardExpiry, cardCSV, password);
             Gson gson = new Gson();
             RequestQueue req = Volley.newRequestQueue(this);
 
@@ -129,35 +150,19 @@ public class HomeUserRegister extends AppCompatActivity implements IDataControll
                 public void onResponse(String response) {
                     Gson g = new Gson();
                     ItemResponse res = g.fromJson(response, ItemResponse.class);
-                    UserManager userManager = new UserManager(null, null);
-
                     SharedPreferences settings = getSharedPreferences("USER", 0);
                     SharedPreferences.Editor editor = settings.edit();
                     user.id = Integer.valueOf(res.getInsertId());
-
                     editor.putInt("id", user.id);
-                    editor.putString("firstname",user.firstName);
-                    editor.putString("lastname",user.lastName);
-                    editor.putString("email",user.emailAddress);
-                    editor.putString("address",user.homeAddress);
-                    editor.putString("url",user.imageUrl);
-                    editor.putString("phone",user.phoneNumber);
-                    editor.putString("card_num",user.cardNumber);
-                    editor.putString("card_date",user.cardDate);
-                    editor.putString("card_sec",user.cardSecurity);
-                    editor.putString("card_sec",user.cardSecurity);
-                    editor.putString("password",user.password);
                     editor.commit();
-
                     MainActivity.USER = new UserDataItem();
                     MainActivity.USER.create(user);
-
                     onBackPressed();
                 }
             }, new com.android.volley.Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d("Error", error+ "");
+                    Log.d("Error", error + "");
                 }
             }) {
                 @Override
@@ -177,8 +182,7 @@ public class HomeUserRegister extends AppCompatActivity implements IDataControll
 
             };
             req.add(stringRequest);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Log.d("JSONERROR", e + "");
         }
