@@ -159,6 +159,7 @@ public class HomeFragment extends Fragment implements IDataController {
         productDataItemList = productManager.getHomeProductList(MainActivity.USER.getId());
         homeAdapter = new HomeAdapter(view.getContext(), productDataItemList);
         listView.setAdapter(homeAdapter);
+
     }
 
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {

@@ -11,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:weightSum="10"
         android:id="@+id/aa">
 
        <EditText
@@ -23,18 +25,20 @@
            android:layout_marginRight="5dp"
            android:layout_marginLeft="5dp"
            android:hint="Search"
+           android:layout_weight="8"
            android:layout_height="wrap_content"
            android:background="@drawable/searchbar"
            android:id="@+id/explore_search"
            />
-    ´
+
         <Button
             android:id="@+id/filter_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" Filters"
+            android:layout_gravity="center_vertical|right"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
+
             android:background="@drawable/button_accent_action"
             android:textColor="@drawable/button_accent_action" />
     </LinearLayout>
