@@ -35,6 +35,10 @@ public class HomeUserRegister extends AppCompatActivity implements IDataControll
 
         setContentView(R.layout.fragment_home_user_edit);
 
+        //Disable logout button
+        Button logoutBtn = findViewById(R.id.edit_logout_btn);
+        logoutBtn.setVisibility(View.GONE);
+
         //Set Cancel Button Listener
         Button cancelBtn = findViewById(R.id.register_cancel_btn);
         cancelBtn.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +117,7 @@ public class HomeUserRegister extends AppCompatActivity implements IDataControll
             passwordCheck = true;
 
         //Get Confirm Password
+
         passwordConfirmET = findViewById(R.id.register_password_confirm);
         passwordConfirm = passwordConfirmET.getText().toString();
         if (passwordCheck && passwordConfirm.length() > 0) {
