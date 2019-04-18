@@ -145,26 +145,14 @@ public class HomeUserRegister extends AppCompatActivity implements IDataControll
                 public void onResponse(String response) {
                     Gson g = new Gson();
                     ItemResponse res = g.fromJson(response, ItemResponse.class);
-                    UserManager userManager = new UserManager(null, null);
-                    //onBackPressed();
                     SharedPreferences settings = getSharedPreferences("USER", 0);
                     SharedPreferences.Editor editor = settings.edit();
-                    editor.putInt("id", Integer.valueOf(res.getInsertId()));
-                    editor.putString("firstname", user.firstName);
-                    editor.putString("lastname", user.lastName);
-                    editor.putString("email", user.emailAddress);
-                    editor.putString("addressET", user.homeAddress);
-                    editor.putString("url", user.imageUrl);
-                    editor.putString("phone", user.phoneNumber);
-                    editor.putString("card_num", user.cardNumber);
-                    editor.putString("card_date", user.cardDate);
-                    editor.putString("card_sec", user.cardSecurity);
-                    editor.putString("card_sec", user.cardSecurity);
-                    editor.putString("passwordET", user.password);
+                    user.id = Integer.valueOf(res.getInsertId());
+                    editor.putInt("id", user.id);
                     editor.commit();
-
                     MainActivity.USER = new UserDataItem();
                     MainActivity.USER.create(user);
+                    onBackPressed();
                 }
             }, new com.android.volley.Response.ErrorListener() {
                 @Override
