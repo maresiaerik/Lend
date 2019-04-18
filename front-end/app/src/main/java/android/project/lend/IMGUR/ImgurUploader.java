@@ -54,7 +54,7 @@ public class ImgurUploader {
                 Gson gson = new Gson();
                 Imgur_API_GSON imgur_gson = gson.fromJson(s, Imgur_API_GSON.class);
                 imgurUrl = (imgur_gson.getData().getLink());
-                Log.d("IMGUR_TEST", imgurUrl);
+
                 if (product) {
                     Helper helper = new Helper();
                     Integer parsedId = Integer.valueOf(id);

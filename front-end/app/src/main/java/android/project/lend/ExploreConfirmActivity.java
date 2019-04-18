@@ -91,11 +91,9 @@ public class ExploreConfirmActivity extends AppCompatActivity {
         userPhone = intent.getStringExtra("userPhone");
 
         if (itemData != null) {
+
             setItemData();
-            Log.d("HERE", imageURL + " ");
         }
-
-
     }
 
     //Start Login Activity
@@ -137,10 +135,8 @@ public class ExploreConfirmActivity extends AppCompatActivity {
         }
 
         DecimalFormat df = new DecimalFormat("#.00");
-        Log.d("price", noOfDays + "");
         Float multiplier = getMultiplier();
 
-        Log.d("multiplier", multiplier + "");
         Float serviceFee = (multiplier - 1) * itemData.getPrice() + 1;
 
         servicePrice.setText("€" + df.format(serviceFee));

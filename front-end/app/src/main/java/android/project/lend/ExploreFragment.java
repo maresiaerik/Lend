@@ -139,7 +139,6 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         });
 
         sbar = view.findViewById(R.id.explore_search);
-        Log.d("SBAR", sbar + "");
 
         sbar.addTextChangedListener(new TextWatcher() {
             @Override

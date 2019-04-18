@@ -102,7 +102,7 @@ public class LendzFragment extends Fragment implements IDataController {
                 break;
             }
         }
-        Log.d("lendItem", lendItem +"");
+
         if (lendItem != null) {
 
             Intent receiptIntent = new Intent(getContext(), ExploreReceiptActivity.class);
@@ -115,7 +115,6 @@ public class LendzFragment extends Fragment implements IDataController {
             receiptIntent.putExtra("imageURL", lendItem.product.imageDataItems.get(0).getUrl());
             ActivityOptions options = ActivityOptions.makeCustomAnimation(getContext(), R.anim.in_bottom, R.anim.out_top);
             startActivity(receiptIntent, options.toBundle());
-
         }
     }
 

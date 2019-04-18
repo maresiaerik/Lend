@@ -212,12 +212,13 @@ public class ExploreDetailsFragment extends Fragment implements DatePickerDialog
                 e.printStackTrace();
             }
         }
+
         Calendar[] disabled = new Calendar[dates.size()];
+
         for (int i = 0; i < dates.size(); i++) {
-            Log.d("STARTDATE", dates.get(i).getTime() + "");
+
             disabled[i] = dates.get(i);
         }
-
 
         return disabled;
     }
@@ -314,7 +315,6 @@ public class ExploreDetailsFragment extends Fragment implements DatePickerDialog
                 newDisabled.add(disabled.get(i));
             }
         }
-        Log.d("LENGTHOFARRAY", newDisabled.size() + " ");
 
         if (newDisabled.size() < 1) {
             //return something empty
@@ -325,16 +325,14 @@ public class ExploreDetailsFragment extends Fragment implements DatePickerDialog
         Calendar[] nextDate = new Calendar[newDisabled.size()];
 
         for (int i = 0; i < newDisabled.size(); i++) {
-            Log.d("INDEXTEST", i + " ");
 
             nextDate[i] = newDisabled.get(i);
         }
+
         Arrays.sort(nextDate);
 
         return nextDate[0];
-
     }
-
 
     @Override
     public void onDateSet(DatePickerDialog v, int year, int monthOfYear, int dayOfMonth) {

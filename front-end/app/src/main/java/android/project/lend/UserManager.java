@@ -26,7 +26,7 @@ public class UserManager extends Helper implements IManager {
     public ArrayList<UserDataItem> getUserList(){
 
         ArrayList<UserDataItem> userDataItemList = new ArrayList<>();
-        Log.d("USERLIST", userList.size() + "");
+
         for (UserData user : userList) {
 
             UserDataItem userDataItem = setUser(user);

@@ -61,8 +61,8 @@ public class HomeUserLogin extends AppCompatActivity {
         EditText passwordIn = findViewById(R.id.login_password);
         String password = passwordIn.getText().toString();
         if (email.length() > 0 && password.length() > 0) {
+
             Boolean userFound = false;
-            Log.d("userlist", userDataItem.size() + "");
 
             for (int i = 0; i < userDataItem.size(); i++) {
 
@@ -105,22 +105,7 @@ public class HomeUserLogin extends AppCompatActivity {
 
                 }
             }
-            /*TODO Login Process*/
-            /*
-            Log.d("IN_HERER", "I AM HERE");
 
-            UserManager userManager = new UserManager(null, null);
-            ArrayList<UserDataItem> userList = userManager.getUserList();
-            Boolean isUser = false;
-            for (UserDataItem userEmail : userList) {
-
-                for (UserDataItem userPassword : userList) {
-                    if(userEmail.getEmailAddress().equals(email) && userPassword.getPassword().equals(passwordET)) {
-                        isUser = true;
-                    }
-                }
-            }
-*/
             if (userFound) {
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
                 finish();
