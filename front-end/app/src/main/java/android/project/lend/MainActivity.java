@@ -1,24 +1,17 @@
 package android.project.lend;
 
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.service.autofill.UserData;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
-import android.util.Log;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity implements IDataController {
@@ -39,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements IDataController {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         dialog = new Dialog(this, R.style.LoadingDialog);
         dialog.setContentView(R.layout.loading);
