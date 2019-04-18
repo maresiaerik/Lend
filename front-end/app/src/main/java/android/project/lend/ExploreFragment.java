@@ -1,5 +1,6 @@
 package android.project.lend;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -41,6 +42,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
     private int REL_SWIPE_THRESHOLD_VELOCITY;
     private ProductDataItem selectedItem = null;
     private TextWatcher txtWatch;
+    Dialog dialog;
 
     Button filterBtn;
     EditText sbar;
@@ -54,6 +56,10 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
         listView = view.findViewById(R.id.item_view);
         TextView pageTitle = view.findViewById(R.id.page_title);
         pageTitle.setText("Explore");
+
+        dialog = new Dialog(getContext(), R.style.LoadingDialog);
+        dialog.setContentView(R.layout.loading);
+        dialog.show();
 
         REL_SWIPE_MIN_DISTANCE =  120;
         REL_SWIPE_MAX_OFF_PATH = 250;
@@ -227,7 +233,7 @@ public class ExploreFragment extends Fragment implements Filter.OnFilterSelected
 
     @Override
     public void setData() {
-
+        dialog.dismiss();
         productDataItemList = productManager.getExploreProductList(MainActivity.USER);
         allItems = productManager.getExploreProductList(MainActivity.USER);
 

@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.internal.BottomNavigationItemView;
@@ -23,6 +24,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +35,7 @@ public class HomeFragment extends Fragment implements IDataController {
 
     private ProductManager productManager;
     private LendzManager lendzManager;
+    private LinearLayout instructions;
     private ArrayList<ProductDataItem> productDataItemList;
     private ArrayList<LendzDataItem> lendzDataItemList;
     Button addNewItemBtn;
@@ -43,6 +46,7 @@ public class HomeFragment extends Fragment implements IDataController {
     private int REL_SWIPE_MIN_DISTANCE;
     private int REL_SWIPE_MAX_OFF_PATH;
     private int REL_SWIPE_THRESHOLD_VELOCITY;
+    Dialog dialog;
 
     @SuppressLint("ClickableViewAccessibility")
     @Nullable
@@ -50,6 +54,13 @@ public class HomeFragment extends Fragment implements IDataController {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        dialog = new Dialog(getContext(), R.style.LoadingDialog);
+        dialog.setContentView(R.layout.loading);
+        dialog.show();
+
+        instructions = view.findViewById(R.id.instructions);
+        instructions.setVisibility(View.GONE);
 
         lendzManager = new LendzManager(this);
         REL_SWIPE_MIN_DISTANCE = 120;
@@ -65,7 +76,6 @@ public class HomeFragment extends Fragment implements IDataController {
             }
         };
         listView.setOnTouchListener(gestureListener);
-
 
         //Setting Page title
         TextView pageTitle = view.findViewById(R.id.page_title);
@@ -124,8 +134,6 @@ public class HomeFragment extends Fragment implements IDataController {
                 }
             });
 
-        } else {
-
         }
 
         //Creating New Item Fragment
@@ -156,9 +164,20 @@ public class HomeFragment extends Fragment implements IDataController {
 
     @Override
     public void setData() {
+        dialog.dismiss();
         productDataItemList = productManager.getHomeProductList(MainActivity.USER.getId());
-        homeAdapter = new HomeAdapter(view.getContext(), productDataItemList);
-        listView.setAdapter(homeAdapter);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (productDataItemList != null && productDataItemList.size() > 0) {
+                    homeAdapter = new HomeAdapter(view.getContext(), productDataItemList);
+                    listView.setAdapter(homeAdapter);
+                } else {
+                    instructions.setVisibility(View.VISIBLE);
+                    listView.setVisibility(View.GONE);
+                }
+            }
+        }, 50);
 
     }
 
@@ -250,7 +269,6 @@ public class HomeFragment extends Fragment implements IDataController {
             manager.popBackStack();
             FragmentTransaction ft = manager.beginTransaction();
             ft.setCustomAnimations(R.anim.in_right, R.anim.out_left);
-
             ft.replace(R.id.fragment_container, homeStatisticsFragment);
             ft.addToBackStack(null);
             ft.commit();

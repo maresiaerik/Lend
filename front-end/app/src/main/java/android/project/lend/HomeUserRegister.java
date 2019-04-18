@@ -132,7 +132,7 @@ public class HomeUserRegister extends AppCompatActivity implements IDataControll
             Helper helper = new Helper();
             String url = "placeholder_url"; //placeholder
             final Helper.UserData user = helper.new UserData(
-                    firstName, secondName, url, emailAddress, address, phoneNumber, cardNumber,
+                    firstName, secondName, address, emailAddress, url, phoneNumber, cardNumber,
                     cardExpiry, cardCSV, password);
             Gson gson = new Gson();
             RequestQueue req = Volley.newRequestQueue(this);

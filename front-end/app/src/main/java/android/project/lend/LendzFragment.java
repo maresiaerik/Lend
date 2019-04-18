@@ -1,8 +1,10 @@
 package android.project.lend;
 
 import android.app.ActivityOptions;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -30,13 +33,14 @@ public class LendzFragment extends Fragment implements IDataController {
 
     private LendzManager lendzManager;
     private ArrayList<LendzDataItem> lendzDataItemList;
-
+    private LinearLayout instructions;
     private View view = null;
     private ListView listView = null;
     private LendzAdapter lendzAdapter;
     private int REL_SWIPE_MIN_DISTANCE;
     private int REL_SWIPE_MAX_OFF_PATH;
     private int REL_SWIPE_THRESHOLD_VELOCITY;
+    Dialog dialog;
 
 
     @Nullable
@@ -45,9 +49,16 @@ public class LendzFragment extends Fragment implements IDataController {
 
         view = inflater.inflate(R.layout.fragment_lendz, container, false);
         TextView pageTitle = view.findViewById(R.id.page_title);
+
+        dialog = new Dialog(getContext(), R.style.LoadingDialog);
+        dialog.setContentView(R.layout.loading);
+        dialog.show();
+
         pageTitle.setText("Lendz");
 
-        listView = (ListView) view.findViewById(R.id.item_view);
+        listView = view.findViewById(R.id.item_view);
+        instructions = view.findViewById(R.id.instructions);
+        instructions.setVisibility(View.GONE);
 
         final GestureDetector gestureDetector = new GestureDetector(new MyGestureDetector());
         View.OnTouchListener gestureListener = new View.OnTouchListener() {
@@ -102,7 +113,7 @@ public class LendzFragment extends Fragment implements IDataController {
                 break;
             }
         }
-        Log.d("lendItem", lendItem +"");
+        Log.d("lendItem", lendItem + "");
         if (lendItem != null) {
 
             Intent receiptIntent = new Intent(getContext(), ExploreReceiptActivity.class);
@@ -115,20 +126,29 @@ public class LendzFragment extends Fragment implements IDataController {
             receiptIntent.putExtra("imageURL", lendItem.product.imageDataItems.get(0).getUrl());
             ActivityOptions options = ActivityOptions.makeCustomAnimation(getContext(), R.anim.in_bottom, R.anim.out_top);
             startActivity(receiptIntent, options.toBundle());
-
         }
     }
 
     @Override
     public void setData() {
-
+        dialog.dismiss();
         lendzDataItemList = new ArrayList<>();
         ArrayList<LendzDataItem> unratedLendzDataItems = lendzManager.getLendzListByUser(MainActivity.USER.getId());
         ArrayList<LendzDataItem> ratedLendzDataItems = lendzManager.getLendzListByRating(MainActivity.USER.getId());
         lendzDataItemList.addAll(unratedLendzDataItems);
         lendzDataItemList.addAll(ratedLendzDataItems);
-        lendzAdapter = new LendzAdapter(view.getContext(), lendzDataItemList);
-        listView.setAdapter(lendzAdapter);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (lendzDataItemList.size() > 0) {
+                    lendzAdapter = new LendzAdapter(view.getContext(), lendzDataItemList);
+                    listView.setAdapter(lendzAdapter);
+                } else {
+                    instructions.setVisibility(View.VISIBLE);
+                    listView.setVisibility(View.GONE);
+                }
+            }
+        }, 50);
     }
 
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {
