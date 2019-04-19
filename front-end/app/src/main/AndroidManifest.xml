@@ -22,10 +22,10 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name=".HomeUserLogin"
+            android:name=".HomeUserLoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".HomeUserRegister"
+            android:name=".HomeUserRegisterFragment"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ExploreReceiptActivity"

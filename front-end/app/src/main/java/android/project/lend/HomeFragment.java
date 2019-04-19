@@ -3,7 +3,6 @@ package android.project.lend;
 import android.annotation.SuppressLint;
 
 import android.app.Dialog;
-import android.content.Intent;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,7 +26,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -177,7 +175,7 @@ public class HomeFragment extends Fragment implements IDataController {
                     listView.setVisibility(View.GONE);
                 }
             }
-        }, 50);
+        }, 100);
 
     }
 
@@ -227,7 +225,7 @@ public class HomeFragment extends Fragment implements IDataController {
         editIcon.setImageResource(R.drawable.chart_icon);
         itemDialog.show();
         //Open Edit item view
-        itemDialog.findViewById(R.id.contact_message).setOnClickListener(new View.OnClickListener() {
+        itemDialog.findViewById(R.id.camera).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openEditItem(id);
@@ -237,7 +235,7 @@ public class HomeFragment extends Fragment implements IDataController {
 
         });
         //Open Calendar
-        itemDialog.findViewById(R.id.message).setOnClickListener(new View.OnClickListener() {
+        itemDialog.findViewById(R.id.gallery).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openCalendar(id);

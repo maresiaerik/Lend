@@ -47,6 +47,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 import static android.app.Activity.RESULT_CANCELED;
@@ -126,10 +127,8 @@ public class HomeNewEditItemFragment extends Fragment {
         newImage4 = view.findViewById(R.id.new_image_4);
 
         imageViews = new ArrayList<ImageView>();
-        imageViews.add(newImage1);
-        imageViews.add(newImage2);
-        imageViews.add(newImage3);
-        imageViews.add(newImage4);
+        ImageView[] ivs = {newImage1, newImage2, newImage3, newImage4};
+        imageViews.addAll(Arrays.asList(ivs));
 
         //Setting OnClick Listeners To Image Views
         newImage1.setOnClickListener(new View.OnClickListener() {
@@ -232,7 +231,6 @@ public class HomeNewEditItemFragment extends Fragment {
         //Confirm Final Check + Update Product
         if (priceCheck) {
             Helper helper = new Helper();
-
             if (editProduct) {
                 newItem = helper.new ProductData(editDataItem.getId(), MainActivity.USER.getId(), itemTitle,
                         itemPrice, 0, itemDescription, itemCategory);
@@ -240,7 +238,6 @@ public class HomeNewEditItemFragment extends Fragment {
                 newItem = helper.new ProductData(MainActivity.USER.getId(), itemTitle,
                         itemPrice, 0, itemDescription, itemCategory);
             }
-
             uploadItem();
             if (editProduct)
                 Toast.makeText(getContext(), "Updating item...", Toast.LENGTH_LONG).show();
@@ -251,14 +248,14 @@ public class HomeNewEditItemFragment extends Fragment {
     //Upload Item To DB
     private void uploadItem() {
         try {
-            String HTTP_REQUEST_BASE_URL = "https://lend-app.herokuapp.com/";
-            String ITEM_PATH = "items";
+            String url = MainActivity.BASE_URL;
+            String itemPath = "items";
             final Gson gson = new Gson();
             final String requestBody = gson.toJson(newItem);
             int requestType = Request.Method.POST;
             if (editProduct) requestType = Request.Method.PUT;
             RequestQueue req = Volley.newRequestQueue(getContext());
-            StringRequest stringRequest = new StringRequest(requestType, HTTP_REQUEST_BASE_URL + ITEM_PATH, new Response.Listener<String>() {
+            StringRequest stringRequest = new StringRequest(requestType, url + itemPath, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     Log.d("Volley", response);
@@ -324,7 +321,7 @@ public class HomeNewEditItemFragment extends Fragment {
             pictureDialog.setContentView(R.layout.picture_input_layout);
             pictureDialog.show();
             //Get Dialog Camera Icon
-            pictureDialog.findViewById(R.id.contact_message).setOnClickListener(new View.OnClickListener() {
+            pictureDialog.findViewById(R.id.camera).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     takePhotoFromCamera();
@@ -333,7 +330,7 @@ public class HomeNewEditItemFragment extends Fragment {
 
             });
             //Get Dialog Gallery Icon
-            pictureDialog.findViewById(R.id.message).setOnClickListener(new View.OnClickListener() {
+            pictureDialog.findViewById(R.id.gallery).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     choosePhotoFromGallery();

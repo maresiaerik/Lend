@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements IDataController {
             };
 
     private void loginRequired() {
-        Intent login = new Intent(this, HomeUserLogin.class);
+        Intent login = new Intent(this, HomeUserLoginActivity.class);
         startActivity(login);
     }
 

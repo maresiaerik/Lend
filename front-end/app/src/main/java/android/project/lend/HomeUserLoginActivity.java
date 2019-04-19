@@ -1,6 +1,5 @@
 package android.project.lend;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +12,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class HomeUserLogin extends AppCompatActivity {
+public class HomeUserLoginActivity extends AppCompatActivity {
 
     ArrayList<UserDataItem> userDataItem;
 
@@ -135,7 +134,7 @@ public class HomeUserLogin extends AppCompatActivity {
     //Start Intent For Register Activity
     private void register() {
         finish();/* Close Login Page So User Goes Back To Confirm Page Upon Registration */
-        Intent registerIntent = new Intent(this, HomeUserRegister.class);
+        Intent registerIntent = new Intent(this, HomeUserRegisterFragment.class);
         startActivity(registerIntent);
     }
 

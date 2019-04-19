@@ -4,9 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.project.lend.BuildConfig;
 import android.project.lend.Helper;
-import android.project.lend.IMGUR.Imgur_API_GSON;
-import android.project.lend.ItemResponse;
 import android.project.lend.MainActivity;
+import android.project.lend.UserDataItem;
 import android.util.Base64;
 import android.util.Log;
 
@@ -30,7 +29,8 @@ import java.util.Map;
 public class ImgurUploader {
 
     final String apiKey = BuildConfig.ApiKey;
-    final String url = "https://api.imgur.com/3/image";
+    final String iUrl = "https://api.imgur.com/3/image";
+    final String hUrl = MainActivity.BASE_URL;
     String imgurUrl;
     private Context context;
     Helper.ImageData newImage;
@@ -48,7 +48,7 @@ public class ImgurUploader {
         reqQueue = Volley.newRequestQueue(context.getApplicationContext());
         //Convert Image Bitmap To Binary String
         final String imageString = get64BaseImage(bitmap);
-            StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, iUrl, new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
                 Gson gson = new Gson();
@@ -59,9 +59,9 @@ public class ImgurUploader {
                     Helper helper = new Helper();
                     Integer parsedId = Integer.valueOf(id);
                     newImage = helper.new ImageData(parsedId, imgurUrl);
-                    uploadImageString(newImage);
+                    uploadImageHeroku(newImage);
                 } else {
-                    //Update User DB With ID
+                    updateUser(imgurUrl);
                 }
             }
         }, new Response.ErrorListener() {
@@ -88,18 +88,15 @@ public class ImgurUploader {
         reqQueue.add(request);
     }
 
-    private void uploadImageString(Helper.ImageData newImage) {
+    private void uploadImageHeroku(Helper.ImageData newImage) {
         try {
-            String HTTP_REQUEST_BASE_URL = "https://lend-app.herokuapp.com/";
-            String LENDZ_PATH = "images";
+            String imagePath = "images";
             final Gson gson = new Gson();
             final String requestBody = gson.toJson(newImage);
-
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, HTTP_REQUEST_BASE_URL + LENDZ_PATH, new Response.Listener<String>() {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, hUrl + imagePath, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     Log.d("Volley", response);
-
                 }
             }, new Response.ErrorListener() {
                 @Override
@@ -121,6 +118,50 @@ public class ImgurUploader {
                         return null;
                     }
                 }
+            };
+            reqQueue.add(stringRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("JSONERROR", e + "");
+        }
+    }
+
+    private void updateUser(String imgurUrl) {
+        UserDataItem u = MainActivity.USER;
+        Helper helper = new Helper();
+        final Helper.UserData user = helper.new UserData(
+                u.getId(), u.getFirstName(), u.getLastName(), imgurUrl, u.getEmailAddress(), u.getHomeAddress(), u.getPhoneNumber(),
+                u.getCardNumber(), u.getCardDate(), u.getCardSecurity(), u.getPassword());
+        try {
+            Gson gson = new Gson();
+            final String requestBody = gson.toJson(user);
+
+            StringRequest stringRequest = new StringRequest(Request.Method.PUT, hUrl + "users/" + u.getId(), new com.android.volley.Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.d("Here", response);
+                }
+            }, new com.android.volley.Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("Error", error + "");
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                @Override
+                public byte[] getBody() throws AuthFailureError {
+                    try {
+                        return requestBody == null ? null : requestBody.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                        return null;
+                    }
+                }
+
             };
             reqQueue.add(stringRequest);
         } catch (Exception e) {

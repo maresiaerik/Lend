@@ -150,7 +150,6 @@ public class Helper {
         String description;
         String category;
 
-
         public ProductData(Integer id, Integer userId, String name, Float price, Integer rating, String description, String category) {
             this.id = id;
             this.userId = userId;

@@ -7,7 +7,6 @@ import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -154,7 +153,7 @@ public class ExploreReceiptActivity extends AppCompatActivity {
             }
         });
         //Set Message Icon To Launch SMS Intent
-        contactDialog.findViewById(R.id.message).setOnClickListener(new View.OnClickListener() {
+        contactDialog.findViewById(R.id.gallery).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent messageIntent = new Intent(Intent.ACTION_VIEW);

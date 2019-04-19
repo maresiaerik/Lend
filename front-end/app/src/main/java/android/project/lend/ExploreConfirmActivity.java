@@ -1,9 +1,7 @@
 package android.project.lend;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.icu.text.SimpleDateFormat;
-import android.media.Image;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -28,7 +25,6 @@ import com.google.gson.Gson;
 import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -100,7 +96,7 @@ public class ExploreConfirmActivity extends AppCompatActivity {
 
     //Start Login Activity
     private void login() {
-        Intent loginIntent = new Intent(this, HomeUserLogin.class);
+        Intent loginIntent = new Intent(this, HomeUserLoginActivity.class);
         startActivity(loginIntent);
 
     }

@@ -148,7 +148,7 @@ public class LendzFragment extends Fragment implements IDataController {
                     listView.setVisibility(View.GONE);
                 }
             }
-        }, 50);
+        }, 100);
     }
 
     class MyGestureDetector extends GestureDetector.SimpleOnGestureListener {

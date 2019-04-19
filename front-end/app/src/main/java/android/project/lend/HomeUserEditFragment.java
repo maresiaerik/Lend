@@ -29,8 +29,8 @@ public class HomeUserEditFragment extends Fragment {
 
         //Setting Image
         ImageView img = view.findViewById(R.id.user_profile_pic_edit);
+        Log.d("PIC_EDIT", MainActivity.USER.getImageUrl());
         Glide.with(this).load(MainActivity.USER.getImageUrl()).into(img);
-        //new ImageDownloader(img).execute(MainActivity.USER.getImageUrl());
 
         //Setting First Name
         EditText userFirstNameEdit = view.findViewById(R.id.user_first_name_edit);
@@ -84,8 +84,8 @@ public class HomeUserEditFragment extends Fragment {
         //Hide Register + Cancel Buttons
         Button cancelBtn = view.findViewById(R.id.register_cancel_btn);
         Button registerBtn = view.findViewById(R.id.register_submit_btn);
-        cancelBtn.setVisibility(View.INVISIBLE);
-        registerBtn.setVisibility(View.INVISIBLE);
+        cancelBtn.setVisibility(View.GONE);
+        registerBtn.setVisibility(View.GONE);
 
         final Button logoutBtn = view.findViewById(R.id.edit_logout_btn);
 
