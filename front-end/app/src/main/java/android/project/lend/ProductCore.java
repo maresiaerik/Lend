@@ -204,7 +204,6 @@ public class ProductCore implements Serializable, Parcelable {
     public void update() {
         if (!changed) return;
 
-        Log.d("PRODUCTCHANGE", "Something was changed!");
         if (changedLendzId) {
             Log.d("PRODUCTCHANGED", "LendzID was changed to " + this.lendzId);
         }

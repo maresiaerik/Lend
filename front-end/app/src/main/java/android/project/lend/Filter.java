@@ -172,7 +172,7 @@ public class Filter{
         }
 
         if (filterCallback != null) {
-            Log.d("FILTER_FILTERED_LIST_LENGTH", filteredList.size() + "");
+
             filterCallback.filterSelected(filteredList, minPrice, maxPrice, minRating, maxRating, categoryIndex, sortByIndex);
         }
 
@@ -185,7 +185,7 @@ public class Filter{
     private class SortRating implements Comparator<ProductDataItem> {
         @Override
         public int compare(ProductDataItem o1, ProductDataItem o2) {
-            Log.d("RATING", o1.getRating().toString() +  "  " + o2.getRating().toString() );
+
             return o1.getRating().compareTo(o2.getRating());
         }
     }

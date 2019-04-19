@@ -192,8 +192,6 @@ public class UserCore {
     {
         if(!changed) return;
 
-        Log.d("USERCHANGED", "Something was changed!");
-
         if(changedFirstName){}
         if(changedLastName){}
         if(changedEmailAddress){}
@@ -207,10 +205,7 @@ public class UserCore {
         clearChanges();
     }
 
-    public void delete()
-    {
-        Log.d("USERDELETED", this.firstName + " was deleted");
-    }
+    public void delete() { }
 
     public void clearChanges()
     {

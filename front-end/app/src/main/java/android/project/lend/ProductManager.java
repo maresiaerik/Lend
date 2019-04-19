@@ -33,7 +33,7 @@ public class ProductManager extends Helper implements IManager
 
         for (final ProductData product : productList)
         {
-            if(user != null && product.userId != user.getId() || user == null) {
+            if(user != null && !product.userId.equals(user.getId()) || user == null) {
 
                 ProductDataItem productDataItem = setProduct(product);
 
@@ -41,7 +41,6 @@ public class ProductManager extends Helper implements IManager
             }
         }
 
-        Log.d("PRODUCTMANAGER", productDataItemList.size() + "");
         return productDataItemList;
     }
 
@@ -51,7 +50,7 @@ public class ProductManager extends Helper implements IManager
 
         for (final ProductData product : productList)
         {
-            if(product.userId == userId) {
+            if(product.userId.equals(userId)) {
 
                 ProductDataItem productDataItem = setProduct(product);
 
