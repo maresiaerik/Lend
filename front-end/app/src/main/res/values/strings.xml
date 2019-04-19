@@ -13,7 +13,7 @@
 
     <!--Sort By Drop Down list-->
     <string-array name="sort_by_dropdown">
-        <item>-- Sort By --</item>
+        <item>-Sort By-</item>
         <item>Price (Lowest First)</item>
         <item>Rating (Highest First)</item>
     </string-array>
