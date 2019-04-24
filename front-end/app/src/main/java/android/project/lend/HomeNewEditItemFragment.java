@@ -180,7 +180,9 @@ public class HomeNewEditItemFragment extends Fragment {
         inputDescription.setText(editDataItem.getDescription());
         priceBtn.setText("€ " + editDataItem.getPrice() + "/day");
         categorySpinner.setSelection(parseInt(editDataItem.getCategory()));
+        Log.d("Arra_length", editDataItem.imageDataItems.size() + "");
         for (int i = 0; i < editDataItem.imageDataItems.size(); i++) {
+            Log.d("i_size_HERE", i +"");
             Glide.with(view).load(editDataItem.imageDataItems.get(i).getUrl()).into(imageViews.get(i));
         }
     }

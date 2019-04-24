@@ -118,9 +118,9 @@ public class LendzFragment extends Fragment implements IDataController {
 
             Intent receiptIntent = new Intent(getContext(), ExploreReceiptActivity.class);
             receiptIntent.putExtra("itemData", (Parcelable) lendItem.product);
-            receiptIntent.putExtra("userEmail", lendItem.lender.getEmailAddress());
-            receiptIntent.putExtra("userAddress", lendItem.lender.getHomeAddress());
-            receiptIntent.putExtra("userPhone", lendItem.lender.getPhoneNumber());
+            receiptIntent.putExtra("userEmail", lendItem.product.owner.getEmailAddress());
+            receiptIntent.putExtra("userAddress", lendItem.product.owner.getHomeAddress());
+            receiptIntent.putExtra("userPhone", lendItem.product.owner.getPhoneNumber());
             receiptIntent.putExtra("datesBtn", lendItem.getStartDate());
             receiptIntent.putExtra("endDate", lendItem.getDueDate());
             receiptIntent.putExtra("imageURL", lendItem.product.imageDataItems.get(0).getUrl());

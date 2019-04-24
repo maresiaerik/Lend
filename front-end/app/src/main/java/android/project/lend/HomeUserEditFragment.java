@@ -26,10 +26,10 @@ public class HomeUserEditFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_home_user_edit, container, false);
-
+        UserDataItem u = MainActivity.USER;
         //Setting Image
         ImageView img = view.findViewById(R.id.user_profile_pic_edit);
-        Log.d("PIC_EDIT", MainActivity.USER.getImageUrl());
+
         Glide.with(this).load(MainActivity.USER.getImageUrl()).into(img);
 
         //Setting First Name
@@ -41,7 +41,8 @@ public class HomeUserEditFragment extends Fragment {
         userSecondNameEdit.setText(MainActivity.USER.getLastName());
 
         //Setting Email
-        final TextView userEmailEdit = view.findViewById(R.id.user_email_edit);
+        TextView userEmailEdit = view.findViewById(R.id.user_email_edit);
+
         userEmailEdit.setText(MainActivity.USER.getEmailAddress());
 
         //Setting Phone
